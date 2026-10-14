@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "device_map",
+  "document_id": "example-candidate",
+  "title": "Non-production schema example",
+  "lifecycle": "candidate",
+  "device": {
+    "device_id": "example-device",
+    "display_name": "Example device — not real equipment",
+    "role": "Schema example only",
+    "lifecycle": "candidate",
+    "protocol": "Modbus candidate",
+    "protocol_role": "server candidate",
+    "endpoint_status": "unknown",
+    "model": { "status": "unknown", "values": [], "evidence": "Example only" },
+    "firmware": { "status": "unknown", "values": [], "evidence": "Example only" },
+    "map_revision": { "status": "unknown", "values": [], "evidence": "Example only" }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-EXAMPLE",
+      "filename": "not-a-vendor-file.xlsx",
+      "revision": "example",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "classification": "synthetic example"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "software",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "This file demonstrates shape only"
+    }
+  ],
+  "points": [
+    {
+      "logical_id": "example.raw.value",
+      "generated_name": "EXAMPLE_RAW_VALUE",
+      "vendor_name": "Example value",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x0000",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 0,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "example_unit",
+        "minimum": "0",
+        "maximum": "100",
+        "sentinels": [65535],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time until vendor source time is confirmed",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-EXAMPLE",
+        "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "sheet": "Example",
+        "row": 1,
+        "cells": "A1:G1",
+        "raw_vendor_name": "Example value"
+      },
+      "notes": ["No address or setting in this example describes production equipment."]
+    }
+  ],
+  "blockers": []
+}

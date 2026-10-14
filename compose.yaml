@@ -1,0 +1,156 @@
+name: ${SKID2_COMPOSE_PROJECT:-skid2}
+
+x-python-build: &python-build
+  context: .
+  target: runtime
+
+x-python-environment: &python-environment
+  SKID2_ENVIRONMENT: ${SKID2_ENVIRONMENT:?Set SKID2_ENVIRONMENT in the selected env file}
+  SKID2_SERVICE_NAME: ${SKID2_SERVICE_NAME:-backend}
+  SKID2_SERVICE_HOST: ${SKID2_SERVICE_HOST:?Set SKID2_SERVICE_HOST}
+  SKID2_SERVICE_PORT: ${SKID2_SERVICE_PORT:?Set SKID2_SERVICE_PORT}
+  SKID2_LOG_LEVEL: ${SKID2_LOG_LEVEL:-INFO}
+  SKID2_DATABASE_URL: ${SKID2_DATABASE_URL:?Set SKID2_DATABASE_URL}
+  SKID2_MONITOR_ENABLED: ${SKID2_MONITOR_ENABLED:-true}
+  SKID2_AUTH_ENABLED: ${SKID2_AUTH_ENABLED:-true}
+  SKID2_BROWSER_ORIGIN: ${SKID2_BROWSER_ORIGIN:-http://localhost:5173}
+  SKID2_PUBLIC_APP_URL: ${SKID2_PUBLIC_APP_URL:-}
+  SKID2_CORS_ORIGINS: ${SKID2_CORS_ORIGINS:-}
+  SKID2_SMTP_HOST: ${SKID2_SMTP_HOST:-}
+  SKID2_SMTP_PORT: ${SKID2_SMTP_PORT:-587}
+  SKID2_SMTP_USERNAME: ${SKID2_SMTP_USERNAME:-}
+  SKID2_SMTP_PASSWORD: ${SKID2_SMTP_PASSWORD:-}
+  SKID2_SMTP_FROM: ${SKID2_SMTP_FROM:-Skid 2 EMS <noreply@carbondc.io>}
+  SKID2_SMTP_STARTTLS: ${SKID2_SMTP_STARTTLS:-true}
+  SKID2_MAIL_DIR: ${SKID2_MAIL_DIR:-data/mail}
+  SKID2_SECURE_COOKIES: ${SKID2_SECURE_COOKIES:-false}
+  SKID2_SIMULATION_ENABLED: ${SKID2_SIMULATION_ENABLED:-false}
+  SKID2_SIMULATION_STEP_SECONDS: ${SKID2_SIMULATION_STEP_SECONDS:-1.0}
+  SKID2_SIMULATION_PROFILE: ${SKID2_SIMULATION_PROFILE:-stage0}
+  SKID2_SIMULATION_SEED: ${SKID2_SIMULATION_SEED:?Set SKID2_SIMULATION_SEED for this run}
+  SKID2_PROTOCOL_ROOT: ${SKID2_PROTOCOL_ROOT:-protocol}
+  SKID2_MODBUS_ENABLED: ${SKID2_MODBUS_ENABLED:-false}
+  SKID2_MODBUS_BIND_HOST: ${SKID2_MODBUS_BIND_HOST:-127.0.0.1}
+  SKID2_MODBUS_CLIENT_HOST: ${SKID2_MODBUS_CLIENT_HOST:-127.0.0.1}
+  SKID2_MODBUS_PORT: ${SKID2_MODBUS_PORT:-1502}
+  SKID2_MODBUS_BA1_ID: ${SKID2_MODBUS_BA1_ID:-1}
+  SKID2_MODBUS_CNVTR1_ID: ${SKID2_MODBUS_CNVTR1_ID:-2}
+  SKID2_MODBUS_CNVTR2_ID: ${SKID2_MODBUS_CNVTR2_ID:-3}
+  SKID2_MODBUS_DC600_ID: ${SKID2_MODBUS_DC600_ID:-4}
+  SKID2_MODBUS_ST4_ID: ${SKID2_MODBUS_ST4_ID:-5}
+  SKID2_MODBUS_ST5_ID: ${SKID2_MODBUS_ST5_ID:-6}
+  SKID2_MODBUS_ST6_ID: ${SKID2_MODBUS_ST6_ID:-7}
+  SKID2_MODBUS_BANK_PATH: ${SKID2_MODBUS_BANK_PATH:-generated/protocol/simulator/register_banks.json}
+  SKID2_SYNTHETIC_ENABLED: ${SKID2_SYNTHETIC_ENABLED:-false}
+  SKID2_SYNTHETIC_INTERVAL_SECONDS: ${SKID2_SYNTHETIC_INTERVAL_SECONDS:-1.0}
+  SKID2_FRESHNESS_THRESHOLD_SECONDS: ${SKID2_FRESHNESS_THRESHOLD_SECONDS:-3.0}
+  SKID2_SYNTHETIC_MAX_SAMPLES: ${SKID2_SYNTHETIC_MAX_SAMPLES:-0}
+  SKID2_DATA_SOURCE: ${SKID2_DATA_SOURCE:-sim}
+  SKID2_EMS_ENABLED: ${SKID2_EMS_ENABLED:-true}
+  SKID2_EMS_POLL_SECONDS: ${SKID2_EMS_POLL_SECONDS:-1.0}
+  SKID2_AUTH_SECRET: ${SKID2_AUTH_SECRET:-local-development-auth-secret}
+
+services:
+  db:
+    image: timescale/timescaledb:2.28.2-pg17
+    environment:
+      POSTGRES_DB: ${SKID2_DATABASE_NAME:?Set SKID2_DATABASE_NAME}
+      POSTGRES_USER: ${SKID2_DATABASE_USER:?Set SKID2_DATABASE_USER}
+      POSTGRES_PASSWORD: ${SKID2_DATABASE_PASSWORD:?Set SKID2_DATABASE_PASSWORD}
+      TZ: UTC
+    ports:
+      - "127.0.0.1:${SKID2_DB_HOST_PORT:-5432}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - app
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -h 127.0.0.1",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+
+  backend:
+    build: *python-build
+    environment:
+      <<: *python-environment
+      SKID2_SERVICE_NAME: backend
+      SKID2_SERVICE_PORT: 8000
+      SKID2_MODBUS_ENABLED: "true"
+      # Listen inside Docker but publish only on this computer.
+      SKID2_MODBUS_BIND_HOST: "0.0.0.0"
+      SKID2_MODBUS_CLIENT_HOST: "127.0.0.1"
+      SKID2_MODBUS_PORT: "1502"
+    command: ["serve", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    ports:
+      - "127.0.0.1:${SKID2_API_HOST_PORT:-8000}:8000"
+      - "127.0.0.1:${SKID2_MODBUS_HOST_PORT:-1502}:1502"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/ready', timeout=2)",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: panel
+      target: development
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    environment:
+      SKID2_PANEL_API_PROXY: http://backend:8000
+      VITE_SKID2_SIMULATION_ENABLED: "true"
+    ports:
+      - "127.0.0.1:${SKID2_PANEL_HOST_PORT:-5173}:5173"
+    volumes:
+      - ./panel:/app
+      - frontend_node_modules:/app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - app
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:5173/ || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+
+networks:
+  app:
+    name: ${SKID2_COMPOSE_PROJECT:-skid2}_app
+
+volumes:
+  db_data:
+    name: ${SKID2_COMPOSE_PROJECT:-skid2}_db_data
+  frontend_node_modules:
+    name: ${SKID2_COMPOSE_PROJECT:-skid2}_frontend_node_modules

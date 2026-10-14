@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carbon DC EMS · Skid 2</title>
+<script src="./config.js"></script>
+<style>
+/* ===== Light (default) ===== */
+:root{
+  --bg:#eef1f6; --panel:#ffffff; --panel2:#f7f9fc; --panel3:#eef2f7;
+  --line:#e3e8f0; --line2:#d3dbe6;
+  --tx:#1b2735; --tx2:#5a6b80; --tx3:#8695a8;
+  --green:#16a34a; --amber:#d97706; --orange:#ea580c; --red:#dc2626;
+  --blue:#2563eb; --purple:#7c3aed; --cyan:#0891b2; --pv:#f59e0b;
+  --busbar:#dbeafe; --busbar-b:#2563eb;
+  --shadow:0 1px 3px rgba(20,40,80,.06),0 6px 20px rgba(20,40,80,.05);
+  --mono:"SF Mono",ui-monospace,"Roboto Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+/* ===== Dark ===== */
+:root[data-theme="dark"]{
+  --bg:#080b11; --panel:#111925; --panel2:#152030; --panel3:#1a2736;
+  --line:#233246; --line2:#2c405a;
+  --tx:#d3dde9; --tx2:#8b9cb2; --tx3:#5f7186;
+  --green:#34d399; --amber:#fbbf24; --orange:#fb923c; --red:#f87171;
+  --blue:#60a5fa; --purple:#a78bfa; --cyan:#22d3ee; --pv:#fbbf24;
+  --busbar:#10202e; --busbar-b:#22d3ee;
+  --shadow:0 6px 22px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px;line-height:1.45;overflow:hidden}
+body.gated{overflow:hidden}
+body.gated .app{visibility:hidden;pointer-events:none}
+.gate{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:24px}
+body:not(.gated) .gate{display:none}
+.gate-card{width:min(460px,100%);border:2px dashed var(--line2);padding:26px 24px;background:var(--panel);box-shadow:var(--shadow)}
+.gate-card h1{font-size:22px;font-weight:750;margin:12px 0 6px}
+.gate-card .hint{color:var(--tx2);font-size:13px;margin-bottom:16px}
+.gate-brand{font-size:12px;color:var(--tx3);letter-spacing:.4px}
+.gate-brand b{display:block;color:var(--tx);font-size:16px;letter-spacing:0;margin-top:2px}
+.gate-choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.gate-choice[hidden]{display:none}
+.gate-choice button{display:grid;gap:4px;text-align:left;min-height:72px;padding:12px;border:2px solid var(--line2);border-radius:8px;background:transparent;color:var(--tx);cursor:pointer;font-family:var(--sans)}
+.gate-choice button strong{font-size:15px}
+.gate-choice button span{font-size:12px;color:var(--tx2)}
+.gate-choice button.sel{border-color:var(--blue);background:var(--panel2)}
+.gate-form label{display:block;font-size:12px;color:var(--tx2);margin:8px 0 4px}
+.gate-form input{width:100%;border:1px solid var(--line2);border-radius:8px;background:var(--bg);color:var(--tx);padding:8px 10px;font-size:14px}
+.gate-form[hidden]{display:none}
+.gate-form .btn{width:100%;margin-top:10px;justify-content:center}
+.gate-ok{color:var(--green);font-size:13px;margin:8px 0 0}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px}
+a{color:var(--blue);text-decoration:none;cursor:pointer}
+
+.app{display:grid;grid-template-columns:242px 1fr;grid-template-rows:56px 1fr;height:100vh;grid-template-areas:"brand topbar" "sidebar main"}
+.brand{grid-area:brand;background:var(--panel);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;padding:0 18px}
+.brand .logo{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:15px}
+.brand .bt{font-weight:750;font-size:14px;letter-spacing:.2px;line-height:1.05}
+.brand .bs{font-size:10px;color:var(--tx3);letter-spacing:.5px;text-transform:uppercase}
+
+.topbar{grid-area:topbar;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 18px}
+.tb-state{display:flex;align-items:center;gap:9px;padding:6px 13px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);font-weight:650}
+.tb-state .dot{width:9px;height:9px;border-radius:50%}
+.tb-metrics{display:flex;gap:7px;margin-left:auto;align-items:center}
+.tb-m{display:flex;flex-direction:column;padding:5px 12px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);min-width:88px}
+.tb-m .k{font-size:9.5px;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px}
+.tb-m .v{font-family:var(--mono);font-size:14px;font-weight:650}
+.tb-clock{font-family:var(--mono);font-size:12px;color:var(--tx2);padding-left:12px;border-left:1px solid var(--line);text-align:right}
+.tb-clock .d{font-size:9.5px;color:var(--tx3)}
+.theme-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--tx2);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+.theme-btn:hover{color:var(--tx);border-color:var(--line2)}
+
+.sidebar{grid-area:sidebar;background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:12px 10px}
+.nav-group{margin-bottom:13px}
+.nav-group h5{font-size:9.5px;color:var(--tx3);text-transform:uppercase;letter-spacing:.8px;padding:4px 12px 7px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:8px 12px;border-radius:8px;cursor:pointer;color:var(--tx2);font-weight:550;font-size:13px;position:relative}
+.nav-item:hover{background:var(--panel2);color:var(--tx)}
+.nav-item.active{background:color-mix(in srgb,var(--blue) 12%,transparent);color:var(--tx)}
+.nav-item.active::before{content:"";position:absolute;left:0;top:7px;bottom:7px;width:3px;border-radius:3px;background:var(--blue)}
+.nav-item .ic{width:16px;text-align:center;font-size:14px;flex-shrink:0}
+.nav-item .badge{margin-left:auto;font-size:9.5px;font-weight:700;padding:1px 7px;border-radius:10px;background:var(--amber);color:#fff}
+
+.main{grid-area:main;overflow-y:auto;padding:22px 26px 70px}
+.view{display:none}
+.view.active{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.page-head{display:flex;align-items:flex-end;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.page-head h1{font-size:21px;font-weight:750;letter-spacing:.2px}
+.page-head .sub{color:var(--tx3);font-size:13px;margin-top:2px}
+.page-head .spacer{flex:1}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px 18px;box-shadow:var(--shadow)}
+.card h3{font-size:11.5px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card h3 .r{margin-left:auto;font-size:11px;color:var(--tx3);text-transform:none;letter-spacing:0;font-weight:500}
+.grid{display:grid;gap:15px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1150px){.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr}}
+
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:650}
+.pill .d{width:7px;height:7px;border-radius:50%}
+.p-ok{background:color-mix(in srgb,var(--green) 15%,transparent);color:var(--green)}
+.p-warn{background:color-mix(in srgb,var(--amber) 16%,transparent);color:var(--amber)}
+.p-res{background:color-mix(in srgb,var(--orange) 16%,transparent);color:var(--orange)}
+.p-fault{background:color-mix(in srgb,var(--red) 16%,transparent);color:var(--red)}
+.p-idle{background:color-mix(in srgb,var(--tx3) 18%,transparent);color:var(--tx2)}
+.p-info{background:color-mix(in srgb,var(--blue) 15%,transparent);color:var(--blue)}
+.p-pv{background:color-mix(in srgb,var(--pv) 18%,transparent);color:var(--pv)}
+.p-purple{background:color-mix(in srgb,var(--purple) 16%,transparent);color:var(--purple)}
+
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:8px;border:1px solid var(--line2);background:var(--panel2);color:var(--tx);font-weight:650;font-size:13px;cursor:pointer;font-family:var(--sans)}
+.btn:hover{background:var(--panel3)}
+.btn.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;border:none}
+.btn.sm{padding:5px 11px;font-size:12px}
+.acct-back{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:70;display:flex;align-items:flex-start;justify-content:center;padding:48px 16px;overflow:auto}
+.acct-back[hidden]{display:none}
+.acct-card{width:min(440px,100%);background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);position:relative}
+.acct-card h2{font-size:20px;margin-bottom:4px}
+.acct-card .hint{color:var(--tx3);font-size:12.5px;margin-bottom:14px}
+.acct-card label{display:block;font-size:12px;color:var(--tx2);margin:10px 0 4px}
+.acct-err{color:var(--red);font-size:13px;min-height:18px;margin:10px 0}
+.acct-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.acct-card hr{border:none;border-top:1px solid var(--line);margin:16px 0}
+.mode-switch{display:inline-flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:var(--panel2);flex-shrink:0}
+.mode-switch button{border:0;background:transparent;color:var(--tx2);font:650 12px var(--sans);padding:6px 12px;cursor:pointer}
+.mode-switch button+button{border-left:1px solid var(--line2)}
+.mode-switch button:hover{background:var(--panel3);color:var(--tx)}
+.mode-switch button.active{background:var(--blue);color:#fff}
+.mode-switch button.active[data-mode="sim"]{background:var(--cyan)}
+.mode-switch.compact button{padding:4px 9px;font-size:11px}
+
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;position:relative;box-shadow:var(--shadow)}
+.kpi .accent{position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px}
+.kpi .kl{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;font-weight:600;padding-left:9px}
+.kpi .kv{font-family:var(--mono);font-size:25px;font-weight:650;margin-top:6px;padding-left:9px;letter-spacing:-.5px}
+.kpi .ku{font-size:12px;color:var(--tx2);font-weight:500;font-family:var(--sans)}
+.kpi .kd{font-size:11px;color:var(--tx3);margin-top:4px;padding-left:9px}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--tx3);font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line)}
+td{padding:8px 10px;border-bottom:1px solid var(--panel3)}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--panel2)}
+.mono{font-family:var(--mono)}
+.reg{color:var(--blue);font-family:var(--mono);font-size:12px}
+.rw{font-family:var(--mono);font-size:10px;padding:1px 6px;border-radius:5px;font-weight:700}
+.rw.r{background:color-mix(in srgb,var(--blue) 15%,transparent);color:var(--blue)}
+.rw.w{background:color-mix(in srgb,var(--purple) 15%,transparent);color:var(--purple)}
+
+.seg{display:flex;justify-content:space-between;font-size:12.5px;padding:7px 0;border-bottom:1px solid var(--panel3)}
+.seg:last-child{border:none}
+.seg .k{color:var(--tx2)}.seg .v{font-family:var(--mono);font-weight:650}
+.devrow{display:flex;align-items:center;gap:13px;padding:11px 2px;border-bottom:1px solid var(--panel3)}
+.devrow:last-child{border:none}
+.devrow .di{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.devrow .dn{font-weight:650}.devrow .dm{font-size:12px;color:var(--tx3)}
+.bar{height:8px;background:var(--panel3);border-radius:5px;overflow:hidden}
+.bar>span{display:block;height:100%;border-radius:5px}
+
+.gauge-wrap{display:flex;flex-direction:column;align-items:center}
+.alarm{display:flex;align-items:center;gap:13px;padding:11px 14px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);border-left-width:3px;margin-bottom:9px}
+.alarm .ai{font-size:16px}.alarm .at{font-weight:650}.alarm .ad{font-size:12px;color:var(--tx3)}
+.alarm .at-time{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--tx3);text-align:right}
+.a-crit{border-left-color:var(--red)}.a-warn{border-left-color:var(--amber)}.a-info{border-left-color:var(--blue)}.a-ok{border-left-color:var(--green)}
+
+.cfg-row{display:grid;grid-template-columns:1.5fr .9fr 1fr 1fr;gap:14px;align-items:center;padding:11px 4px;border-bottom:1px solid var(--panel3)}
+.cfg-row:last-child{border:none}
+.cfg-name{font-weight:650}.cfg-name .d{font-size:11.5px;color:var(--tx3);font-weight:400}
+.cfg-in{display:flex;align-items:center;gap:6px}
+input[type=number],input[type=text],input[type=password],input[type=email],select{background:var(--bg);border:1px solid var(--line2);color:var(--tx);border-radius:7px;padding:7px 10px;font-family:var(--mono);font-size:13px;width:100%}
+input:focus,select:focus{outline:none;border-color:var(--blue)}
+.range{font-size:11.5px;color:var(--tx3);font-family:var(--mono)}
+.toggle{width:44px;height:24px;border-radius:14px;background:var(--panel3);position:relative;cursor:pointer;transition:.2s;flex-shrink:0}
+.toggle.on{background:var(--green)}
+.toggle::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:.2s}
+.toggle.on::after{left:23px}
+
+.chk{display:flex;align-items:center;gap:11px;padding:9px 10px;border-bottom:1px solid var(--panel3)}
+.chk:last-child{border:none}
+.chk .box{width:19px;height:19px;border-radius:5px;border:1.5px solid var(--line2);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:12px}
+.chk .box.done{background:var(--green);border-color:var(--green);color:#fff}.chk .box.done::after{content:"✓"}
+.chk.done .ct{color:var(--tx3);text-decoration:line-through}
+.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:12px;color:var(--tx2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:3px}
+.note{font-size:12px;color:var(--tx2);background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:11px 13px}
+.tag{font-size:9.5px;font-weight:700;letter-spacing:.4px;padding:2px 7px;border-radius:5px;text-transform:uppercase}
+.tag.mvp{background:color-mix(in srgb,var(--cyan) 16%,transparent);color:var(--cyan)}
+.tag.v2{background:color-mix(in srgb,var(--purple) 16%,transparent);color:var(--purple)}
+.tag.ac{background:color-mix(in srgb,var(--purple) 16%,transparent);color:var(--purple)}
+.tag.dc{background:color-mix(in srgb,var(--blue) 16%,transparent);color:var(--blue)}
+.tag.ph{background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)}
+.sec-t{font-size:11.5px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;margin:22px 0 12px}
+
+/* channels */
+.chan{border-radius:13px;padding:16px 18px;border:1px solid var(--line);position:relative;overflow:hidden;box-shadow:var(--shadow);background:var(--panel)}
+.chan .ct{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+.chan .cv{font-family:var(--mono);font-size:28px;font-weight:650;margin:7px 0 2px}
+.chan .cd{font-size:12px;color:var(--tx2)}
+.chan .cbar{height:7px;border-radius:5px;background:var(--panel3);margin-top:11px;overflow:hidden}
+.chan .cbar>span{display:block;height:100%;border-radius:5px}
+.chan .chip{position:absolute;top:15px;right:17px;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
+
+/* pv card */
+.pv{border:1px solid var(--line);border-radius:13px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden}
+.pv-h{display:flex;align-items:center;gap:11px;padding:13px 15px;border-bottom:1px solid var(--line)}
+.pv-h .ico{width:33px;height:33px;border-radius:9px;background:color-mix(in srgb,var(--pv) 18%,transparent);color:var(--pv);display:flex;align-items:center;justify-content:center;font-size:16px}
+.pv-h .nm{font-weight:700}.pv-h .mt{font-size:11px;color:var(--tx3)}
+.pv-b{padding:13px 15px}
+.opp{margin:4px 0 12px}
+.opp .lab{display:flex;justify-content:space-between;font-size:11px;color:var(--tx3);margin-bottom:5px}
+.track{height:24px;background:var(--panel3);border-radius:7px;position:relative;overflow:hidden}
+.track .fill{position:absolute;top:0;bottom:0;left:0;background:linear-gradient(90deg,#fbbf24,#f59e0b);border-radius:7px}
+.track .mp{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--tx);border-radius:2px}
+.track .txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11.5px;font-weight:650;color:#3b2c05}
+.mrow{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--panel3);font-size:12.5px}
+.mrow:last-child{border:none}.mrow .k{color:var(--tx2)}.mrow .v{font-family:var(--mono);font-weight:650}
+.strings{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.str{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:8px 10px}
+.str .sn{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+.str .sv{font-family:var(--mono);font-size:14px;font-weight:650;margin-top:2px}
+.str .sc{font-size:10.5px;color:var(--tx3);font-family:var(--mono)}
+.cfg4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.cfg4 .ci{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.cfg4 .ci .k{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+.cfg4 .ci .v{font-family:var(--mono);font-size:15px;font-weight:650;margin-top:3px}
+.cfg4 .ci .rg{font-size:10px;color:var(--tx3);margin-top:2px}
+#flash{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--blue);color:var(--tx);padding:11px 20px;border-radius:10px;box-shadow:var(--shadow);z-index:50;font-size:13px;font-weight:650;opacity:0;transition:opacity .4s;pointer-events:none}
+/* ===== Review / annotation layer ===== */
+.view{position:relative}
+.rshade{position:fixed;inset:0;background:rgba(15,23,42,.28);z-index:59;display:none}
+.rshade.on{display:block}
+.rfab{position:fixed;right:20px;bottom:20px;z-index:63;display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:24px;border:none;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.28);font-family:var(--sans)}
+.rfab .cnt{background:rgba(255,255,255,.28);border-radius:12px;padding:1px 8px;font-size:11px}
+.rpanel{position:fixed;top:0;right:-390px;width:370px;max-width:92vw;height:100vh;background:var(--panel);border-left:1px solid var(--line);box-shadow:-8px 0 34px rgba(0,0,0,.18);z-index:61;transition:right .25s;display:flex;flex-direction:column}
+.rpanel.open{right:0}
+.rpanel .rh{padding:14px 16px;border-bottom:1px solid var(--line)}
+.rpanel .rh .rtop{display:flex;align-items:flex-start;gap:10px}
+.rpanel .rh h4{font-size:14px;font-weight:750;flex:1}
+.rpanel .rbody{flex:1;overflow-y:auto;padding:12px 14px}
+.rpanel .rfoot{padding:11px 14px;border-top:1px solid var(--line);display:flex;gap:7px;flex-wrap:wrap}
+.rcomment{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:9px;background:var(--panel2)}
+.rcomment .rmeta{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--tx3);margin-bottom:6px}
+.rcomment textarea{width:100%;border:1px solid var(--line2);border-radius:7px;background:var(--bg);color:var(--tx);padding:7px 9px;font-size:13px;font-family:var(--sans);resize:vertical;min-height:42px}
+.rnum{width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.rpin{position:absolute;width:24px;height:24px;border-radius:50% 50% 50% 0;background:var(--blue);color:#fff;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;cursor:pointer;z-index:40;box-shadow:0 2px 7px rgba(0,0,0,.35);border:2px solid #fff}
+.rpin>span{transform:rotate(45deg)}
+.rpin.sel{background:var(--amber)}
+.rname{width:100%;border:1px solid var(--line2);border-radius:7px;background:var(--bg);color:var(--tx);padding:7px 9px;font-size:12.5px;margin-top:8px;font-family:var(--sans)}
+.rlink{font-size:11px;color:var(--blue);cursor:pointer}
+.rbanner{position:fixed;top:0;left:0;right:0;z-index:62;background:var(--amber);color:#151515;text-align:center;padding:7px;font-size:12.5px;font-weight:700;display:none}
+body.placing .rbanner{display:block}
+body.placing .main,body.placing .main *{cursor:crosshair !important}
+svg .mnode{cursor:pointer}
+svg .mnode rect{transition:stroke-width .1s}
+svg .mnode:hover rect{stroke-width:3.5px;filter:brightness(1.02)}
+</style>
+</head>
+<body class="gated">
+<div id="gate" class="gate" role="dialog" aria-labelledby="gateTitle">
+  <div class="gate-card">
+    <div class="gate-brand">Carbon DC<b>Skid 2 PMS/EMS</b></div>
+    <h1 id="gateTitle">Sign in</h1>
+    <p class="hint" id="gateHint">User login opens the EMS UI only. Admin login opens every workspace.</p>
+    <div class="gate-choice" id="gateChoice" role="group" aria-label="Login type">
+      <button type="button" id="gateUserBtn" aria-pressed="false" onclick="selectGate('user')">
+        <strong>User login</strong><span>EMS UI and setpoints</span>
+      </button>
+      <button type="button" id="gateAdminBtn" aria-pressed="false" onclick="selectGate('admin')">
+        <strong>Admin login</strong><span>Every workspace</span>
+      </button>
+    </div>
+    <form id="gateForm" class="gate-form" hidden onsubmit="submitGate(event)">
+      <label for="gateUser">Username</label>
+      <input id="gateUser" type="text" autocomplete="username" required>
+      <label for="gatePass">Password</label>
+      <input id="gatePass" type="password" autocomplete="current-password" required>
+      <p id="gateError" class="acct-err"></p>
+      <button class="btn primary" type="submit" id="gateSubmit">Sign in</button>
+      <button class="btn sm" type="button" onclick="showForgot()">Forgot password?</button>
+    </form>
+    <form id="forgotForm" class="gate-form" hidden onsubmit="submitForgot(event)">
+      <label for="forgotEmail">Email</label>
+      <input id="forgotEmail" type="email" autocomplete="email" required>
+      <p id="forgotError" class="acct-err"></p>
+      <p id="forgotNotice" class="gate-ok" hidden></p>
+      <button class="btn primary" type="submit">Send login link</button>
+      <button class="btn sm" type="button" onclick="hideForgot()">Back to sign in</button>
+    </form>
+    <form id="inviteForm" class="gate-form" hidden onsubmit="submitInvite(event)">
+      <label for="inviteUser">Username</label>
+      <input id="inviteUser" type="text" autocomplete="username" readonly>
+      <label for="invitePass">New password</label>
+      <input id="invitePass" type="password" autocomplete="new-password" required minlength="8">
+      <label for="invitePass2">Confirm password</label>
+      <input id="invitePass2" type="password" autocomplete="new-password" required minlength="8">
+      <p id="inviteError" class="acct-err"></p>
+      <button class="btn primary" type="submit">Save password</button>
+    </form>
+  </div>
+</div>
+<div class="app">
+  <div class="brand">
+    <div class="logo">C</div>
+    <div>
+      <div class="bt"><a href="./" style="color:inherit">Open Operator EMS UI</a></div>
+      <div class="bs">Serial #0001 · 600 kW · AB PLC</div>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <div class="tb-state"><span class="dot" style="background:var(--green)"></span><span id="tbStateTxt">CHARGING</span></div>
+    <span class="pill p-ok" id="tbStatusPill"><span class="d" style="background:var(--green)"></span><span id="tbStatusTxt">0 · NORMAL</span></span>
+    <div class="tb-metrics">
+      <div class="tb-m"><span class="k">DC Bus</span><span class="v" id="tbBus">750.2 V</span></div>
+      <div class="tb-m"><span class="k">BESS SOC</span><span class="v" id="tbSoc">62.4 %</span></div>
+      <div class="tb-m"><span class="k">Avail Pwr</span><span class="v" id="tbAvail">582 kW</span></div>
+      <div class="tb-m"><span class="k">Comms</span><span class="v" id="tbComms" style="color:var(--green)">6/6</span></div>
+      <div class="tb-clock"><span id="clkT">--:--:--</span><br><span class="d" id="clkD">—</span></div>
+    </div>
+    <div class="mode-switch" role="group" aria-label="UI data source">
+      <button type="button" id="modeSimBtn" data-mode="sim" class="active" onclick="setUiMode('sim')" title="Browser simulator (no backend)">Simulator</button>
+      <button type="button" id="modeLiveBtn" data-mode="live" onclick="setUiMode('live')" title="Connect to carbondcai EMS backend">Live</button>
+    </div>
+    <span class="pill p-idle" id="livePill" title="Backend connection"><span class="d" style="background:var(--tx3)"></span><span id="livePillTxt">Sim</span></span>
+    <div class="mode-switch compact" id="backendModeSwitch" role="group" aria-label="Backend data source" style="display:none" title="Backend EMS data source (requires Connect)">
+      <button type="button" id="backendSimBtn" data-src="sim" onclick="setBackendMode('sim')">Backend sim</button>
+      <button type="button" id="backendLiveBtn" data-src="live" onclick="setBackendMode('live')">Backend live</button>
+    </div>
+    <button class="btn sm primary" id="accountBtn" type="button" onclick="openAccount()">Sign in</button>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle light / dark">☾</button>
+  </div>
+
+  <div class="sidebar">
+    <div class="nav-group">
+      <h5>Operations</h5>
+      <div class="nav-item active" data-v="overview"><span class="ic">◧</span> Overview</div>
+      <div class="nav-item" data-v="flow"><span class="ic">⇄</span> Power Flow</div>
+      <div class="nav-item" data-v="solar"><span class="ic">☀</span> Solar / MPPT</div>
+      <div class="nav-item" data-v="alarms"><span class="ic">▲</span> Alarms &amp; Faults <span class="badge" id="navAlarm">1</span></div>
+    </div>
+    <div class="nav-group">
+      <h5>Devices</h5>
+      <div class="nav-item" data-v="stabiliti"><span class="ic">◇</span> Stabiliti ST-1/2/3</div>
+      <div class="nav-item" data-v="cnvtr1"><span class="ic">◆</span> CNVTR-2 · MPPT</div>
+      <div class="nav-item" data-v="cnvtr2"><span class="ic">▣</span> CNVTR-1 · BESS-side</div>
+      <div class="nav-item" data-v="bess"><span class="ic">▮</span> BESS BA1-1</div>
+      <div class="nav-item" data-v="charger"><span class="ic">⚡</span> EV Charge Ctrl</div>
+    </div>
+    <div class="nav-group">
+      <h5>Engineering</h5>
+      <div class="nav-item" data-v="config"><span class="ic">⚙</span> Configuration</div>
+      <div class="nav-item" data-v="comms"><span class="ic">≡</span> Comms / Modbus</div>
+      <div class="nav-item" data-v="logs"><span class="ic">◷</span> Logs &amp; Trends</div>
+      <div class="nav-item" data-v="commission"><span class="ic">✓</span> Commissioning</div>
+    </div>
+    <div class="note" style="margin:8px 6px">
+      <b style="color:var(--tx2)">Data source</b><br>
+      <span id="liveNote">Admin login needs the live API. Use <code>chad.gelinas@carbondc.io</code> / <code>carbon</code> (or <code>erlend@carbondc.io</code> / <code>carbon</code>). User login can open the browser simulator if the API is offline.</span>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- ============ OVERVIEW ============ -->
+    <div class="view active" id="v-overview">
+      <div class="page-head">
+        <div><h1>System Overview</h1><div class="sub">Skid 2 · Off-Grid DC Fast Charging — PV (AC + DC coupled) + BESS · 750 VDC bus, 600 kW</div></div>
+        <div class="spacer"></div>
+        <span class="pill p-ok" id="ovMpptChip" style="font-size:11.5px"></span>
+        <span class="pill p-ok" id="ovChgChip" style="font-size:11.5px"></span>
+        <button class="btn sm" onclick="toggleSim()"><span id="simTxt">⏸ Pause live</span></button>
+      </div>
+      <div class="grid g4" style="margin-bottom:15px">
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">System Status</div><div class="kv" id="kStatus" style="font-size:19px;color:var(--green)">NORMAL</div><div class="kd" id="kStatusSub">Code 0 · full capacity</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--blue)"></div><div class="kl">Available Power</div><div class="kv" id="kAvail">582<span class="ku"> kW</span></div><div class="kd">bus limit 600 kW</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--purple)"></div><div class="kl">BESS SOC</div><div class="kv" id="kSoc">62.4<span class="ku"> %</span></div><div class="kd">BA1-1 · 3.5 MWh</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--cyan)"></div><div class="kl">DC Bus Voltage</div><div class="kv" id="kBus">750.2<span class="ku"> V</span></div><div class="kd">target &lt;800 V · cutoff 825 V</div></div>
+      </div>
+      <div class="grid" style="grid-template-columns:1.6fr 1fr;margin-bottom:15px">
+        <div class="card">
+          <h3>Power Flow — Live Mimic <span class="r" id="flowStamp">updating…</span></h3>
+          <div id="flowDiagram"></div>
+          <div class="legend" style="margin-top:10px">
+            <span><i style="background:var(--pv)"></i>PV (DC-coupled → MPPT)</span>
+            <span><i style="background:var(--green)"></i>BESS</span>
+            <span><i style="background:var(--blue)"></i>Charger load</span>
+          </div>
+          <div style="font-size:11px;color:var(--tx3);margin-top:6px">Tip: click a device box to open its page.</div>
+        </div>
+        <div class="grid" style="grid-template-rows:auto auto;gap:15px">
+          <div class="card"><h3>DC Bus Regulation</h3>
+            <div style="display:flex;justify-content:center"><svg id="gBus" width="150" height="150"></svg></div>
+            <div class="seg"><span class="k">Safe window</span><span class="v">712.5 – 800 V</span></div>
+            <div class="seg"><span class="k">Charger hard cutoff</span><span class="v" style="color:var(--red)">825 V</span></div>
+          </div>
+          <div class="card"><h3>BESS State of Charge <span class="r" id="ovSocMode"></span></h3>
+            <div style="display:flex;justify-content:center"><svg id="gSoc" width="150" height="150"></svg></div>
+            <div style="margin:4px 2px 2px">
+              <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--tx3)"><span>Demo · drag to test SOC modes</span><span id="scrubVal" class="mono">62%</span></div>
+              <input type="range" min="0" max="100" value="62" id="socScrub" oninput="scrubSOC(this.value)" style="width:100%;accent-color:var(--blue)">
+            </div>
+            <div class="seg"><span class="k">MPPT hold / resume</span><span class="v">90% / 87%</span></div>
+            <div class="seg"><span class="k">Charger unavailable / terminate / re-available</span><span class="v" style="color:var(--orange)">15 / 10 / 22%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:15px">
+        <div class="card"><h3>Device Health <span class="r">9 nodes · EtherNet/IP + Modbus RTU</span></h3><div id="ovDevices"></div></div>
+        <div class="card"><h3>Generation &amp; Dispatch</h3>
+          <div class="seg"><span class="k">PV (DC-coupled) → MPPT</span><span class="v" style="color:var(--blue)" id="ovPvdc">216 kW</span></div>
+          <div class="seg"><span class="k">BESS ↔ CNVTR-1 (bidirectional)</span><span class="v" style="color:var(--green)" id="ovBess">198 kW</span></div>
+          <div class="seg"><span class="k">Charger demand (DC600)</span><span class="v" style="color:var(--blue)" id="ovLoad">582 kW</span></div>
+          <div class="seg"><span class="k">AC / site loads</span><span class="v" id="ovac">64 kW</span></div>
+          <div class="seg"><span class="k">Est. time remaining</span><span class="v" id="ovEtr">Unlimited</span></div>
+          <div class="note" style="margin-top:11px">CNVTR-1 forms the 750 V bus and is bidirectional with the battery. CNVTR-2 (MPPT) feeds PV into the battery / CNVTR-1. STs grid-form 480 V for aux/site loads. PLC does pre-emptive curtailment; OV trip lives in converter firmware.</div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:15px"><h3>Stabiliti AC Output — Voltage &amp; Current <span class="r">480 V grid-form · per unit + total</span></h3>
+        <table><thead><tr><th>Unit</th><th>AC Voltage</th><th>AC Current</th><th>AC Power</th></tr></thead><tbody id="acMetrics"></tbody></table>
+      </div>
+      <div class="card"><h3>Active Events <span class="r"><a onclick="go('alarms')">View all →</a></span></h3><div id="ovAlarms"></div></div>
+    </div>
+
+    <!-- ============ POWER FLOW ============ -->
+    <div class="view" id="v-flow">
+      <div class="page-head"><div><h1>Power Flow &amp; One-Line</h1><div class="sub">Rev 9 topology — TB1 750 VDC bus (≤600 kW) · CNVTR-1 bus-former</div></div></div>
+      <div class="card" style="margin-bottom:15px"><h3>System Mimic <span class="r" id="flowStamp2">live</span></h3><div id="flowDiagram2"></div><div style="font-size:11px;color:var(--tx3);margin-top:8px">Tip: click a device box (PV, CNVTR-1, CNVTR-2, BESS, ST-1/2/3, charger) to open its page.</div></div>
+      <div class="grid g4">
+        <div class="card"><h3>CNVTR-2 · MPPT</h3>
+          <div class="seg"><span class="k">Role</span><span class="v">Feeds Batt / CNVTR-1</span></div>
+          <div class="seg"><span class="k">PV in</span><span class="v" style="color:var(--blue)" id="f_c1pv">216 kW</span></div>
+          <div class="seg"><span class="k">Battery → CNVTR-1</span><span class="v" id="f_c1bus">410 kW</span></div>
+          <div class="seg"><span class="k">Rating</span><span class="v">825 A / ≤600 kW</span></div>
+        </div>
+        <div class="card"><h3>CNVTR-1 · BESS-side</h3>
+          <div class="seg"><span class="k">Role</span><span class="v" style="color:var(--green)">Forms 750 V bus</span></div>
+          <div class="seg"><span class="k">Battery</span><span class="v" id="f_c2mode">Charge ↔ discharge</span></div>
+          <div class="seg"><span class="k">Output → CNVTR-1</span><span class="v" id="f_c2out">198 kW</span></div>
+          <div class="seg"><span class="k">SOC</span><span class="v" id="f_c2soc">62.4 %</span></div>
+        </div>
+        <div class="card"><h3>Stabiliti ST-1/2/3</h3>
+          <div class="seg"><span class="k">DC-in (from bus)</span><span class="v" style="color:var(--purple)" id="f_stpv">168 kW</span></div>
+          <div class="seg"><span class="k">480 V AC out</span><span class="v" id="f_stac">64 kW</span></div>
+          <div class="seg"><span class="k">Converting</span><span class="v">3 / 3</span></div>
+          <div class="seg"><span class="k">Flow</span><span class="v">DC-in → AC</span></div>
+        </div>
+        <div class="card"><h3>DC600 → Satellites</h3>
+          <div class="seg"><span class="k">Demand</span><span class="v" style="color:var(--blue)" id="f_load">582 kW</span></div>
+          <div class="seg"><span class="k">Sessions</span><span class="v" id="f_sess">2</span></div>
+          <div class="seg"><span class="k">Bus V @ charger</span><span class="v" id="f_cbus">749.8 V</span></div>
+          <div class="seg"><span class="k">Ports</span><span class="v">600/300/300</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SOLAR / MPPT ============ -->
+    <div class="view" id="v-solar">
+      <div class="page-head"><div><h1>Solar / MPPT</h1><div class="sub">DC-coupled PV via CNVTR-2 MPPT — 4 inputs · 3 sub-arrays each · ~1300 V</div></div>
+        <div class="spacer"></div><span class="pill p-ok" id="solMpptChip" style="font-size:12px;margin-right:7px"></span><span class="pill p-info" style="font-size:12px"><span class="d" style="background:var(--blue)"></span>Total PV <span id="pvTot">216</span> kW</span></div>
+      <div style="margin-bottom:16px">
+        <div class="chan"><span class="chip p-info">CNVTR-2 · MPPT</span>
+          <div class="ct" style="color:var(--blue)">◆ DC-Coupled PV</div>
+          <div class="cv" style="color:var(--blue)" id="dcPv">216<span style="font-size:14px;color:var(--tx2)"> kW</span></div>
+          <div class="cd">PV array → MPPT DC-DC → charges BESS BA1-1 (DC-coupled). 4 inputs · 3 sub-arrays each.</div>
+          <div class="cbar"><span style="width:56%;background:var(--blue)" id="dcBar"></span></div>
+          <div style="display:flex;gap:16px;margin-top:11px;font-size:11.5px;color:var(--tx2)"><span>PV1 <b class="mono">60 kW</b></span><span>PV2 <b class="mono">56 kW</b></span><span>PV3 <b class="mono">48 kW</b></span><span>PV4 <b class="mono">52 kW</b></span></div>
+        </div>
+      </div>
+      <div class="sec-t">DC-coupled MPPT — CNVTR-2 <span class="tag ph" style="margin-left:6px">PDS1750K placeholder map</span></div>
+      <div class="grid g4" style="margin-bottom:16px">
+        <div class="kpi"><div class="accent" style="background:var(--pv)"></div><div class="kl">PV Total Power</div><div class="kv" id="s_ptot">216<span class="ku"> kW</span></div><div class="kd">reg 34053</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--blue)"></div><div class="kl">Bus-Side Power</div><div class="kv">212<span class="ku"> kW</span></div><div class="kd">reg 34078</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">Energy Today</div><div class="kv">1.84<span class="ku"> MWh</span></div><div class="kd">reg 34082/83 · PV port</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--amber)"></div><div class="kl">Module Temp</div><div class="kv">41<span class="ku"> °C</span></div><div class="kd">reg 34081 · amb 33</div></div>
+      </div>
+      <div class="grid g4" id="pvCards" style="margin-bottom:16px"></div>
+      <div class="card"><h3>MPPT config <span class="r">RW · 34219–34227</span></h3>
+        <div class="cfg4">
+          <div class="ci"><div class="k">PV Wakeup V</div><div class="v">250 V</div><div class="rg">34219–21</div></div>
+          <div class="ci"><div class="k">PV Max V</div><div class="v">1300 V</div><div class="rg">34224–26</div></div>
+          <div class="ci"><div class="k">Bus Run V</div><div class="v">750 V</div><div class="rg">34223</div></div>
+          <div class="ci"><div class="k">Bus Power Limit</div><div class="v">600 kW</div><div class="rg">34227</div></div>
+        </div>
+        <div class="note" style="margin-top:11px">PV access quantity (RW 265, 0–20) sets active inputs; 4 inputs × 3 sub-arrays.</div>
+      </div>
+    </div>
+
+    <!-- ============ ALARMS ============ -->
+    <div class="view" id="v-alarms">
+      <div class="page-head"><div><h1>Alarms &amp; Faults</h1><div class="sub">Fault handling · OV trip in converter firmware · PLC pre-emptive curtailment</div></div>
+        <div class="spacer"></div><button class="btn sm" onclick="ackAll()">Acknowledge all</button></div>
+      <div class="grid g4" style="margin-bottom:15px">
+        <div class="kpi"><div class="accent" style="background:var(--red)"></div><div class="kl">Critical</div><div class="kv" style="color:var(--red)">0</div><div class="kd">system-stopping</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--amber)"></div><div class="kl">Warnings</div><div class="kv" style="color:var(--amber)">1</div><div class="kd">derate / advisory</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--blue)"></div><div class="kl">Info (24h)</div><div class="kv" style="color:var(--blue)">14</div><div class="kd">state transitions</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">Bus OV margin</div><div class="kv">74<span class="ku"> V</span></div><div class="kd">to 825 V cutoff</div></div>
+      </div>
+      <div class="grid" style="grid-template-columns:1.3fr 1fr">
+        <div class="card"><h3>Active &amp; Recent</h3><div id="alarmList"></div></div>
+        <div class="card"><h3>Monitored Fault Types</h3><div id="faultTypes"></div></div>
+      </div>
+    </div>
+
+    <!-- ============ STABILITI ============ -->
+    <div class="view" id="v-stabiliti">
+      <div class="page-head"><div><h1>Stabiliti · ST-1 / ST-2 / ST-3</h1><div class="sub">3 × CE+T Stabiliti — powered from the 750 VDC bus (DC-in) · 24 V control · grid-form 480 V AC (one-directional)</div></div>
+        <div class="spacer"></div><span class="pill p-ok"><span class="d" style="background:var(--green)"></span>3 / 3 converting</span></div>
+      <div class="grid g3" id="stabCards" style="margin-bottom:15px"></div>
+      <div class="card">
+        <h3>Per-unit status &amp; ports <span class="r">CE+T map · reg 96–110 · status bits</span></h3>
+        <table><thead><tr><th>Unit</th><th>AC port</th><th>DC-in (bus)</th><th>Temp</th><th>Grid-form</th><th>Derate</th><th>Fault</th></tr></thead><tbody id="stabFleet"></tbody></table>
+        <div class="note" style="margin-top:11px">Status word bits: 0 converting · 1 grid-forming · 2 derating · 3 fault since power-cycle · 4 AFCI · 5 GFDI · 6 self-test fail · 7 IMI · 8 E-stop · 9 24 V UV · 10 fault active. Baker thermal-derate risk present but lower (STs don't supply DC output).</div>
+      </div>
+    </div>
+
+    <!-- ============ CNVTR-2 ============ -->
+    <div class="view" id="v-cnvtr1">
+      <div class="page-head"><div><h1>CNVTR-2 · MPPT DC-DC</h1><div class="sub">Primarily charges the batteries (~1200–1300 VDC); can charge the skid during daytime. Does not form the 750 V bus.</div></div>
+        <div class="spacer"></div><span class="pill p-ok"><span class="d" style="background:var(--green)"></span>MPPT active</span></div>
+      <div class="grid g4" style="margin-bottom:15px">
+        <div class="kpi"><div class="accent" style="background:var(--blue)"></div><div class="kl">Output → CNVTR-1</div><div class="kv" id="c1_out">410<span class="ku"> kW</span></div><div class="kd">to battery / CNVTR-1</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--pv)"></div><div class="kl">PV Input (MPPT)</div><div class="kv">216<span class="ku"> kW</span></div><div class="kd">4 inputs · 3 sub-arrays</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--cyan)"></div><div class="kl">Battery V (charge)</div><div class="kv">1250<span class="ku"> V</span></div><div class="kd">~1200–1300 VDC · 825 A</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">Efficiency</div><div class="kv">98.2<span class="ku"> %</span></div><div class="kd">converter</div></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><h3>Detail</h3>
+          <div class="seg"><span class="k">Role</span><span class="v">MPPT — feeds Battery / CNVTR-1</span></div>
+          <div class="seg"><span class="k">Source</span><span class="v">PV (DC) via MPPT</span></div>
+          <div class="seg"><span class="k">Charge current</span><span class="v" id="c1_i">547 A</span></div>
+          <div class="seg"><span class="k">Module temp</span><span class="v">41 °C</span></div>
+          <div class="seg"><span class="k">Leak current</span><span class="v" style="color:var(--green)">4 mA</span></div>
+          <div class="seg"><span class="k">Comms</span><span class="v" style="color:var(--green)">Modbus RTU · OK</span></div>
+        </div>
+        <div class="card"><h3>MPPT / PVDC registers <span class="r">PDS1750K placeholder</span></h3>
+          <table><thead><tr><th>Reg</th><th>Field</th><th>Value</th></tr></thead><tbody id="c1regs"></tbody></table>
+          <div class="note" style="margin-top:10px">Placeholder map — to be replaced by the CNVTR-2 Modbus map when issued. Full per-input MPPT is on the Solar / MPPT page.</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:15px"><h3>String temps &amp; contactors <span class="r">reg 55–77 · moved from BESS</span></h3><div id="bmsFlags"></div></div>
+    </div>
+
+    <!-- ============ CNVTR-1 ============ -->
+    <div class="view" id="v-cnvtr2">
+      <div class="page-head"><div><h1>CNVTR-1 · BESS-side DC-DC</h1><div class="sub">Forms the 750 V bus · bidirectional with BESS BA1-1 (960–1404 V)</div></div>
+        <div class="spacer"></div><span class="pill p-ok"><span class="d" style="background:var(--green)"></span>Online</span></div>
+      <div class="grid g4" style="margin-bottom:15px">
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">Throughput</div><div class="kv" id="c2_p">198<span class="ku"> kW</span></div><div class="kd" id="c2_dir">battery ↔ bus</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--purple)"></div><div class="kl">Battery-side V</div><div class="kv" id="c2_vin">1180<span class="ku"> V</span></div><div class="kd">range 960–1404</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--cyan)"></div><div class="kl">Bus-side V</div><div class="kv">750<span class="ku"> V</span></div><div class="kd">forms TB1 bus</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">Efficiency</div><div class="kv">98.0<span class="ku"> %</span></div><div class="kd">converter</div></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><h3>Detail</h3>
+          <div class="seg"><span class="k">Function</span><span class="v">Battery conditioning DC-DC</span></div>
+          <div class="seg"><span class="k">Battery current</span><span class="v" id="c2_i">168 A</span></div>
+          <div class="seg"><span class="k">Max battery current</span><span class="v">1600 A</span></div>
+          <div class="seg"><span class="k">Mode</span><span class="v" id="c2_mode">Charge ↔ discharge</span></div>
+          <div class="seg"><span class="k">Temp</span><span class="v">37 °C</span></div>
+          <div class="seg"><span class="k">Comms</span><span class="v" style="color:var(--green)">Modbus RTU · OK</span></div>
+          <div class="seg"><span class="k">Sources combined</span><span class="v">PV via MPPT &amp; Batteries</span></div>
+        </div>
+        <div class="card"><h3>Notes</h3>
+          <div class="note">CNVTR-1 forms the 750 V bus and is bidirectional with the battery — it charges the battery from PV (via CNVTR-2 / MPPT) and discharges the battery to the bus. CNVTR-2 (MPPT) feeds PV into CNVTR-1 / the battery. Dedicated CNVTR-1 Modbus map pending.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BESS ============ -->
+    <div class="view" id="v-bess">
+      <div class="page-head"><div><h1>BESS · BA1-1</h1><div class="sub">960–1404 VDC · 3.5 MWh · 1600 A max · floating — via CNVTR-1 → CNVTR-2</div></div>
+        <div class="spacer"></div><span class="pill p-ok"><span class="d" style="background:var(--green)"></span>Online</span></div>
+      <div class="grid g4" style="margin-bottom:15px">
+        <div class="kpi"><div class="accent" style="background:var(--purple)"></div><div class="kl">State of Charge</div><div class="kv" id="b_soc">62.4<span class="ku"> %</span></div><div class="kd">reg 40 (×0.1)</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--cyan)"></div><div class="kl">Pack Voltage</div><div class="kv" id="b_v">1180<span class="ku"> V</span></div><div class="kd">reg 37 · 960–1404</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--blue)"></div><div class="kl">Pack Current</div><div class="kv" id="b_i">168<span class="ku"> A</span></div><div class="kd">reg 38 · +dis/−chg</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">State of Health</div><div class="kv" id="b_soh">99.1<span class="ku"> %</span></div><div class="kd">reg 41</div></div>
+      </div>
+      <div style="margin-bottom:15px">
+        <div class="card"><h3>SOC Operating Bands <span class="r">Skid 2 · operator-adjustable</span></h3><div id="socBands"></div></div>
+      </div>
+      <div class="card"><h3>BESS / BMS — key registers <span class="r">via CE+T PMS map + ENEMS BMS</span></h3>
+        <table><thead><tr><th>Reg</th><th>Parameter</th><th>Value</th><th>Unit</th><th>R/W</th></tr></thead><tbody id="bmsRegs"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ============ CHARGER ============ -->
+    <div class="view" id="v-charger">
+      <div class="page-head"><div><h1>EV Charge Controller · DC600</h1><div class="sub">DC600 controller (1200 A) → 3 satellites · 6 ports (2 per satellite) · liquid-cooled · NAC</div></div>
+        <div class="spacer"></div><span class="pill p-ok" id="chgModeChip"><span class="d" style="background:var(--green)"></span>Normal</span></div>
+      <div id="chgMsgBanner" style="margin-bottom:15px"></div>
+      <div class="grid g4" style="margin-bottom:15px">
+        <div class="kpi"><div class="accent" style="background:var(--blue)"></div><div class="kl">Aggregate Demand</div><div class="kv" id="c_dem">582<span class="ku"> kW</span></div><div class="kd">active ports</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--green)"></div><div class="kl">Available (from PMS)</div><div class="kv" id="c_av">600<span class="ku"> kW</span></div><div class="kd">bus-power anchor</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--cyan)"></div><div class="kl">Active Sessions</div><div class="kv" id="c_sess">3</div><div class="kd">of 6 ports</div></div>
+        <div class="kpi"><div class="accent" style="background:var(--purple)"></div><div class="kl">Est. Time Remaining</div><div class="kv" id="c_etr">999<span class="ku"> min</span></div><div class="kd">999 = unlimited</div></div>
+      </div>
+      <div class="grid g3" id="portCards" style="margin-bottom:15px"></div>
+      <div class="grid g2">
+        <div class="card"><h3>PMS → DC600 (writes) <span class="r">Appendix A · 13 Oct clarification</span></h3><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody id="cWrites"></tbody></table></div>
+        <div class="card"><h3>DC600 → PMS (reads)</h3><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody id="cReads"></tbody></table></div>
+      </div>
+    </div>
+
+    <!-- ============ CONFIG ============ -->
+    <div class="view" id="v-config">
+      <div class="page-head"><div><h1>Configuration</h1><div class="sub">Operator-adjustable setpoints — staged, then dispatched by the AB PLC (supervisory rate)</div></div>
+        <div class="spacer"></div><button class="btn sm" onclick="revertCfg()">Revert</button><button class="btn primary sm" onclick="applyCfg()">Apply</button></div>
+      <div class="card" style="margin-bottom:15px"><h3>MPPT Charge Control <span class="r">control point 1 · bounded by live BMS charge-power limit</span></h3><div id="cfgMppt"></div></div>
+      <div class="card" style="margin-bottom:15px"><h3>Charger / SOC Availability <span class="r">control point 2 · SOC-gated charging</span></h3><div id="cfgCharger"></div></div>
+      <div class="card" style="margin-bottom:15px"><h3>Station Messaging <span class="r">driver-facing charger screens</span></h3><div id="cfgMsg"></div></div>
+      <div class="card" style="margin-bottom:15px"><h3>DC Bus &amp; Curtailment</h3><div id="cfgBus"></div></div>
+      <div class="card" style="margin-bottom:15px"><h3>PV surge &amp; ramp protection <span class="r">Baker FR-A</span></h3><div id="cfgSurge"></div></div>
+      <div class="card"><h3>Alerting &amp; Comms</h3><div id="cfgAlert"></div></div>
+    </div>
+
+    <!-- ============ COMMS ============ -->
+    <div class="view" id="v-comms">
+      <div class="page-head"><div><h1>Comms / Modbus</h1><div class="sub">Carbon DC EMS · AB CompactLogix 5380 — EtherNet/IP primary + Modbus RTU gateway</div></div></div>
+      <div class="grid g3" style="margin-bottom:15px" id="commNodes"></div>
+      <div class="card" style="margin-bottom:15px"><h3>Stabiliti (CE+T) — key reads <span class="r">Input 30X · Rev 15</span></h3>
+        <table><thead><tr><th>Reg</th><th>Parameter</th><th>Scale</th><th>Unit</th><th>Dir</th></tr></thead><tbody id="mbStab"></tbody></table></div>
+      <div class="card"><h3>Device Bus Map</h3>
+        <table><thead><tr><th>Device</th><th>Protocol</th><th>Poll</th><th>Heartbeat</th><th>Status</th></tr></thead><tbody id="mbBus"></tbody></table>
+    </div>
+
+    <!-- ============ LOGS ============ -->
+    <div class="view" id="v-logs">
+      <div class="page-head"><div><h1>Logs &amp; Trends</h1><div class="sub">Operator-accessible logging &amp; alerts — no vendor escalation (Baker lesson)</div></div>
+        <div class="spacer"></div><select style="width:auto"><option>Last 1 hour</option><option>Last 24 hours</option></select><button class="btn sm">Export CSV</button></div>
+      <div class="card" style="margin-bottom:15px"><h3>Trend — Power &amp; SOC <span class="r">last 60 min</span></h3>
+        <svg id="trendChart" width="100%" height="230" viewBox="0 0 900 230" preserveAspectRatio="none"></svg>
+        <div class="legend" style="margin-top:8px"><span><i style="background:var(--blue)"></i>PV total (kW)</span><span><i style="background:var(--green)"></i>Charger load (kW)</span><span><i style="background:var(--purple)"></i>BESS SOC (%)</span></div>
+      </div>
+      <div class="grid g2"><div class="card"><h3>Logged Data Points</h3><div id="logPoints"></div></div><div class="card"><h3>Event Log <span class="r">newest first</span></h3><div id="eventLog"></div></div></div>
+    </div>
+
+    <!-- ============ COMMISSIONING ============ -->
+    <div class="view" id="v-commission">
+      <div class="page-head"><div><h1>Commissioning &amp; Test</h1><div class="sub">Simulator-first (Python + pymodbus) → HIL in FactoryTalk Logix Echo</div></div>
+        <div class="spacer"></div><span class="pill p-info" id="chkProgress">0 / 0</span></div>
+      <div class="grid g2" style="margin-bottom:15px">
+        <div class="card"><h3>Startup Sequence — SOC gates</h3><div id="startupSeq"></div></div>
+        <div class="card"><h3>Preconditions</h3><div id="precond"></div></div>
+      </div>
+      <div class="card"><h3>MVP Test Scenarios</h3><div id="testList"></div></div>
+    </div>
+  </div>
+</div>
+<div id="flash"></div>
+<div id="accountBack" class="acct-back" hidden onclick="onAccountBackdrop(event)">
+  <form id="loginForm" class="acct-card" onsubmit="submitLogin(event)" onclick="event.stopPropagation()">
+    <h2>Sign in</h2>
+    <p class="hint">Live API admin: <code>chad.gelinas@carbondc.io</code> / <code>carbon</code>. Use a username or email.</p>
+    <label for="loginUser">Username or email</label>
+    <input id="loginUser" type="text" autocomplete="username" required>
+    <label for="loginPass">Password</label>
+    <input id="loginPass" type="password" autocomplete="current-password" required>
+    <p id="loginError" class="acct-err"></p>
+    <div class="acct-actions">
+      <button class="btn primary sm" type="submit">Sign in</button>
+      <button class="btn sm" type="button" onclick="closeAccount()">Cancel</button>
+    </div>
+  </form>
+  <div id="accountForm" class="acct-card" hidden onclick="event.stopPropagation()">
+    <h2 id="accountTitle">Account</h2>
+    <p class="hint" id="accountRole"></p>
+    <label for="acctName">Name</label>
+    <input id="acctName" type="text" autocomplete="name" required>
+    <label for="acctUser">Username</label>
+    <input id="acctUser" type="text" autocomplete="username" required>
+    <label for="acctEmail">Email</label>
+    <input id="acctEmail" type="email" autocomplete="email" required>
+    <label>Company</label>
+    <input id="acctCompany" type="text" disabled>
+    <label>System name</label>
+    <input id="acctSystem" type="text" disabled>
+    <p id="profileError" class="acct-err"></p>
+    <div class="acct-actions">
+      <button class="btn primary sm" type="button" onclick="submitProfile(event)">Save name and email</button>
+    </div>
+    <hr>
+    <h2>Reset password</h2>
+    <label for="acctCurrent">Current password</label>
+    <input id="acctCurrent" type="password" autocomplete="current-password">
+    <label for="acctNext">New password</label>
+    <input id="acctNext" type="password" autocomplete="new-password">
+    <p id="passwordError" class="acct-err"></p>
+    <div class="acct-actions">
+      <button class="btn sm" type="button" onclick="submitPassword()">Reset password</button>
+      <button class="btn sm" type="button" onclick="signOut()">Sign out</button>
+      <button class="btn sm" type="button" onclick="closeAccount()">Close</button>
+    </div>
+    <div id="clientEditor" hidden>
+      <hr>
+      <h2>Powerstation manager</h2>
+      <p class="hint">Admin can edit the client account.</p>
+      <label for="clientCompany">Company</label>
+      <input id="clientCompany" type="text">
+      <label for="clientSystem">System name</label>
+      <input id="clientSystem" type="text">
+      <label for="clientName">Name</label>
+      <input id="clientName" type="text">
+      <label for="clientUser">Username</label>
+      <input id="clientUser" type="text">
+      <label for="clientEmail">Email</label>
+      <input id="clientEmail" type="email">
+      <label for="clientPass">New password</label>
+      <input id="clientPass" type="password" autocomplete="new-password">
+      <p id="clientError" class="acct-err"></p>
+      <div class="acct-actions">
+        <button class="btn primary sm" type="button" onclick="submitClient()">Save client account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Review / annotation layer ===== -->
+<div class="rbanner">Click anywhere on the screen to drop your comment · press Esc to cancel</div>
+<div class="rshade" id="rShade" onclick="closeReview()"></div>
+<button class="rfab" type="button" id="reviewBtn" onclick="toggleReview()"><span id="reviewBtnLabel">💬 Review</span> <span class="cnt" id="rCount">0</span></button>
+<div class="rpanel" id="rPanel">
+  <div class="rh">
+    <div class="rtop">
+      <h4>UI Review — comments</h4>
+      <button class="btn sm" type="button" onclick="closeReview()">Close</button>
+    </div>
+    <div style="font-size:11.5px;color:var(--tx3);margin-top:3px">Go to any screen, click <b>Add comment</b>, then click the spot. Comments save in this browser; Export to send back.</div>
+    <input class="rname" id="rName" placeholder="Your name (reviewer)" oninput="saveName(this.value)">
+  </div>
+  <div class="rbody" id="rList"></div>
+  <div class="rfoot">
+    <button class="btn primary sm" onclick="startPlacing()">➕ Add comment</button>
+    <button class="btn sm" onclick="exportReview('md')">Export .md</button>
+    <button class="btn sm" onclick="exportReview('json')">.json</button>
+    <button class="btn sm" onclick="copyReview()">Copy</button>
+    <button class="btn sm" onclick="clearReview()" style="margin-left:auto">Clear</button>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const fmt=(n,d=0)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+
+/* theme */
+function toggleTheme(){
+  const r=document.documentElement;
+  const dark=r.dataset.theme==='dark';
+  r.dataset.theme=dark?'light':'dark';
+  $('#themeBtn').textContent=dark?'☾':'☀';
+  try{localStorage.setItem('cdc-theme',r.dataset.theme)}catch(e){}
+  refreshVisuals();
+}
+try{const t=localStorage.getItem('cdc-theme');if(t){document.documentElement.dataset.theme=t;}}catch(e){}
+if(document.documentElement.dataset.theme==='dark')window.addEventListener('DOMContentLoaded',()=>$('#themeBtn').textContent='☀');
+
+/* nav */
+$$('.nav-item').forEach(el=>el.addEventListener('click',()=>go(el.dataset.v)));
+function go(v){
+  $$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.v===v));
+  $$('.view').forEach(x=>x.classList.remove('active'));
+  $('#v-'+v).classList.add('active');
+  if(v==='logs')drawTrend();
+  refreshVisuals();
+}
+
+const S={status:0,bus:750.2,soc:62.4,pvdc:216,pvac:168,bess:198,load:582,avail:582,soh:99.1,bv:1180,run:true,socManual:false,heartbeatsOk:6,heartbeatsTotal:6,statusLabel:'NORMAL',chargerMode:'',driverMessage:''};
+function toggleSim(){S.run=!S.run;$('#simTxt').textContent=S.run?'⏸ Pause live':'▶ Resume live';}
+const STATUS=[
+  {c:0,n:'NORMAL',col:'var(--green)',d:'full capacity'},{c:1,n:'DERATED_PV',col:'var(--amber)',d:'low PV, BESS supplementing'},
+  {c:2,n:'DERATED_BESS',col:'var(--amber)',d:'low BESS SOC'},{c:3,n:'DERATED_BOTH',col:'var(--amber)',d:'PV+BESS constrained'},
+  {c:4,n:'BESS_RESERVE',col:'var(--orange)',d:'ports gated by SOC'},{c:5,n:'FAULT',col:'var(--red)',d:'charging suspended'}];
+
+/* ===== carbondcai EMS backend bridge ===== */
+function resolveApiBase(){
+  try{
+    const q=new URLSearchParams(location.search).get('api');
+    if(q) return q.replace(/\/$/,'');
+  }catch(e){}
+  const cfg=(typeof window!=='undefined' && window.__EMS_CONFIG__ && window.__EMS_CONFIG__.apiBase) || '';
+  try{
+    const stored=localStorage.getItem('emsApiBase');
+    // Ignore a stale relative /api on static hosts that have no API proxy.
+    if(stored && !(stored==='/api' && cfg && /\.(pages\.dev|netlify\.app)$/i.test(location.hostname))){
+      return stored.replace(/\/$/,'');
+    }
+  }catch(e){}
+  if(cfg) return String(cfg).replace(/\/$/,'');
+  // Local Vite / tunnel proxy /api → FastAPI. Public Pages/Netlify use config.js above.
+  if(/\.trycloudflare\.com$/i.test(location.hostname)) return '/api';
+  if(location.hostname==='127.0.0.1' || location.hostname==='localhost' || location.port==='5173') return '/api';
+  if(/\.netlify\.app$/i.test(location.hostname)) return '/api';
+  return 'http://127.0.0.1:8000/api';
+}
+const LIVE={
+  enabled:false,
+  token:null,
+  user:null,
+  error:null,
+  lastOk:0,
+  apiBase: resolveApiBase(),
+  backendMode:'sim',
+  userHint:'chad.gelinas@carbondc.io',
+  passHint:'',
+  account:null,
+  pendingLive:false,
+};
+function rememberApiBase(url){
+  LIVE.apiBase=String(url||'').replace(/\/$/,'');
+  try{localStorage.setItem('emsApiBase', LIVE.apiBase);}catch(e){}
+}
+function pt(map,id,fallback=0){const p=map.get(id);if(!p||p.stale)return fallback;return Number(p.value);}
+function setLiveUi(){
+  const pill=$('#livePill'),txt=$('#livePillTxt'),note=$('#liveNote');
+  const simBtn=$('#modeSimBtn'),liveBtn=$('#modeLiveBtn'),backendSwitch=$('#backendModeSwitch');
+  if(!pill||!txt)return;
+  if(simBtn&&liveBtn){
+    simBtn.classList.toggle('active', !(LIVE.enabled && LIVE.token));
+    liveBtn.classList.toggle('active', !!(LIVE.enabled && LIVE.token));
+  }
+  if(backendSwitch) backendSwitch.style.display=(LIVE.enabled && LIVE.token)?'inline-flex':'none';
+  const accountBtn=$('#accountBtn');
+  if(accountBtn){
+    accountBtn.textContent=LIVE.token?((LIVE.account&&LIVE.account.display_name)||LIVE.user||'Account'):'Sign in';
+  }
+  if(LIVE.enabled && LIVE.token){
+    const stale=Date.now()-LIVE.lastOk>5000;
+    pill.className='pill '+(stale?'p-warn':'p-ok');
+    pill.querySelector('.d').style.background=stale?'var(--amber)':'var(--green)';
+    txt.textContent=stale?'Live · lag':'Live';
+    if(note)note.innerHTML=`Live as <b>${(LIVE.account&&LIVE.account.display_name)||LIVE.user||'user'}</b> → <code>${LIVE.apiBase}</code>. Switch to <b>Simulator</b> for in-browser data.`;
+  }else{
+    pill.className='pill p-idle';
+    pill.querySelector('.d').style.background='var(--tx3)';
+    txt.textContent=LIVE.error?'Sim · err':'Simulator';
+    if(note)note.innerHTML=LIVE.error
+      ? `<span style="color:var(--red)">${LIVE.error}</span> — using browser simulator. Start backend, then choose <b>Live</b>.`
+      : `Browser <b>Simulator</b> active. Choose <b>Live</b> for carbondcai <code>/api/v1/ems/*</code>.`;
+  }
+}
+function setBackendModeUi(src){
+  LIVE.backendMode=src==='live'?'live':'sim';
+  const simB=$('#backendSimBtn'),liveB=$('#backendLiveBtn');
+  if(simB) simB.classList.toggle('active', LIVE.backendMode==='sim');
+  if(liveB) liveB.classList.toggle('active', LIVE.backendMode==='live');
+}
+async function setBackendMode(src){
+  if(!LIVE.enabled || !LIVE.token){ flash('Connect Live first'); return; }
+  try{
+    const body=await api('/v1/ems/mode',{method:'PUT',body:JSON.stringify({data_source:src})});
+    setBackendModeUi(body.data_source);
+    flash(body.data_source==='live'?'Backend data: LIVE':'Backend data: SIM');
+  }catch(err){
+    flash(err.message||'Mode change failed');
+  }
+}
+async function api(path, init={}){
+  const headers=Object.assign({'Content-Type':'application/json'}, init.headers||{});
+  if(LIVE.token) headers.Authorization='Bearer '+LIVE.token;
+  const timeoutMs=Number(init.timeoutMs)||20000;
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(), timeoutMs);
+  let res;
+  try{
+    res=await fetch(LIVE.apiBase+path, Object.assign({}, init, {headers, signal:controller.signal}));
+  }catch(err){
+    if(err && err.name==='AbortError') throw new Error('The live API did not respond. Try again in a minute, or use User login for the browser simulator.');
+    throw new Error('Cannot reach the live API. Check the connection, then try again.');
+  }finally{
+    clearTimeout(timer);
+  }
+  if(!res.ok){
+    let detail=res.statusText;
+    try{
+      const j=await res.json();
+      if(typeof j.detail==='string') detail=j.detail;
+      else if(Array.isArray(j.detail)) detail=j.detail.map(item=>item.msg||'').filter(Boolean).join(' ')||detail;
+    }catch(e){}
+    throw new Error(detail||('HTTP '+res.status));
+  }
+  if(res.status===204) return null;
+  return res.json();
+}
+async function liveLogin(){
+  if(LIVE.token) return;
+  throw new Error('Sign in first');
+}
+let GATE_KIND=null;
+let INVITE_TOKEN='';
+const GATE_HINT='User login opens the EMS UI only. Admin login opens every workspace.';
+function inviteTokenFromUrl(){
+  try{ return new URLSearchParams(location.search).get('invite')||''; }
+  catch(e){ return ''; }
+}
+function setGateHint(text){
+  const hint=$('#gateHint');
+  if(hint) hint.textContent=text;
+}
+function unlockGate(){
+  document.body.classList.remove('gated');
+}
+function lockGate(){
+  document.body.classList.add('gated');
+  GATE_KIND=null;
+  const form=$('#gateForm'), err=$('#gateError'), user=$('#gateUser'), pass=$('#gatePass');
+  if(form) form.hidden=true;
+  if(err) err.textContent='';
+  if(user) user.value='';
+  if(pass) pass.value='';
+  const forgot=$('#forgotForm'); if(forgot) forgot.hidden=true;
+  const invite=$('#inviteForm'); if(invite) invite.hidden=true;
+  const choice=$('#gateChoice'); if(choice) choice.hidden=false;
+  const title=$('#gateTitle'); if(title) title.textContent='Sign in';
+  setGateHint(GATE_HINT);
+  const u=$('#gateUserBtn'), a=$('#gateAdminBtn');
+  if(u){ u.classList.remove('sel'); u.setAttribute('aria-pressed','false'); }
+  if(a){ a.classList.remove('sel'); a.setAttribute('aria-pressed','false'); }
+}
+function selectGate(kind){
+  GATE_KIND=kind==='admin'?'admin':'user';
+  const u=$('#gateUserBtn'), a=$('#gateAdminBtn'), form=$('#gateForm'), err=$('#gateError');
+  if(u){ u.classList.toggle('sel', GATE_KIND==='user'); u.setAttribute('aria-pressed', GATE_KIND==='user'?'true':'false'); }
+  if(a){ a.classList.toggle('sel', GATE_KIND==='admin'); a.setAttribute('aria-pressed', GATE_KIND==='admin'?'true':'false'); }
+  if(form) form.hidden=false;
+  if(err) err.textContent='';
+  const user=$('#gateUser'), pass=$('#gatePass'), submit=$('#gateSubmit');
+  if(user) user.value='';
+  if(pass) pass.value='';
+  if(submit) submit.textContent=GATE_KIND==='admin'?'Sign in as admin':'Sign in as user';
+  if(pass) pass.focus();
+}
+async function submitGate(event){
+  event.preventDefault();
+  const error=$('#gateError');
+  const username=$('#gateUser').value.trim();
+  const password=$('#gatePass').value;
+  if(!GATE_KIND){ error.textContent='Choose User login or Admin login.'; return; }
+  if(!username||!password){ error.textContent='Enter your username and password.'; return; }
+  error.textContent='';
+  try{
+    const body=await api('/v1/auth/login',{method:'POST',body:JSON.stringify({username,password})});
+    if(GATE_KIND==='admin' && body.role!=='admin'){
+      error.textContent='This account is not an admin login.';
+      LIVE.token=null; LIVE.user=null; LIVE.account=null; rememberSession();
+      return;
+    }
+    if(GATE_KIND==='user' && body.role==='admin'){
+      error.textContent='This is an admin account. Use Admin login.';
+      LIVE.token=null; LIVE.user=null; LIVE.account=null; rememberSession();
+      return;
+    }
+    applyAccount(body);
+    $('#gatePass').value='';
+    unlockGate();
+    flash('Signed in');
+  }catch(err){
+    if(GATE_KIND==='user'){
+      LIVE.token=null; LIVE.user=username; LIVE.account={username, role:'operator', display_name:username};
+      LIVE.enabled=false; LIVE.error=null;
+      setLiveUi();
+      unlockGate();
+      flash('User workspace — browser simulator');
+      return;
+    }
+    error.textContent=err.message||'Admin sign-in failed';
+  }
+}
+function showForgot(){
+  const choice=$('#gateChoice'), form=$('#gateForm'), forgot=$('#forgotForm'), title=$('#gateTitle');
+  if(choice) choice.hidden=true;
+  if(form) form.hidden=true;
+  if(forgot) forgot.hidden=false;
+  if(title) title.textContent='Forgot password';
+  setGateHint('Enter your email. We will send a login link so you can set a new password and sign in.');
+  const email=$('#forgotEmail');
+  if(email) email.value=$('#gateUser')?$('#gateUser').value:'';
+  const err=$('#forgotError'); if(err) err.textContent='';
+  const notice=$('#forgotNotice'); if(notice){ notice.hidden=true; notice.textContent=''; }
+}
+function hideForgot(){
+  const forgot=$('#forgotForm'); if(forgot) forgot.hidden=true;
+  const choice=$('#gateChoice'); if(choice) choice.hidden=false;
+  const title=$('#gateTitle'); if(title) title.textContent='Sign in';
+  setGateHint(GATE_HINT);
+  selectGate(GATE_KIND||'user');
+}
+async function submitForgot(event){
+  event.preventDefault();
+  const error=$('#forgotError'), notice=$('#forgotNotice');
+  const email=$('#forgotEmail').value.trim();
+  if(error) error.textContent='';
+  if(notice){ notice.hidden=true; notice.textContent=''; }
+  if(!email){ if(error) error.textContent='Enter your email.'; return; }
+  try{
+    const body=await api('/v1/auth/forgot-password',{method:'POST',body:JSON.stringify({email})});
+    if(notice){
+      notice.hidden=false;
+      notice.textContent=body.mail_status||'If that email is authorized, we sent a login link. Check your email.';
+    }
+  }catch(err){
+    if(error) error.textContent=err.message||'Could not send the login link.';
+  }
+}
+function showInvite(preview){
+  const choice=$('#gateChoice'), form=$('#gateForm'), forgot=$('#forgotForm'), invite=$('#inviteForm'), title=$('#gateTitle');
+  if(choice) choice.hidden=true;
+  if(form) form.hidden=true;
+  if(forgot) forgot.hidden=true;
+  if(invite) invite.hidden=false;
+  if(title) title.textContent='Sign in';
+  const reset=preview && preview.purpose==='password_change';
+  setGateHint(reset
+    ? ('Set a new password for '+(preview.email||preview.username)+', then sign in with User login.')
+    : ((preview.display_name||preview.username)+' ('+preview.email+') is authorized. Set your password, then sign in with User login.'));
+  const user=$('#inviteUser'); if(user) user.value=preview.email||preview.username||'';
+  const err=$('#inviteError'); if(err) err.textContent='';
+}
+async function loadInvite(){
+  INVITE_TOKEN=inviteTokenFromUrl();
+  if(!INVITE_TOKEN) return false;
+  lockGate();
+  try{
+    const preview=await api('/v1/auth/invite?token='+encodeURIComponent(INVITE_TOKEN));
+    showInvite(preview);
+    return true;
+  }catch(err){
+    const form=$('#gateForm'); if(form) form.hidden=true;
+    const errEl=$('#gateError');
+    setGateHint('Open a valid login link to set your password, or sign in below.');
+    selectGate('user');
+    if(errEl) errEl.textContent=err.message||'This login link is invalid or has expired';
+    return true;
+  }
+}
+async function submitInvite(event){
+  event.preventDefault();
+  const error=$('#inviteError');
+  const password=$('#invitePass').value;
+  const confirm=$('#invitePass2').value;
+  if(error) error.textContent='';
+  if(password!==confirm){ if(error) error.textContent='The passwords do not match.'; return; }
+  try{
+    await api('/v1/auth/invite',{method:'POST',body:JSON.stringify({token:INVITE_TOKEN,password})});
+    const email=$('#inviteUser').value;
+    INVITE_TOKEN='';
+    history.replaceState({}, '', '/login');
+    const invite=$('#inviteForm'); if(invite) invite.hidden=true;
+    const choice=$('#gateChoice'); if(choice) choice.hidden=false;
+    selectGate('user');
+    const user=$('#gateUser'); if(user) user.value=email;
+    setGateHint('Password saved. Sign in with User login.');
+    flash('Password saved. Sign in with User login.');
+  }catch(err){
+    if(error) error.textContent=err.message||'Could not set the password.';
+  }
+}
+function roleLabel(role){
+  if(role==='admin') return 'Admin · Carbon DC';
+  if(role==='manager') return 'Manager · Powerstation';
+  if(role==='operator') return 'Operator';
+  if(role==='viewer') return 'Viewer';
+  return role||'';
+}
+function rememberSession(){
+  try{
+    if(LIVE.token) localStorage.setItem('emsSession', JSON.stringify({token:LIVE.token, account:LIVE.account||null}));
+    else localStorage.removeItem('emsSession');
+  }catch(e){}
+}
+function applyAccount(body){
+  LIVE.token=body.token||LIVE.token;
+  LIVE.user=body.username;
+  LIVE.account=body;
+  LIVE.error=null;
+  rememberSession();
+  setLiveUi();
+}
+function openAccount(){
+  const back=$('#accountBack');
+  if(!back) return;
+  $('#loginError').textContent='';
+  $('#profileError').textContent='';
+  $('#passwordError').textContent='';
+  const clientErr=$('#clientError'); if(clientErr) clientErr.textContent='';
+  const signedIn=!!LIVE.token;
+  $('#loginForm').hidden=signedIn;
+  $('#accountForm').hidden=!signedIn;
+  if(signedIn && LIVE.account) fillAccountForm(LIVE.account);
+  back.hidden=false;
+  if(signedIn) void refreshAccount();
+}
+function closeAccount(){
+  LIVE.pendingLive=false;
+  const back=$('#accountBack');
+  if(back) back.hidden=true;
+}
+function onAccountBackdrop(event){
+  if(event.target===event.currentTarget) closeAccount();
+}
+function fillAccountForm(account){
+  $('#acctName').value=account.display_name||'';
+  $('#acctUser').value=account.username||'';
+  $('#acctEmail').value=account.email||'';
+  $('#acctCompany').value=account.company||'';
+  $('#acctSystem').value=account.system_name||'';
+  $('#accountRole').textContent=roleLabel(account.role);
+  $('#accountTitle').textContent=account.display_name||'Account';
+}
+async function refreshAccount(){
+  try{
+    const body=await api('/v1/auth/me');
+    applyAccount(body);
+    fillAccountForm(body);
+    if(body.role==='admin') await loadClientEditor();
+    else { const editor=$('#clientEditor'); if(editor) editor.hidden=true; }
+  }catch(err){
+    $('#profileError').textContent=err.message||'Could not load this account';
+  }
+}
+async function submitLogin(event){
+  event.preventDefault();
+  const username=$('#loginUser').value.trim();
+  const password=$('#loginPass').value;
+  const error=$('#loginError');
+  if(!username||!password){ error.textContent='Enter your username or email and password.'; return; }
+  error.textContent='';
+  try{
+    const body=await api('/v1/auth/login',{method:'POST',body:JSON.stringify({username,password})});
+    applyAccount(body);
+    $('#loginPass').value='';
+    $('#loginForm').hidden=true;
+    $('#accountForm').hidden=false;
+    fillAccountForm(body);
+    if(body.role==='admin') await loadClientEditor();
+    flash('Signed in');
+    if(LIVE.pendingLive){
+      LIVE.pendingLive=false;
+      LIVE.enabled=true;
+      await livePoll();
+      flash('Live — EMS backend');
+    }
+  }catch(err){
+    error.textContent=err.message||'Sign-in failed';
+    if(LIVE.pendingLive){ LIVE.pendingLive=false; LIVE.enabled=false; setLiveUi(); }
+  }
+}
+async function submitProfile(event){
+  if(event) event.preventDefault();
+  const error=$('#profileError');
+  error.textContent='';
+  try{
+    const body=await api('/v1/auth/me',{method:'PATCH',body:JSON.stringify({
+      username:$('#acctUser').value.trim(),
+      email:$('#acctEmail').value.trim(),
+      display_name:$('#acctName').value.trim(),
+    })});
+    applyAccount(body);
+    fillAccountForm(body);
+    flash('Account saved');
+  }catch(err){
+    error.textContent=err.message||'Could not save this account';
+  }
+}
+async function submitPassword(){
+  const error=$('#passwordError');
+  error.textContent='';
+  const current=$('#acctCurrent').value;
+  const next=$('#acctNext').value;
+  if(!current||!next){ error.textContent='Enter the current password and a new password.'; return; }
+  try{
+    await api('/v1/auth/password',{method:'POST',body:JSON.stringify({current_password:current,new_password:next})});
+    $('#acctCurrent').value='';
+    $('#acctNext').value='';
+    flash('Password updated');
+  }catch(err){
+    error.textContent=err.message||'Could not reset the password';
+  }
+}
+function signOut(){
+  LIVE.token=null; LIVE.user=null; LIVE.account=null; LIVE.enabled=false; LIVE.pendingLive=false;
+  rememberSession();
+  $('#loginForm').hidden=false;
+  $('#accountForm').hidden=true;
+  setLiveUi();
+  closeAccount();
+  lockGate();
+  flash('Signed out');
+}
+async function loadClientEditor(){
+  const editor=$('#clientEditor');
+  if(!editor) return;
+  try{
+    const users=await api('/v1/auth/users');
+    const manager=users.find(item=>item.role==='manager');
+    editor.hidden=!manager;
+    if(!manager) return;
+    editor.dataset.username=manager.username;
+    $('#clientCompany').value=manager.company||'';
+    $('#clientSystem').value=manager.system_name||'';
+    $('#clientName').value=manager.display_name||'';
+    $('#clientUser').value=manager.username||'';
+    $('#clientEmail').value=manager.email||'';
+    $('#clientPass').value='';
+  }catch(err){
+    editor.hidden=false;
+    $('#clientError').textContent=err.message||'Could not load the client account';
+  }
+}
+async function submitClient(){
+  const editor=$('#clientEditor');
+  const error=$('#clientError');
+  error.textContent='';
+  const current=editor&&editor.dataset.username;
+  if(!current){ error.textContent='The Powerstation manager account is not available.'; return; }
+  try{
+    const saved=await api('/v1/auth/users/'+encodeURIComponent(current),{method:'PATCH',body:JSON.stringify({
+      username:$('#clientUser').value.trim(),
+      email:$('#clientEmail').value.trim(),
+      display_name:$('#clientName').value.trim(),
+      company:$('#clientCompany').value.trim(),
+      system_name:$('#clientSystem').value.trim(),
+      role:'manager',
+    })});
+    editor.dataset.username=saved.username;
+    const next=$('#clientPass').value;
+    if(next){
+      await api('/v1/auth/users/'+encodeURIComponent(saved.username)+'/password',{method:'POST',body:JSON.stringify({new_password:next})});
+      $('#clientPass').value='';
+    }
+    flash('Client account saved');
+  }catch(err){
+    error.textContent=err.message||'Could not save the client account';
+  }
+}
+async function livePoll(){
+  if(!LIVE.enabled) return;
+  try{
+    if(!LIVE.token) await liveLogin();
+    const [supervisor, points, charger]=await Promise.all([
+      api('/v1/ems/supervisor'),
+      api('/v1/ems/telemetry/all'),
+      api('/v1/ems/charger/status'),
+    ]);
+    const map=new Map(points.map(p=>[p.point_id,p]));
+    const bus=Number(supervisor.bus_voltage)||pt(map,'plant.bus.voltage',S.bus);
+    const socRatio=pt(map,'bess.cluster.soc',S.soc/100);
+    const socPct=socRatio<=1.5?socRatio*100:socRatio;
+    const current=pt(map,'bess.cluster.current',0);
+    const pv=pt(map,'cnvtr-2.accepted.power',0)||pt(map,'plant.pv.power',0)||pt(map,'cnvtr-2.dc.power',0);
+    const pvac=pt(map,'st-4.actual.power',0)+pt(map,'st-5.actual.power',0)+pt(map,'st-6.actual.power',0);
+    const bessKw=Math.abs(current*bus/1000);
+    if(!S.socManual) S.soc=socPct;
+    S.bus=bus;
+    S.avail=Number(supervisor.available_power_kw)||S.avail;
+    S.pvdc=pv;
+    S.pvac=pvac;
+    S.bess=bessKw;
+    S.bv=pt(map,'bess.cluster.voltage',S.bv);
+    S.load=Math.max(0, pv+bessKw); // station load estimate from sources
+    S.heartbeatsOk=supervisor.heartbeats_ok;
+    S.heartbeatsTotal=supervisor.heartbeats_total;
+    S.statusLabel=supervisor.status_label||'';
+    S.status=Number(supervisor.system_status)||0;
+    S.chargerMode=charger.mode||'';
+    S.driverMessage=charger.driver_message||'';
+    if(typeof charger.soc==='number' && !S.socManual){
+      S.soc=charger.soc<=1.5?charger.soc*100:charger.soc;
+    }
+    LIVE.lastOk=Date.now(); LIVE.error=null;
+    try{
+      const modeBody=await api('/v1/ems/mode');
+      if(modeBody && modeBody.data_source) setBackendModeUi(modeBody.data_source);
+    }catch(e){/* optional */}
+    const hb=$('#tbComms'); if(hb){hb.textContent=`${S.heartbeatsOk}/${S.heartbeatsTotal}`; hb.style.color=S.heartbeatsOk===S.heartbeatsTotal?'var(--green)':'var(--amber)';}
+    const st=$('#tbStatusTxt'); if(st) st.textContent=`${S.status} · ${S.statusLabel}`;
+    setLiveUi();
+  }catch(err){
+    LIVE.error=err.message||String(err);
+    if(authFailure(LIVE.error)){ LIVE.token=null; LIVE.account=null; LIVE.user=null; rememberSession(); }
+    setLiveUi();
+  }
+}
+async function setUiMode(mode){
+  if(mode==='sim'){
+    if(!LIVE.enabled){ setLiveUi(); flash('Simulator'); return; }
+    LIVE.enabled=false; LIVE.error=null; setLiveUi(); flash('Simulator');
+    return;
+  }
+  if(LIVE.enabled && LIVE.token){ setLiveUi(); flash('Already live'); return; }
+  if(!LIVE.token){
+    LIVE.pendingLive=true;
+    openAccount();
+    $('#loginError').textContent='Sign in to use live data.';
+    return;
+  }
+  // On Netlify (or any remote host), ask once for a reachable API base if /api is not proxied.
+  if(/\.netlify\.app$/i.test(location.hostname) && LIVE.apiBase==='/api' && !localStorage.getItem('emsApiBase')){
+    const entered=prompt(
+      'Backend API base URL (must be publicly reachable + CORS-enabled).\nExample: https://api.example.com/api\nLeave blank to try same-origin /api proxy.',
+      LIVE.apiBase
+    );
+    if(entered===null){ setLiveUi(); flash('Live cancelled'); return; }
+    if(entered.trim()) rememberApiBase(entered.trim());
+  }
+  LIVE.enabled=true; setLiveUi();
+  try{
+    await liveLogin();
+    await livePoll();
+    flash('Live — EMS backend');
+  }catch(err){
+    LIVE.enabled=false; LIVE.error=err.message||String(err);
+    if(authFailure(LIVE.error)){ LIVE.token=null; LIVE.account=null; LIVE.user=null; rememberSession(); }
+    setLiveUi();
+    flash('Live connect failed');
+    if(/\.netlify\.app$/i.test(location.hostname)){
+      const retry=prompt('Connect failed. Enter a public API base URL, or Cancel to stay in browser sim.', LIVE.apiBase);
+      if(retry && retry.trim()){
+        rememberApiBase(retry.trim());
+        LIVE.enabled=true; LIVE.error=null; setLiveUi();
+        try{
+          await liveLogin(); await livePoll(); flash('Live — EMS backend');
+        }catch(err2){
+          LIVE.enabled=false; LIVE.error=err2.message||String(err2);
+          if(authFailure(LIVE.error)){ LIVE.token=null; LIVE.account=null; LIVE.user=null; rememberSession(); }
+          setLiveUi();
+          flash('Live connect failed');
+        }
+      }
+    }
+  }
+}
+function authFailure(message){
+  return /incorrect|invalid token|token expired|bearer token|sign in again|account not found/i.test(message||'');
+}
+function toggleLive(){ void setUiMode(LIVE.enabled && LIVE.token ? 'sim' : 'live'); }
+try{
+  const saved=JSON.parse(localStorage.getItem('emsSession')||'null');
+  if(saved && saved.token){
+    LIVE.token=saved.token;
+    LIVE.account=saved.account||null;
+    LIVE.user=saved.account&&saved.account.username;
+  }
+}catch(e){}
+setLiveUi();
+if(inviteTokenFromUrl()) void loadInvite();
+else if(LIVE.token) unlockGate();
+document.addEventListener('keydown', event=>{
+  if(event.key!=='Escape') return;
+  if(document.body.classList.contains('placing')){
+    event.preventDefault();
+    stopPlacing();
+    return;
+  }
+  const back=$('#accountBack');
+  if(back && !back.hidden){ event.preventDefault(); closeAccount(); return; }
+  const panel=$('#rPanel');
+  if(panel && panel.classList.contains('open')){ event.preventDefault(); closeReview(); }
+});
+
+/* gauges */
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+function gauge(id,val,min,max,unit,bands){
+  const el=$('#'+id);if(!el)return;
+  const r=60,cx=75,cy=76,start=135,sweep=270;
+  const pct=Math.max(0,Math.min(1,(val-min)/(max-min)));
+  const pol=a=>{const rad=(a-90)*Math.PI/180;return[cx+r*Math.cos(rad),cy+r*Math.sin(rad)];};
+  const arc=(a0,a1,color,w)=>{const[x0,y0]=pol(a0),[x1,y1]=pol(a1);const large=(a1-a0)>180?1:0;return `<path d="M${x0} ${y0} A${r} ${r} 0 ${large} 1 ${x1} ${y1}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linecap="round"/>`;};
+  let seg='';
+  if(bands)bands.forEach(b=>{const a0=start+sweep*((b.from-min)/(max-min));const a1=start+sweep*((b.to-min)/(max-min));seg+=arc(a0,a1,b.col,9);});
+  const valA=start+sweep*pct;
+  const col=bands?(bands.find(b=>val>=b.from&&val<=b.to)?.col||cssv('--blue')):cssv('--blue');
+  const[nx,ny]=pol(valA);
+  el.innerHTML=`${seg}${arc(start,valA,col,9)}<circle cx="${nx}" cy="${ny}" r="6" fill="${col}" stroke="${cssv('--panel')}" stroke-width="2"/>
+    <text x="${cx}" y="${cy-1}" text-anchor="middle" font-family="var(--mono)" font-size="23" font-weight="650" fill="${col}">${fmt(val,1)}</text>
+    <text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="10.5" fill="${cssv('--tx3')}">${unit}</text>`;
+}
+
+/* flow diagram */
+function flowSVG(){
+  const c=n=>cssv(n);
+  const node=(x,y,w,h,stroke,title,val,sub,link)=>{const inner=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9" fill="${c('--panel2')}" stroke="${stroke}" stroke-width="1.4"/>
+    <text x="${x+w/2}" y="${y+19}" text-anchor="middle" font-size="11" font-weight="700" fill="${c('--tx')}">${title}</text>
+    <text x="${x+w/2}" y="${y+39}" text-anchor="middle" font-family="var(--mono)" font-size="15" font-weight="700" fill="${stroke}">${val}</text>
+    <text x="${x+w/2}" y="${y+54}" text-anchor="middle" font-size="9.5" fill="${c('--tx3')}">${sub}</text>`;return link?`<g class="mnode" onclick="go('${link}')"><title>Open ${title} page</title>${inner}</g>`:inner;};
+  const flow=(x1,y1,x2,y2,col,on)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${on?3:1.5}" stroke-dasharray="7 5" opacity="${on?1:.35}">${on?`<animate attributeName="stroke-dashoffset" from="18" to="0" dur="0.7s" repeatCount="indefinite"/>`:''}</line>`;
+  return `<svg viewBox="0 0 700 360" width="100%" style="max-height:360px">
+    ${flow(144,68,158,68,c('--pv'),S.pvdc>1)}
+    ${flow(220,96,220,150,c('--pv'),S.pvdc>1)}
+    ${flow(144,178,158,178,c('--green'),1)}
+    ${flow(282,178,300,172,c('--green'),1)}
+    ${flow(150,298,470,300,c('--purple'),S.pvac>1)}
+    ${flow(340,160,470,120,c('--blue'),S.load>1)}
+    ${flow(300,215,152,286,c('--cyan'),1)}
+    <!-- bus -->
+    <rect x="300" y="60" width="40" height="190" rx="8" fill="${c('--busbar')}" stroke="${c('--busbar-b')}" stroke-width="1.5"/>
+    <text x="320" y="155" text-anchor="middle" font-size="10.5" font-weight="700" fill="${c('--busbar-b')}" transform="rotate(-90 320 155)">TB1 · 750 V · ≤600 kW</text>
+    <!-- source / converter nodes -->
+    ${node(20,40,124,56,c('--pv'),'PV array (DC)',fmt(S.pvdc)+' kW','→ CNVTR-2','solar')}
+    ${node(158,40,124,56,c('--blue'),'CNVTR-2',fmt(S.pvdc)+' kW','MPPT → CNVTR-1','cnvtr1')}
+    ${node(20,150,124,56,c('--green'),'BESS BA1-1',fmt(S.soc,0)+'%','↔ CNVTR-1','bess')}
+    ${node(158,150,124,56,c('--green'),'CNVTR-1',fmt(S.bess)+' kW','forms 750 V bus','cnvtr2')}
+    ${node(20,270,130,56,c('--purple'),'ST-1 · ST-2 · ST-3',fmt(S.pvac)+' kW','Stabiliti','stabiliti')}
+    <!-- loads -->
+    ${node(470,90,150,60,c('--blue'),'EV Charge Ctrl',fmt(S.load)+' kW','DC600 · 6 ports','charger')}
+    ${node(470,272,150,56,c('--purple'),'AC / site loads',fmt(64)+' kW','480 V grid-form')}
+  </svg>`;
+}
+function renderFlow(){const h=flowSVG();if($('#flowDiagram'))$('#flowDiagram').innerHTML=h;if($('#flowDiagram2'))$('#flowDiagram2').innerHTML=h;}
+
+const DEVICES=[
+  {i:'◇',n:'Stabiliti ST-1/2/3',m:'EtherNet/IP',col:'var(--purple)'},
+  {i:'◆',n:'CNVTR-2 (MPPT)',m:'Modbus RTU · bus-former',col:'var(--blue)'},
+  {i:'▣',n:'CNVTR-1 (BESS-side)',m:'Modbus RTU',col:'var(--cyan)'},
+  {i:'▮',n:'BESS BA1-1',m:'Modbus RTU · BMS',col:'var(--green)'},
+  {i:'⚡',n:'DC600 charge ctrl',m:'Modbus / EtherNet-IP',col:'var(--amber)'},
+  {i:'▤',n:'AB CompactLogix 5380',m:'EMS supervisor',col:'var(--tx2)'},
+  {i:'▮',n:'120V UPS',m:'Comm Cabinet · status',col:'var(--orange)'},
+  {i:'▤',n:'Comm Cabinet',m:'control power · 24/120 V',col:'var(--cyan)'},
+  {i:'◉',n:'Monta',m:'EV charging platform',col:'var(--purple)'}];
+$('#ovDevices').innerHTML=DEVICES.map(d=>`<div class="devrow"><div class="di" style="background:color-mix(in srgb,${d.col} 16%,transparent);color:${d.col}">${d.i}</div>
+  <div style="flex:1"><div class="dn">${d.n}</div><div class="dm">${d.m}</div></div><span class="pill p-ok"><span class="d" style="background:var(--green)"></span>OK</span></div>`).join('');
+
+const ALARMS=[
+  {sev:'warn',ic:'⚠',t:'ST-2 approaching thermal derate',d:'Mod avg temp 61 °C — PLC shifting AC-load dispatch',time:'11:42:07',cls:'a-warn'},
+  {sev:'info',ic:'↻',t:'NORMAL → DERATED_PV → NORMAL',d:'Cloud transient 11:18, BESS supplemented 46 s',time:'11:18:33',cls:'a-info'},
+  {sev:'ok',ic:'✓',t:'EMS heartbeat restored to DC600',d:'Watchdog cleared after 2.1 s',time:'10:55:12',cls:'a-ok'},
+  {sev:'info',ic:'▮',t:'BESS supplemental discharge via CNVTR-1',d:'SOC 63.0% > re-available 22%',time:'09:30:41',cls:'a-info'}];
+function renderAlarms(){
+  const h=ALARMS.map(a=>`<div class="alarm ${a.cls}"><span class="ai">${a.ic}</span><div><div class="at">${a.t}</div><div class="ad">${a.d}</div></div><div class="at-time">${a.time}<br>today</div></div>`).join('');
+  if($('#alarmList'))$('#alarmList').innerHTML=h;
+  if($('#ovAlarms'))$('#ovAlarms').innerHTML=ALARMS.slice(0,3).map(a=>`<div class="alarm ${a.cls}"><span class="ai">${a.ic}</span><div><div class="at">${a.t}</div><div class="ad">${a.d}</div></div><div class="at-time">${a.time}</div></div>`).join('');
+}
+function ackAll(){ALARMS.forEach(a=>{if(a.sev==='warn'){a.sev='ok';a.cls='a-ok';a.ic='✓';a.t='[ACK] '+a.t;}});renderAlarms();$('#navAlarm').style.display='none';}
+const FAULTS=[['BESS BMS fault','Critical','Charging suspended'],['DC bus over/under-voltage','Critical','<712.5 or >800 V; 825 V hard cutoff'],['Battery over-temp','Critical','Thermal shutdown'],['EVCS over-temp','Critical','No charging'],['Stabiliti grid-form / AFCI / GFDI','Critical','Status bits 1/4/5'],['CNVTR-2 / CNVTR-1 fault','Critical','Converter firmware'],['Comms loss (ETH/IP · Modbus)','Critical','Watchdog timeout'],['BESS fire detect / protection','Critical','Emergency stop']];
+$('#faultTypes').innerHTML=FAULTS.map(f=>`<div class="devrow" style="padding:8px 2px"><span class="pill p-idle" style="min-width:20px;justify-content:center">○</span><div style="flex:1"><div class="dn" style="font-size:12.5px">${f[0]}</div><div class="dm">${f[2]}</div></div><span class="tag" style="background:color-mix(in srgb,var(--red) 14%,transparent);color:var(--red)">${f[1]}</span></div>`).join('');
+
+/* SOC bands - Skid 2 */
+function bessBands(){return [
+  {r:`0–${TH.terminate}%`,n:'All charging terminated',col:'var(--red)',w:TH.terminate},
+  {r:`${TH.terminate}–${TH.maintenance}%`,n:'Maintenance — new blocked',col:'var(--orange)',w:TH.maintenance-TH.terminate},
+  {r:`${TH.maintenance}–${TH.limited}%`,n:`Limited — new ≤${TH.energyCap} kWh`,col:'var(--amber)',w:TH.limited-TH.maintenance},
+  {r:`${TH.limited}–${TH.chargeHold}%`,n:'Normal operation',col:'var(--green)',w:TH.chargeHold-TH.limited},
+  {r:`${TH.chargeHold}–${TH.taper}%`,n:'Charge-hold · MPPT serves load',col:'var(--blue)',w:TH.taper-TH.chargeHold},
+  {r:`${TH.taper}–100%`,n:'Taper → full · MPPT off @100%',col:'var(--purple)',w:100-TH.taper}];}
+function renderBess(){
+  $('#socBands').innerHTML=bessBands().map(b=>`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span style="font-weight:650">${b.r}</span><span style="color:var(--tx3)">${b.n}</span></div><div class="bar"><span style="width:${b.w}%;background:${b.col}"></span></div></div>`).join('')+`<div class="note" style="margin-top:2px">Current SOC <b style="color:var(--purple)">${fmt(S.soc,1)}%</b>. All thresholds operator-adjustable on the Configuration page.</div>`;
+  const strings=[['String 1',31.4,'Closed'],['String 2',31.9,'Closed'],['String 3',32.1,'Closed'],['String 4',31.2,'Closed']];
+  $('#bmsFlags').innerHTML=strings.map((s,i)=>`<div class="devrow" style="padding:9px 2px"><span style="width:9px;height:9px;border-radius:50%;background:var(--green)"></span><span style="flex:1;font-size:13px">${s[0]} <span style="color:var(--tx3)">· reg ${55+i*7}/${56+i*7}</span></span><span class="mono" style="font-weight:650">${s[1]} °C</span><span class="pill p-ok" style="font-size:10px">${s[2]}</span></div>`).join('');
+  const regs=[['40','SOC','×0.1','62.4','%','R'],['41','SOH','×0.1','99.1','%','R'],['37','DC Volts','×0.1','1180','V','R'],['38','DC Current','×0.1','168','A','R'],['39','Storage Power','×100','198000','W','R'],['44','State','—','Discharge','—','R'],['15','Charge/Dis SP','—','auto','—','W']];
+  $('#bmsRegs').innerHTML=regs.map(r=>`<tr><td class="reg">${r[0]}</td><td>${r[1]} <span style="color:var(--tx3);font-size:11px">(${r[2]})</span></td><td class="mono" style="font-weight:650">${r[3]}</td><td style="color:var(--tx3)">${r[4]}</td><td><span class="rw ${r[5].toLowerCase()}">${r[5]}</span></td></tr>`).join('');
+  $('#b_soc').innerHTML=fmt(S.soc,1)+'<span class="ku"> %</span>';$('#b_v').innerHTML=fmt(S.bv)+'<span class="ku"> V</span>';
+}
+
+/* Stabiliti */
+function renderStab(){
+  const u=[{n:'ST-1',ac:22,t:34,st:'ok'},{n:'ST-2',ac:21,t:61,st:'warn'},{n:'ST-3',ac:21,t:33,st:'ok'}];
+  $('#stabCards').innerHTML=u.map(x=>`<div class="card"><h3>${x.n} · Stabiliti <span class="r"><span class="pill ${x.st==='warn'?'p-warn':'p-ok'}"><span class="d" style="background:${x.st==='warn'?'var(--amber)':'var(--green)'}"></span>${x.st==='warn'?'Derating':'Converting'}</span></span></h3>
+    <div class="seg"><span class="k">DC-in (from 750 V bus)</span><span class="v" style="color:var(--blue)">${x.ac} kW</span></div>
+    <div class="seg"><span class="k">AC port (480 V out)</span><span class="v">${x.ac} kW</span></div>
+    <div class="seg"><span class="k">Grid-forming</span><span class="v">Active</span></div>
+    <div class="seg"><span class="k">Temp</span><span class="v" style="color:${x.t>55?'var(--amber)':'var(--tx)'}">${x.t} °C</span></div>
+    <div class="seg"><span class="k">Faults</span><span class="v" style="color:var(--green)">None</span></div></div>`).join('');
+  $('#stabFleet').innerHTML=u.map(x=>`<tr><td style="font-weight:650">${x.n}</td><td class="mono">${x.ac} kW</td><td class="mono">${x.ac} kW</td>
+    <td class="mono" style="color:${x.t>55?'var(--amber)':'inherit'}">${x.t} °C</td><td><span class="pill p-ok" style="font-size:10px">Yes</span></td>
+    <td>${x.st==='warn'?'<span class="pill p-warn" style="font-size:10px">Yes</span>':'<span class="pill p-idle" style="font-size:10px">No</span>'}</td><td><span class="pill p-idle" style="font-size:10px">No</span></td></tr>`).join('');
+}
+
+/* CNVTR-2 regs */
+function renderC1(){
+  const r=[['34053','PV total power','216 kW'],['34063–66','PV1/2/3/4 voltage','1291/1285/1278/1288 V'],['34078','Battery-side power','212 kW'],['34079','Battery-side current','283 A'],['34081','Module temp','41 °C'],['34082/83','Energy today','1.84 MWh'],['34099','Rated capacity','600 kW']];
+  $('#c1regs').innerHTML=r.map(x=>`<tr><td class="reg">${x[0]}</td><td>${x[1]}</td><td class="mono" style="font-weight:650">${x[2]}</td></tr>`).join('');
+}
+
+/* Charger */
+function renderCharger(){
+  const sats=[
+    {n:'Satellite 1',cap:600,ports:[{p:'Port 1',dem:300,v:'asked 350 · limited'},{p:'Port 2',dem:0,v:'No vehicle'}]},
+    {n:'Satellite 2',cap:300,ports:[{p:'Port 3',dem:300,v:'asked 300 · full'},{p:'Port 4',dem:0,v:'No vehicle'}]},
+    {n:'Satellite 3',cap:300,ports:[{p:'Port 5',dem:0,v:'No vehicle'},{p:'Port 6',dem:0,v:'No vehicle'}]}];
+  $('#portCards').innerHTML=sats.map(s=>{const tot=s.ports.reduce((a,p)=>a+p.dem,0);
+    return `<div class="card"><h3>${s.n} <span class="r"><span class="pill ${tot?'p-ok':'p-idle'}"><span class="d" style="background:${tot?'var(--green)':'var(--tx3)'}"></span>${tot?'Charging':'Idle'}</span></span></h3>
+    <div style="font-family:var(--mono);font-size:20px;font-weight:650;color:${tot?'var(--green)':'var(--tx3)'}">${tot}<span style="font-size:12px;color:var(--tx2)"> / ${s.cap} kW</span></div>
+    <div class="bar" style="margin:8px 0 12px"><span style="width:${tot/s.cap*100}%;background:var(--green)"></span></div>
+    ${s.ports.map(p=>`<div class="seg"><span class="k">${p.p} <span style="color:var(--tx3)">· ${p.v}</span></span><span class="v" style="color:${p.dem?'var(--green)':'var(--tx3)'}">${p.dem?p.dem+' kW':'Idle'}</span></div>`).join('')}
+    <div class="seg"><span class="k">Connector</span><span class="v">NAC · NAC</span></div></div>`;}).join('');
+  const w=[['40101–40102 Available Power (INT32 W, big-endian)','600000 W'],['40103 System status','0 · NORMAL'],['40104 Est. time remaining','999 min'],['40105–40106 PV Power (optional)','216000 W'],['40107 BESS SOC (×10)','62.4 %'],['Ramp-rate limit (logic)','20 kW/s']];
+  $('#cWrites').innerHTML=w.map(x=>`<tr><td>${x[0]}</td><td class="mono" style="font-weight:650">${x[1]}</td></tr>`).join('');
+  const rd=[['40001–40002 EV charger power demand (INT32 W)','650000 W'],['40003 Charger status','1 · Charging'],['40004 Connected vehicles','2'],['40005–40006 DC bus V (×10)','749.8 V'],['Port 1 / Port 3 delivery (charger-internal)','300 / 300 kW']];
+  $('#cReads').innerHTML=rd.map(x=>`<tr><td>${x[0]}</td><td class="mono" style="font-weight:650">${x[1]}</td></tr>`).join('');
+}
+
+/* PV cards (solar page) */
+function renderSolar(){
+  const PV=[{n:'PV1',kw:60,v:1291,i:46.5,st:'mppt'},{n:'PV2',kw:56,v:1285,i:43.6,st:'mppt'},{n:'PV3',kw:48,v:1278,i:37.6,st:'gen'},{n:'PV4',kw:52,v:1288,i:40.4,st:'mppt'}];
+  const sm={mppt:['p-ok','MPPT tracking','var(--green)'],gen:['p-info','Generating','var(--blue)'],hib:['p-idle','Hibernating','var(--tx3)']};
+  const reg={PV1:['34063','34067','34054'],PV2:['34064','34068','34055'],PV3:['34065','34069','34056'],PV4:['34066','34070','34057']};
+  $('#pvCards').innerHTML=PV.map(p=>{const opp=Math.round(p.v/1300*100);const st=sm[p.st];const rg=reg[p.n];
+    return `<div class="pv"><div class="pv-h"><div class="ico">☀</div><div style="flex:1"><div class="nm">${p.n} Input</div><div class="mt">3 sub-arrays · independent MPPT</div></div><span class="pill ${st[0]}"><span class="d" style="background:${st[2]}"></span>${st[1]}</span></div>
+    <div class="pv-b"><div class="opp"><div class="lab"><span>MPPT operating point</span><span>Vmpp ${p.v} / Vmax 1300</span></div><div class="track"><div class="fill" style="width:${opp}%"></div><div class="mp" style="left:${opp}%"></div><div class="txt">${p.kw} kW @ ${p.v} V</div></div></div>
+    <div class="mrow"><span class="k">Array voltage <span style="color:var(--tx3)">· ${rg[0]}</span></span><span class="v">${p.v} V</span></div>
+    <div class="mrow"><span class="k">Total current <span style="color:var(--tx3)">· ${rg[1]}</span></span><span class="v">${fmt(p.i,1)} A</span></div>
+    <div class="mrow"><span class="k">Input power <span style="color:var(--tx3)">· ${rg[2]}</span></span><span class="v" style="color:var(--pv)">${p.kw} kW</span></div></div></div>`;}).join('');
+}
+
+/* Config */
+const CFG_MPPT=[
+  {n:'Normal charge power',d:'MPPT battery-charge setpoint (≤ BMS limit)',v:400,u:'kW',mn:0,mx:600,k:'normalPower'},
+  {n:'Charge-hold SOC',d:'Stop battery charge; keep serving station load',v:90,u:'%',mn:50,mx:100,k:'chargeHold'},
+  {n:'Resume-charge SOC',d:'Resume battery charging (hysteresis)',v:87,u:'%',mn:50,mx:99,k:'resume'},
+  {n:'Weekly full-charge target',d:'Once/week, replaces the 90% target',v:100,u:'%',mn:90,mx:100,k:'weeklyTarget'},
+  {n:'Taper threshold',d:'Above this, cap total MPPT output',v:97,u:'%',mn:90,mx:100,k:'taper'},
+  {n:'Taper cap',d:'% of BMS charge-power limit',v:80,u:'%',mn:10,mx:100,k:'taperCap'},
+  {n:'Full-off SOC',d:'MPPT off at full charge',v:100,u:'%',mn:95,mx:100,k:'fullOff'},
+  {n:'MPPT restart SOC',d:'Return to normal after full',v:95,u:'%',mn:80,mx:99,k:'mpptRestart'}];
+const CFG_CHARGER=[
+  {n:'Unavailable SOC',d:'New sessions blocked (Oct 2026 note)',v:15,u:'%',mn:5,mx:40,k:'limited'},
+  {n:'New-session energy cap',d:'Max kWh per new session in limited mode',v:10,u:'kWh',mn:1,mx:100,k:'energyCap'},
+  {n:'Unavailable SOC (no new)',d:'Same gate as 15% unavailable',v:15,u:'%',mn:5,mx:30,k:'maintenance'},
+  {n:'Terminate SOC',d:'All sessions stopped',v:10,u:'%',mn:3,mx:20,k:'terminate'},
+  {n:'Re-available SOC',d:'New charging resumes on the way up',v:22,u:'%',mn:10,mx:50,k:'recovery'}];
+const CFG_BUS=[
+  {n:'DC Bus setpoint',d:'CNVTR-2 forming voltage',v:750,u:'V',mn:700,mx:800},
+  {n:'Bus design ceiling',d:'Curtail below this (margin to cutoff)',v:800,u:'V',mn:770,mx:820},
+  {n:'Charger hard cutoff',d:'Converter firmware trip',v:825,u:'V',mn:820,mx:850},
+  {n:'Bus power limit',d:'TB1 cap',v:600,u:'kW',mn:300,mx:600}];
+const CFG_SURGE=[
+  {n:'PV input headroom',d:'Rolling cap = meas + headroom',v:2,u:'kW',mn:1,mx:10},
+  {n:'Recalc interval',d:'Cap refresh',v:60,u:'s',mn:10,mx:300},
+  {n:'Soft-start ramp',d:'PV onset ramp',v:5,u:'kW/min',mn:1,mx:30}];
+function cfgRow(c){const oi=c.k?` oninput="TH['${c.k}']=+this.value;onThreshChange()"`:'';return `<div class="cfg-row"><div class="cfg-name">${c.n}<div class="d">${c.d}</div></div><div class="cfg-in"><input type="number" value="${c.v}" step="0.1"${oi}><span style="color:var(--tx3)">${c.u}</span></div><div class="range">range ${c.mn}–${c.mx}</div><div style="text-align:right"><span class="pill p-idle" style="font-size:10px">default ${c.v}</span></div></div>`;}
+function msgConfigHTML(){
+  return [['limited',`Limited (< ${TH.limited}%)`],['maintenance',`Maintenance (< ${TH.maintenance}%)`],['terminated',`Terminated (< ${TH.terminate}%)`]].map(m=>
+    `<div class="cfg-row" style="grid-template-columns:0.9fr 2.1fr"><div class="cfg-name">${m[1]}<div class="d">Message shown on charger screens</div></div><div class="cfg-in"><input type="text" value="${MSG[m[0]]}" oninput="MSG['${m[0]}']=this.value;renderDriver(window._previewMode||'normal')" style="font-family:var(--sans)"></div></div>`).join('')
+    +`<div style="margin-top:12px"><div style="font-size:10.5px;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Driver-screen preview</div>
+      <div style="display:flex;gap:6px;margin-bottom:10px">${['normal','limited','maintenance','terminated'].map(k=>`<button class="btn sm msgbtn" data-k="${k}" onclick="previewMode('${k}')">${k}</button>`).join('')}<button class="btn sm" onclick="window._previewLock=false;updateModes()">Follow live</button></div>
+      <div id="driverScreen"></div></div>`;
+}
+function renderConfig(){
+  $('#cfgMppt').innerHTML=CFG_MPPT.map(cfgRow).join('')+
+    `<div class="cfg-row"><div class="cfg-name">Weekly full-charge schedule<div class="d">When the 100% balancing cycle runs</div></div><div class="cfg-in"><select style="width:auto">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<option${d===TH.weeklyDay?' selected':''}>${d}</option>`).join('')}</select><input type="text" value="${TH.weeklyTime}" style="width:62px"></div><div class="range">local time</div><div style="text-align:right"><span class="pill p-idle" style="font-size:10px">${TH.weeklyDay} ${TH.weeklyTime}</span></div></div>
+     <div class="cfg-row"><div class="cfg-name">BMS charge-power limit<div class="d">Live ceiling from BMS — bounds all charging</div></div><div class="cfg-in"><input type="number" value="${TH.bmsLimit}" disabled style="opacity:.6"><span style="color:var(--tx3)">kW</span></div><div class="range">read-only</div><div style="text-align:right"><span class="pill p-info" style="font-size:10px">live</span></div></div>`;
+  $('#cfgCharger').innerHTML=CFG_CHARGER.map(cfgRow).join('');
+  $('#cfgMsg').innerHTML=msgConfigHTML();renderDriver(window._previewMode||'normal');
+  $('#cfgBus').innerHTML=CFG_BUS.map(cfgRow).join('');
+  $('#cfgSurge').innerHTML=CFG_SURGE.map(cfgRow).join('');
+  $('#cfgAlert').innerHTML=[{n:'Fault recovery delay',d:'Wait before auto-recovery',v:30,u:'s',mn:10,mx:120},{n:'Recovery ramp rate',d:'Gradual available-power ramp',v:20,u:'kW/s',mn:5,mx:50}].map(cfgRow).join('')+
+    `<div class="cfg-row"><div class="cfg-name">Comms — primary<div class="d">AB CompactLogix 5380</div></div><div class="cfg-in"><input type="text" value="EtherNet/IP" style="font-family:var(--sans)"></div><div class="range">+ Modbus RTU gateway</div><div style="text-align:right"><div class="toggle on" onclick="this.classList.toggle('on')"></div></div></div>
+    <div class="cfg-row"><div class="cfg-name">NTP time sync<div class="d">Per-unit drift visible</div></div><div class="cfg-in"><input type="text" value="pool.ntp.org" style="font-family:var(--sans)"></div><div class="range">fallback: local</div><div style="text-align:right"><div class="toggle on" onclick="this.classList.toggle('on')"></div></div></div>`;
+}
+function applyCfg(){flash('Setpoints staged — dispatched by AB PLC at supervisory rate');}
+function revertCfg(){renderConfig();flash('Reverted to last applied values');}
+function flash(m){const f=$('#flash');f.textContent='✓ '+m;f.style.opacity='1';clearTimeout(f._t);f._t=setTimeout(()=>f.style.opacity='0',2600);}
+
+/* ===== Control points: MPPT charge + Charger/SOC availability ===== */
+const TH={normalPower:400,chargeHold:90,resume:87,weeklyTarget:100,weeklyDay:'Sun',weeklyTime:'02:00',
+  taper:97,taperCap:80,fullOff:100,mpptRestart:95,limited:15,energyCap:10,maintenance:15,terminate:10,recovery:22,bmsLimit:700};
+function mpptMode(soc){
+  if(soc>=TH.fullOff) return {n:'Off · full',cls:'p-idle',col:cssv('--tx3')};
+  if(soc>=TH.taper) return {n:'Taper',cls:'p-purple',col:cssv('--purple')};
+  if(soc>=TH.chargeHold) return {n:'Load-hold',cls:'p-info',col:cssv('--blue')};
+  return {n:'Charging',cls:'p-ok',col:cssv('--green')};
+}
+function chgMode(soc){
+  if(soc<TH.terminate) return {key:'terminated',n:'Terminated',cls:'p-fault',col:cssv('--red')};
+  if(soc<TH.maintenance) return {key:'maintenance',n:'Maintenance',cls:'p-res',col:cssv('--orange')};
+  if(soc<TH.limited) return {key:'limited',n:'Limited',cls:'p-warn',col:cssv('--amber')};
+  return {key:'normal',n:'Normal',cls:'p-ok',col:cssv('--green')};
+}
+const MSG={normal:'Available — full charging.',
+  limited:'Reduced service: new sessions are limited to 10 kWh due to low battery.',
+  maintenance:'Charger temporarily unavailable (maintenance). Active sessions continue.',
+  terminated:'Charging suspended — low battery. Please try again soon.'};
+function socBandsArr(){return [{from:0,to:TH.terminate,col:cssv('--red')},{from:TH.terminate,to:TH.maintenance,col:cssv('--orange')},{from:TH.maintenance,to:TH.limited,col:cssv('--amber')},{from:TH.limited,to:TH.chargeHold,col:cssv('--green')},{from:TH.chargeHold,to:TH.taper,col:cssv('--blue')},{from:TH.taper,to:100,col:cssv('--purple')}];}
+const liveEvents=[];
+function pushEvent(level,text){const d=new Date(),p=n=>String(n).padStart(2,'0');liveEvents.unshift([`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`,level,text]);if(liveEvents.length>10)liveEvents.pop();if($('#eventLog'))renderLogs();}
+function setChip(id,m,pfx){const el=$('#'+id);if(!el)return;el.className='pill '+m.cls;el.innerHTML=`<span class="d" style="background:${m.col}"></span>${pfx}${m.n}`;}
+function driverCard(mode,slim){
+  const map={normal:['Available',cssv('--green')],limited:['Reduced service',cssv('--amber')],maintenance:['Maintenance',cssv('--orange')],terminated:['Suspended',cssv('--red')]};
+  const m=map[mode]||map.normal;const msg=MSG[mode]||MSG.normal;
+  return `<div style="max-width:${slim?'100%':'360px'};border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)"><div style="background:${m[1]};color:#fff;padding:9px 14px;font-weight:700;font-size:12.5px;display:flex;justify-content:space-between"><span>Carbon DC · Charging Station</span><span>${m[0]}</span></div><div style="padding:13px 16px;background:var(--panel2)"><div style="font-size:13px;color:var(--tx2)">${msg}</div></div></div>`;
+}
+function renderDriver(mode){if($('#driverScreen'))$('#driverScreen').innerHTML=driverCard(mode);$$('.msgbtn').forEach(b=>b.classList.toggle('primary',b.dataset.k===mode));}
+function previewMode(k){window._previewLock=true;window._previewMode=k;renderDriver(k);}
+function scrubSOC(v){if(v===null){S.socManual=false;const s=$('#socScrub');if(s)s.value=Math.round(S.soc);}else{S.socManual=true;S.soc=+v;}const sv=$('#scrubVal');if(sv)sv.textContent=fmt(S.soc,0)+'%';$('#tbSoc').textContent=fmt(S.soc,1)+' %';if($('#kSoc'))$('#kSoc').innerHTML=fmt(S.soc,1)+'<span class="ku"> %</span>';gauge('gSoc',S.soc,0,100,'% SOC',socBandsArr());updateModes();}
+function onThreshChange(){gauge('gSoc',S.soc,0,100,'% SOC',socBandsArr());if($('#socBands'))renderBess();updateModes();}
+function updateModes(){
+  const mm=mpptMode(S.soc),cm=chgMode(S.soc);
+  setChip('ovMpptChip',mm,'MPPT · ');setChip('ovChgChip',cm,'Charger · ');
+  setChip('solMpptChip',mm,'MPPT · ');setChip('chgModeChip',cm,'');
+  const om=$('#ovSocMode');if(om)om.textContent=`MPPT ${mm.n} · Charger ${cm.n}`;
+  const bn=$('#chgMsgBanner');if(bn)bn.innerHTML=driverCard(cm.key,true);
+  if(!window._previewLock){window._previewMode=cm.key;if($('#driverScreen'))renderDriver(cm.key);}
+  if(window._pmm!==mm.n){if(window._pmm!==undefined)pushEvent('INFO',`MPPT → ${mm.n} @ ${fmt(S.soc,0)}% SOC`);window._pmm=mm.n;}
+  if(window._pcm!==cm.n){if(window._pcm!==undefined)pushEvent(cm.key==='normal'?'INFO':'WARN',`Charger → ${cm.n} @ ${fmt(S.soc,0)}% SOC`);window._pcm=cm.n;}
+}
+
+/* Comms */
+function renderComms(){
+  const nodes=[{n:'Stabiliti ST-1/2/3',p:'EtherNet/IP (native)',c:'var(--purple)'},{n:'CNVTR-2 / CNVTR-1',p:'Modbus RTU → gateway',c:'var(--blue)'},{n:'BESS BA1-1 · DC600',p:'Modbus RTU',c:'var(--green)'}];
+  $('#commNodes').innerHTML=nodes.map(n=>`<div class="kpi"><div class="accent" style="background:${n.c}"></div><div class="kl">${n.n}</div><div class="kv" style="font-size:15px;color:var(--green)">● Linked</div><div class="kd">${n.p}</div></div>`).join('');
+  const st=[['1','Demand meter power','×100','W','R'],['6','Total gen (PV+storage)','×100','W','R'],['16','PV power','×100','W','R'],['23','# Stabilitis converting','×1','','R'],['40','BESS SOC','×0.1','%','R'],['41','BESS SOH','×0.1','%','R'],['96–110','ST-1/2/3 AC·DC·temp·status','—','','R'],['40003','PV Gen Limit','—','','W'],['40010','Stabiliti start/stop','—','','W']];
+  $('#mbStab').innerHTML=st.map(r=>`<tr><td class="reg">${r[0]}</td><td>${r[1]}</td><td class="mono" style="color:var(--tx2)">${r[2]}</td><td style="color:var(--tx3)">${r[3]}</td><td><span class="rw ${r[4]==='R'?'r':'w'}">${r[4]}</span></td></tr>`).join('');
+  const bus=[['Stabiliti ST-1/2/3','EtherNet/IP','2 s','OK'],['CNVTR-2 (MPPT)','Modbus RTU','60 Hz','OK'],['CNVTR-1 (BESS-side)','Modbus RTU','60 Hz','OK'],['BESS BA1-1 (BMS)','Modbus RTU','1 s','OK'],['DC600 controller','Modbus/E-IP','60 Hz','▲ 44210']];
+  $('#mbBus').innerHTML=bus.map(b=>`<tr><td style="font-weight:650">${b[0]}</td><td>${b[1]}</td><td class="mono">${b[2]}</td><td class="mono" style="color:var(--tx3)">${b[3]}</td><td><span class="pill p-ok" style="font-size:10px"><span class="d" style="background:var(--green)"></span>Linked</span></td></tr>`).join('');
+}
+
+/* Logs */
+function renderLogs(){
+  const pts=[['PV total power (AC+DC)','kW','MVP'],['BESS power (signed)','kW','MVP'],['Charger power','kW','MVP'],['Available bus power','kW','MVP'],['BESS SOC / SOH','%','MVP'],['DC bus voltage','V','MVP'],['System status code','enum','MVP'],['Per-ST temp / status','°C','V2'],['CNVTR temps','°C','V2'],['Status-change timestamps','event','V2'],['Fault occ. & duration','event','V2'],['Comms errors','event','V2']];
+  $('#logPoints').innerHTML=pts.map(p=>`<div class="devrow" style="padding:7px 2px"><span style="width:7px;height:7px;border-radius:50%;background:var(--cyan)"></span><span style="flex:1;font-size:12.5px">${p[0]}</span><span class="mono" style="color:var(--tx3);font-size:11.5px">${p[1]}</span><span class="tag ${p[2]==='MVP'?'mvp':'v2'}">${p[2]==='MVP'?'1 s':'V2'}</span></div>`).join('');
+  const ev=[['11:42:07','WARN','ST-2 thermal derate 61 °C'],['11:18:33','INFO','NORMAL→DERATED_PV (cloud)'],['11:19:19','INFO','DERATED_PV→NORMAL (46 s)'],['10:55:12','OK','DC600 heartbeat restored'],['09:30:41','INFO','BESS supplemental via CNVTR-1'],['08:04:00','INFO','Sunrise — PV soft-start']];
+  $('#eventLog').innerHTML=[...liveEvents,...ev].map(e=>`<div class="devrow" style="padding:7px 2px"><span class="mono" style="color:var(--tx3);font-size:11.5px;width:54px">${e[0]}</span><span class="tag" style="${e[1]==='WARN'?'background:color-mix(in srgb,var(--amber) 16%,transparent);color:var(--amber)':e[1]==='OK'?'background:color-mix(in srgb,var(--green) 16%,transparent);color:var(--green)':'background:color-mix(in srgb,var(--blue) 16%,transparent);color:var(--blue)'}">${e[1]}</span><span style="flex:1;font-size:12px">${e[2]}</span></div>`).join('');
+}
+function drawTrend(){
+  const svg=$('#trendChart');if(!svg)return;const W=900,H=230,n=60;
+  const mk=(b,a,ph,no)=>Array.from({length:n},(_,i)=>b+a*Math.sin(i/8+ph)+Math.sin(i*7.3)*no);
+  const pv=mk(384,90,0,16),load=mk(560,60,1.5,12),soc=mk(60,6,3,1.2);
+  const path=(d,max,col,area)=>{const pts=d.map((v,i)=>[40+i/(n-1)*(W-60),H-22-(v/max)*(H-46)]);const line=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');const a=area?`<path d="${line} L${pts[n-1][0].toFixed(1)} ${H-22} L40 ${H-22} Z" fill="${col}" opacity="0.08"/>`:'';return a+`<path d="${line}" fill="none" stroke="${col}" stroke-width="2"/>`;};
+  let g='';for(let i=0;i<=4;i++){const y=22+i*(H-46)/4;g+=`<line x1="40" y1="${y}" x2="${W-20}" y2="${y}" stroke="${cssv('--line')}" stroke-width="1"/>`;}
+  svg.innerHTML=g+path(pv,700,cssv('--blue'),1)+path(load,700,cssv('--green'),0)+path(soc.map(s=>s*7),700,cssv('--purple'),0);
+}
+
+/* Commissioning */
+function renderCommission(){
+  const seq=[['0–10%','Terminate charging; test shutdown','res'],['10–15%','Ports unavailable; test alarms','warn'],['22%','Charge ports re-available','info'],['22–75%','Normal operation; solar on','ok'],['90%','Solar off; battery full','info']];
+  $('#startupSeq').innerHTML=seq.map(s=>`<div class="devrow" style="padding:9px 2px"><span class="pill ${s[2]==='res'?'p-res':s[2]==='warn'?'p-warn':s[2]==='ok'?'p-ok':'p-info'}" style="min-width:70px;justify-content:center;font-family:var(--mono)">${s[0]}</span><span style="flex:1;font-size:12.5px">${s[1]}</span></div>`).join('');
+  const pre=['3 STs converting (software IDs ST-4/5/6)','24 VDC control (COMM CAB UPS)','CNVTR-2 forming 750 V bus','CNVTR-1 conditioning BESS','BESS BA1-1 online','Maps: BMS, Stabiliti Rev 15, Sinexcel V126, PMS↔EVCS Appendix A','No LIVE plant link (SIM)','DC600 SIM handshake OK (Appendix A envelope)'];
+  $('#precond').innerHTML=pre.map(p=>`<div class="devrow" style="padding:7px 2px"><span style="width:19px;height:19px;border-radius:5px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px">✓</span><span style="flex:1;font-size:12.5px">${p}</span></div>`).join('');
+  window._tests=[['TC-001','Normal operation','750 V regulation; PV priority; ETH/IP + Modbus telemetry',true],['TC-005','SOC gating','Ports off@15 / terminate@10 / re-available@22',true],['TC-008','PV variation','Cloud cover; BESS via CNVTR-1 picks up; status change',false],['TC-012','Solar full','SOC→90%; solar off; taper from 75%',false],['TC-016','Fault response','ST derate / CNVTR fault; curtailment; recovery',false],['TC-020','Comms','ETH/IP + Modbus RTU read/write; loss recovery; logging',false]];
+  drawTests();
+}
+function drawTests(){const t=window._tests;$('#testList').innerHTML=t.map((x,i)=>`<div class="chk ${x[3]?'done':''}"><span class="box ${x[3]?'done':''}" onclick="toggleTest(${i})"></span><span class="mono" style="color:var(--blue);width:58px">${x[0]}</span><div class="ct" style="flex:1"><b>${x[1]}</b><div style="font-size:12px;color:var(--tx3)">${x[2]}</div></div><span class="pill ${x[3]?'p-ok':'p-idle'}" style="font-size:10px">${x[3]?'Passed':'Pending'}</span></div>`).join('');$('#chkProgress').textContent=`${t.filter(x=>x[3]).length} / ${t.length}`;}
+function toggleTest(i){window._tests[i][3]=!window._tests[i][3];drawTests();}
+
+/* clock + sim */
+function tick(){const d=new Date(),p=n=>String(n).padStart(2,'0');$('#clkT').textContent=`${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;$('#clkD').textContent=d.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' · PDT';}
+function refreshVisuals(){
+  gauge('gBus',S.bus,700,830,'VDC · form 750',[{from:700,to:712.5,col:cssv('--red')},{from:712.5,to:800,col:cssv('--green')},{from:800,to:825,col:cssv('--amber')},{from:825,to:830,col:cssv('--red')}]);
+  gauge('gSoc',S.soc,0,100,'% SOC',socBandsArr());
+  renderFlow();drawTrend();
+}
+function simTick(){
+  if(LIVE.enabled){
+    void livePoll();
+  }else if(S.run){
+    const t=Date.now();
+    S.bus=750+Math.sin(t/1000)*2.2+Math.sin(t/430)*1.1;
+    S.pvdc=Math.max(0,216+Math.sin(t/4000)*30);
+    S.pvac=Math.max(0,168+Math.sin(t/4600)*22);
+    S.load=Math.max(0,582+Math.sin(t/3000)*10);
+    S.bess=Math.max(0,S.load-S.pvdc-S.pvac*0+40>0?198+Math.sin(t/3500)*20:0);
+    if(!S.socManual)S.soc=62.4+Math.sin(t/20000)*1.2;
+    S.avail=600-Math.abs(Math.sin(t/5000)*6);
+  }
+  $('#tbBus').textContent=fmt(S.bus,1)+' V';$('#tbSoc').textContent=fmt(S.soc,1)+' %';$('#tbAvail').textContent=fmt(S.avail)+' kW';
+  updateModes();
+  if($('#v-overview').classList.contains('active')){
+    $('#kBus').innerHTML=fmt(S.bus,1)+'<span class="ku"> V</span>';$('#kSoc').innerHTML=fmt(S.soc,1)+'<span class="ku"> %</span>';$('#kAvail').innerHTML=fmt(S.avail)+'<span class="ku"> kW</span>';
+    $('#ovPvdc').textContent=fmt(S.pvdc)+' kW';$('#ovBess').textContent=fmt(S.bess)+' kW';$('#ovLoad').textContent=fmt(S.load)+' kW';
+    gauge('gBus',S.bus,700,830,'VDC · form 750',[{from:700,to:712.5,col:cssv('--red')},{from:712.5,to:800,col:cssv('--green')},{from:800,to:825,col:cssv('--amber')},{from:825,to:830,col:cssv('--red')}]);
+    gauge('gSoc',S.soc,0,100,'% SOC',socBandsArr());
+    $('#flowStamp').textContent=new Date().toLocaleTimeString();renderFlow();renderAcMetrics();
+  }
+  if($('#v-flow').classList.contains('active')){$('#f_c1pv').textContent=fmt(S.pvdc)+' kW';$('#f_c2out').textContent=fmt(S.bess)+' kW';$('#f_load').textContent=fmt(S.load)+' kW';$('#f_stpv').textContent=fmt(S.pvac)+' kW';renderFlow();}
+  if($('#v-solar').classList.contains('active')){$('#dcPv').innerHTML=fmt(S.pvdc)+'<span style="font-size:14px;color:var(--tx2)"> kW</span>';$('#pvTot').textContent=fmt(S.pvdc);}
+}
+
+/* init */
+function renderAcMetrics(){
+  const t=Date.now(),j=(b,a,ph)=>b+Math.sin(t/2600+ph)*a;
+  const u=[['ST-1',j(480.2,0.7,0),j(26.2,1.0,0)],['ST-2',j(480.0,0.7,2),j(25.0,1.0,1.4)],['ST-3',j(479.7,0.7,4),j(25.1,1.0,2.6)]];
+  let tot=0,ptot=0;
+  let html=u.map(x=>{const p=x[1]*x[2]*Math.sqrt(3)/1000;tot+=x[2];ptot+=p;return `<tr><td style="font-weight:650">${x[0]}</td><td class="mono">${fmt(x[1],1)} V</td><td class="mono">${fmt(x[2],1)} A</td><td class="mono" style="color:var(--purple)">${fmt(p,1)} kW</td></tr>`;}).join('');
+  html+=`<tr style="border-top:2px solid var(--line)"><td style="font-weight:700">AC Total</td><td class="mono" style="color:var(--tx3)">3-phase 480 V</td><td class="mono" style="font-weight:700;color:var(--cyan)">${fmt(tot,1)} A</td><td class="mono" style="font-weight:700">${fmt(ptot,1)} kW</td></tr>`;
+  const el=$('#acMetrics');if(el)el.innerHTML=html;
+}
+renderAlarms();renderBess();renderStab();renderC1();renderCharger();renderSolar();renderConfig();renderComms();renderLogs();renderCommission();renderAcMetrics();updateModes();
+tick();setInterval(tick,1000);
+refreshVisuals();simTick();setInterval(simTick,900);
+setInterval(drawTrend,4000);
+
+/* ===== Review / annotation layer ===== */
+const VIEW_LABELS={overview:'Overview',flow:'Power Flow',solar:'Solar / MPPT',alarms:'Alarms & Faults',stabiliti:'Stabiliti ST-1/2/3',cnvtr1:'CNVTR-2 · MPPT',cnvtr2:'CNVTR-1 · BESS-side',bess:'BESS BA1-1',charger:'EV Charge Controller',config:'Configuration',comms:'Comms / Modbus',logs:'Logs & Trends',commission:'Commissioning'};
+let RC=[],RSEQ=0,RSEL=null;
+try{const s=localStorage.getItem('cdc-review');if(s){const o=JSON.parse(s);RC=o.c||[];RSEQ=o.seq||RC.length;}}catch(e){}
+try{const n=localStorage.getItem('cdc-review-name');if(n){const el=$('#rName');if(el)el.value=n;}}catch(e){}
+function saveReview(){try{localStorage.setItem('cdc-review',JSON.stringify({c:RC,seq:RSEQ}))}catch(e){}$('#rCount').textContent=RC.length;}
+function saveName(v){try{localStorage.setItem('cdc-review-name',v)}catch(e){}RC.forEach(c=>{if(!c.text)c.author=v||'Reviewer';});}
+function reviewerName(){const el=$('#rName');return (el&&el.value.trim())||'Reviewer';}
+function setReviewButton(){
+  const label=$('#reviewBtnLabel');
+  const panel=$('#rPanel');
+  if(label) label.textContent=(panel && panel.classList.contains('open'))?'✕ Close':'💬 Review';
+}
+function openReview(){
+  const panel=$('#rPanel');
+  if(panel) panel.classList.add('open');
+  const shade=$('#rShade');
+  if(shade && !document.body.classList.contains('placing')) shade.classList.add('on');
+  setReviewButton();
+  renderRComments();
+}
+function closeReview(){
+  document.body.classList.remove('placing');
+  const panel=$('#rPanel');
+  if(panel) panel.classList.remove('open');
+  const shade=$('#rShade');
+  if(shade) shade.classList.remove('on');
+  setReviewButton();
+}
+function toggleReview(){
+  const panel=$('#rPanel');
+  if(panel && panel.classList.contains('open')) closeReview();
+  else openReview();
+}
+function startPlacing(){
+  document.body.classList.add('placing');
+  const shade=$('#rShade');
+  if(shade) shade.classList.remove('on');
+}
+function stopPlacing(){
+  document.body.classList.remove('placing');
+  const shade=$('#rShade');
+  const panel=$('#rPanel');
+  if(shade && panel && panel.classList.contains('open')) shade.classList.add('on');
+}
+function activeView(){return document.querySelector('.view.active');}
+document.addEventListener('click',function(e){
+  if(!document.body.classList.contains('placing'))return;
+  if(e.target.closest('.rpanel')||e.target.closest('.rfab')||e.target.closest('.rbanner'))return;
+  const v=activeView();if(!v)return;
+  const rect=v.getBoundingClientRect();const x=Math.round(e.clientX-rect.left),y=Math.round(e.clientY-rect.top);
+  e.preventDefault();e.stopPropagation();stopPlacing();
+  RSEQ++;const c={id:'c'+RSEQ,seq:RSEQ,view:v.id.replace('v-',''),x,y,text:'',author:reviewerName(),ts:new Date().toISOString()};
+  RC.push(c);RSEL=c.id;saveReview();renderPins();openReview();
+  setTimeout(()=>{const ta=document.querySelector(`textarea[data-id="${c.id}"]`);if(ta){ta.focus();ta.scrollIntoView({block:'center'});}},30);
+},true);
+function renderPins(){
+  document.querySelectorAll('.rpin').forEach(p=>p.remove());
+  RC.forEach((c,i)=>{const v=document.getElementById('v-'+c.view);if(!v)return;const pin=document.createElement('div');pin.className='rpin'+(RSEL===c.id?' sel':'');pin.style.left=c.x+'px';pin.style.top=c.y+'px';pin.innerHTML='<span>'+(i+1)+'</span>';pin.title=c.text||'(empty)';pin.onclick=ev=>{ev.stopPropagation();selectComment(c.id);};v.appendChild(pin);});
+}
+function renderRComments(){
+  const list=$('#rList');if(!list)return;$('#rCount').textContent=RC.length;
+  if(!RC.length){list.innerHTML='<div style="font-size:12.5px;color:var(--tx3);padding:10px 2px">No comments yet. Click “Add comment”, then click a spot on any screen.</div>';return;}
+  const numById={};RC.forEach((c,i)=>numById[c.id]=i+1);let html='';
+  Object.keys(VIEW_LABELS).forEach(vid=>{const items=RC.filter(c=>c.view===vid);if(!items.length)return;
+    html+=`<div style="font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--tx3);font-weight:700;margin:8px 0 8px">${VIEW_LABELS[vid]}</div>`;
+    items.forEach(c=>{html+=`<div class="rcomment" id="rc-${c.id}"><div class="rmeta"><span class="rnum">${numById[c.id]}</span><span>${c.author||'Reviewer'}</span><span class="rlink" onclick="selectComment('${c.id}')">locate</span><span class="rlink" style="color:var(--red);margin-left:auto" onclick="delComment('${c.id}')">delete</span></div><textarea data-id="${c.id}" oninput="editComment('${c.id}',this.value)" placeholder="Type your comment…">${(c.text||'').replace(/</g,'&lt;')}</textarea></div>`;});
+  });
+  list.innerHTML=html;
+}
+function editComment(id,v){const c=RC.find(x=>x.id===id);if(c){c.text=v;saveReview();}}
+function delComment(id){RC=RC.filter(x=>x.id!==id);if(RSEL===id)RSEL=null;saveReview();renderPins();renderRComments();}
+function selectComment(id){const c=RC.find(x=>x.id===id);if(!c)return;RSEL=id;go(c.view);renderPins();const main=document.querySelector('.main');if(main)main.scrollTo({top:Math.max(0,c.y-160),behavior:'smooth'});openReview();setTimeout(()=>{const rc=$('#rc-'+id);if(rc)rc.scrollIntoView({block:'center'});},60);}
+function download(fn,content,type){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+function reviewMD(){const name=reviewerName();const numById={};RC.forEach((c,i)=>numById[c.id]=i+1);let md=`# Carbon DC EMS — UI Review Comments\nReviewer: ${name}\nTotal comments: ${RC.length}\n`;Object.keys(VIEW_LABELS).forEach(vid=>{const items=RC.filter(c=>c.view===vid);if(!items.length)return;md+=`\n## ${VIEW_LABELS[vid]}\n`;items.forEach(c=>md+=`${numById[c.id]}. ${c.text||'(no text)'}  _(pin ${c.x},${c.y})_\n`);});return md;}
+function exportReview(fmt){if(!RC.length){flash('No comments to export');return;}if(fmt==='json'){download('carbon-dc-ui-review.json',JSON.stringify({reviewer:reviewerName(),comments:RC},null,2),'application/json');}else{download('carbon-dc-ui-review.md',reviewMD(),'text/markdown');}flash('Review exported');}
+function copyReview(){if(!RC.length){flash('No comments to copy');return;}if(navigator.clipboard)navigator.clipboard.writeText(reviewMD());flash('Comments copied to clipboard');}
+function clearReview(){if(RC.length&&!confirm('Delete all '+RC.length+' comments?'))return;RC=[];RSEL=null;saveReview();renderPins();renderRComments();}
+renderPins();renderRComments();
+</script>
+</body>
+</html>

@@ -1,0 +1,5450 @@
+{
+  "plant": {
+    "configuration": {
+      "profile_id": "solar_cloud",
+      "revision": "solar-2",
+      "seed": 7,
+      "step_seconds": 1.0,
+      "initial_at": "2026-08-01T10:00:00Z",
+      "capabilities": [
+        {
+          "capability_id": "plant.runtime",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "contract",
+          "review_status": "pending",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-002", "SRC-006"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "All devices share the same clock and saved state"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        },
+        {
+          "capability_id": "plant.bus",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "level_2",
+          "review_status": "pending",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-002", "SRC-006", "SRC-033", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "A 1 F energy buffer starts at 750 V; 0-1500 V are mathematical bounds, not equipment limits"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        },
+        {
+          "capability_id": "plant.balance",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "level_1",
+          "review_status": "pending",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-002", "SRC-006", "SRC-033", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "Ideal converter paths and zero bus loss; shared limits serve the same fraction of each load"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        },
+        {
+          "capability_id": "plant.pv",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "level_1",
+          "review_status": "pending",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-002", "SRC-006", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "Saved sunlight curves and 95% solar conversion efficiency; all solar enters the DC bus through CNVTR-2"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        },
+        {
+          "capability_id": "plant.bess",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "contract",
+          "review_status": "pending",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-002", "SRC-006"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "This physical calculation is not available yet"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        },
+        {
+          "capability_id": "plant.load",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "contract",
+          "review_status": "pending",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-002", "SRC-006"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "This physical calculation is not available yet"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        },
+        {
+          "capability_id": "plant.converter",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "contract",
+          "review_status": "pending",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-002", "SRC-006"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "This physical calculation is not available yet"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        },
+        {
+          "capability_id": "plant.thermal",
+          "device_id": "plant",
+          "kind": "behavior",
+          "evidence_classification": "provisional",
+          "fidelity_level": "contract",
+          "review_status": "pending",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-002", "SRC-006"],
+          "decision_ids": [],
+          "assumptions": [
+            "Software simulation only; not checked against physical equipment",
+            "This physical calculation is not available yet"
+          ],
+          "calibration_evidence": null,
+          "calibration_tolerance": null
+        }
+      ],
+      "limitations": [
+        "Solar availability, conversion and unused power are calculated; battery, charging, converter timing and temperature models remain incomplete",
+        "Device readings remain entered test values; calculated power is shown separately",
+        "750 V is a candidate nominal value; warning, action and trip settings are not approved",
+        "Missing power readings pause the bus calculation; skipped intervals are counted and are not reconstructed on recovery",
+        "Battery transfer is counted once at the battery converter; the solar converter contributes solar power only",
+        "Stabiliti units draw from the DC bus only; calculated AC output equals actual bus power used, with ideal conversion",
+        "Shared limits reduce all included sources or loads by the same fraction; this is a simulation assumption, not dispatch policy",
+        "The solar converter is the current bus-former; authority selection, voltage regulation and fallback are not modeled",
+        "The step range of 0.001 to 60 seconds is a software setting; equipment timing is unverified",
+        "Variable sunlight uses SHA-256 sample version 1 with separate device seeds; saved samples are authoritative",
+        "Solar inputs are kW at the resource; requests and limits are kW at converter output; solar loss is upstream of the bus and counted once",
+        "Sunlight is sampled at each frame end and held for that step; the last profile value is held after its final sample",
+        "Solar ratings and efficiency are provisional test settings, not installed equipment data",
+        "All solar enters the DC bus through CNVTR-2; Stabiliti units have no separate solar input or export path",
+        "Bad device data keeps physical output unavailable; communication loss does not imply a known physical zero",
+        "This simulation does not verify electrical transients, protection, power quality or equipment safety"
+      ],
+      "review_owner": "Software lead",
+      "reviewers": ["Controls", "QA"],
+      "bus": {
+        "nominal_voltage_v": 750.0,
+        "max_voltage_v": 1500.0,
+        "capacitance_f": 1.0,
+        "loss_ratio": 0.0,
+        "tolerance_kw": 1e-6
+      },
+      "pv": [
+        {
+          "device_id": "cnvtr-2",
+          "destination": "dc",
+          "efficiency": 0.95,
+          "limit_kw": 100.0,
+          "points": [
+            [0.0, 100.0],
+            [5.0, 100.0],
+            [10.0, 20.0],
+            [15.0, 20.0],
+            [20.0, 100.0],
+            [30.0, 100.0]
+          ],
+          "interpolation": "linear",
+          "interval_seconds": 5.0,
+          "revision": "solar-2",
+          "unit": "kW",
+          "end": "hold"
+        }
+      ],
+      "model_version": "5",
+      "battery": null
+    },
+    "at": "2026-08-01T10:00:03Z",
+    "sequence": 3,
+    "bus": [
+      {
+        "name": "Bus voltage",
+        "value": 878.9197915623472,
+        "unit": "VDC",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Bus energy",
+        "value": 0.10729166666666665,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Power difference",
+        "value": 35.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Steps without calculation",
+        "value": 0.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      }
+    ],
+    "pv": [
+      {
+        "name": "Available solar",
+        "value": 100.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Requested power",
+        "value": 100.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Accepted power",
+        "value": 100.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Output limit",
+        "value": 100.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Offered power",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Power delivered",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Conversion loss",
+        "value": 5.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Unused solar",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      },
+      {
+        "name": "Delivered to DC bus",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Available solar is being used",
+        "capability_id": "plant.pv"
+      }
+    ],
+    "bess": [
+      {
+        "name": "Battery energy",
+        "value": null,
+        "unit": "kWh",
+        "status": "not_implemented",
+        "quality": null,
+        "at": null,
+        "reason": "This physical calculation is not available yet",
+        "capability_id": "plant.bess"
+      },
+      {
+        "name": "Battery SOC",
+        "value": null,
+        "unit": "ratio",
+        "status": "not_implemented",
+        "quality": null,
+        "at": null,
+        "reason": "This physical calculation is not available yet",
+        "capability_id": "plant.bess"
+      }
+    ],
+    "load": [
+      {
+        "name": "Served EV load",
+        "value": null,
+        "unit": "kW",
+        "status": "not_implemented",
+        "quality": null,
+        "at": null,
+        "reason": "This physical calculation is not available yet",
+        "capability_id": "plant.load"
+      },
+      {
+        "name": "Auxiliary load",
+        "value": null,
+        "unit": "kW",
+        "status": "not_implemented",
+        "quality": null,
+        "at": null,
+        "reason": "This physical calculation is not available yet",
+        "capability_id": "plant.load"
+      }
+    ],
+    "converter": [
+      {
+        "name": "Converter loss",
+        "value": null,
+        "unit": "kW",
+        "status": "not_implemented",
+        "quality": null,
+        "at": null,
+        "reason": "This physical calculation is not available yet",
+        "capability_id": "plant.converter"
+      }
+    ],
+    "thermal": [
+      {
+        "name": "Plant temperature",
+        "value": null,
+        "unit": "degC",
+        "status": "not_implemented",
+        "quality": null,
+        "at": null,
+        "reason": "This physical calculation is not available yet",
+        "capability_id": "plant.thermal"
+      }
+    ],
+    "ledger": [
+      {
+        "name": "Offered supply",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Requested load",
+        "value": 60.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Accepted load",
+        "value": 60.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power supplied",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power used",
+        "value": 60.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Modeled loss",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Stored power",
+        "value": 34.99999999999998,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Energy change",
+        "value": 0.009722222222222215,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Unused supply",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power not supplied",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Balance error",
+        "value": 2.1316282072803006e-14,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Excluded inputs",
+        "value": 0.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03Z",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      }
+    ],
+    "balance": "available",
+    "ports": [
+      {
+        "device_id": "ba1-1",
+        "at": "2026-08-01T10:00:03Z",
+        "sequence": 3,
+        "health": "healthy",
+        "readings": [
+          {
+            "name": "bess.cluster.soc",
+            "value": 0.5,
+            "unit": "ratio",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "bess.cluster.voltage",
+            "value": 0.0,
+            "unit": "V",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "bess.cluster.current",
+            "value": 0.0,
+            "unit": "A",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "bess.cluster.temperature.maximum",
+            "value": 25.0,
+            "unit": "degC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "bess.cluster.limit.charge.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "bess.cluster.limit.discharge.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "bess.cluster.precharge.state",
+            "value": 0.0,
+            "unit": "state_code",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "bess.fire.communication.state",
+            "value": 0.0,
+            "unit": "state_code",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Bus voltage",
+            "value": 878.9197915623472,
+            "unit": "VDC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Bus energy",
+            "value": 0.10729166666666665,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Power difference",
+            "value": 35.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Steps without calculation",
+            "value": 0.0,
+            "unit": "count",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Delivered to DC bus",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Battery energy",
+            "value": null,
+            "unit": "kWh",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Battery SOC",
+            "value": null,
+            "unit": "ratio",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Served EV load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Auxiliary load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Converter loss",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.converter"
+          },
+          {
+            "name": "Plant temperature",
+            "value": null,
+            "unit": "degC",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.thermal"
+          }
+        ],
+        "ledger": [
+          {
+            "name": "Requested power",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Accepted power",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power supplied",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power used",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Modeled loss",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Unused supply",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power not supplied",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Energy transfer",
+            "value": null,
+            "unit": "kWh",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Battery transfer is counted at the battery converter",
+            "capability_id": "plant.balance"
+          }
+        ]
+      },
+      {
+        "device_id": "cnvtr-1",
+        "at": "2026-08-01T10:00:03Z",
+        "sequence": 3,
+        "health": "healthy",
+        "readings": [
+          {
+            "name": "cnvtr1.dc.power.raw",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr1.dc.bus.voltage",
+            "value": 0.0,
+            "unit": "V",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr1.temperature.module",
+            "value": 25.0,
+            "unit": "degC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr1.test.requested.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr1.test.accepted.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr1.available.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr1.dc.current.raw",
+            "value": 0.0,
+            "unit": "A",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Bus voltage",
+            "value": 878.9197915623472,
+            "unit": "VDC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Bus energy",
+            "value": 0.10729166666666665,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Power difference",
+            "value": 35.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Steps without calculation",
+            "value": 0.0,
+            "unit": "count",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Delivered to DC bus",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Battery energy",
+            "value": null,
+            "unit": "kWh",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Battery SOC",
+            "value": null,
+            "unit": "ratio",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Served EV load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Auxiliary load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Converter loss",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.converter"
+          },
+          {
+            "name": "Plant temperature",
+            "value": null,
+            "unit": "degC",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.thermal"
+          }
+        ],
+        "ledger": [
+          {
+            "name": "Requested power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Accepted power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power used",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Modeled loss",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Unused supply",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power not supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Energy transfer",
+            "value": 0.0,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          }
+        ]
+      },
+      {
+        "device_id": "cnvtr-2",
+        "at": "2026-08-01T10:00:03Z",
+        "sequence": 3,
+        "health": "healthy",
+        "readings": [
+          {
+            "name": "cnvtr2.dc.power.raw",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr2.dc.bus.voltage",
+            "value": 0.0,
+            "unit": "V",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr2.temperature.module",
+            "value": 25.0,
+            "unit": "degC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr2.test.requested.power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr2.test.accepted.power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "cnvtr2.available.power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Bus voltage",
+            "value": 878.9197915623472,
+            "unit": "VDC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Bus energy",
+            "value": 0.10729166666666665,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Power difference",
+            "value": 35.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Steps without calculation",
+            "value": 0.0,
+            "unit": "count",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Delivered to DC bus",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Battery energy",
+            "value": null,
+            "unit": "kWh",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Battery SOC",
+            "value": null,
+            "unit": "ratio",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Served EV load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Auxiliary load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Converter loss",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.converter"
+          },
+          {
+            "name": "Plant temperature",
+            "value": null,
+            "unit": "degC",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.thermal"
+          }
+        ],
+        "ledger": [
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power supplied",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power used",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Modeled loss",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Unused supply",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power not supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Energy transfer",
+            "value": 0.02638888888888889,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          }
+        ]
+      },
+      {
+        "device_id": "dc600",
+        "at": "2026-08-01T10:00:03Z",
+        "sequence": 3,
+        "health": "healthy",
+        "readings": [
+          {
+            "name": "dc600.demand.power",
+            "value": 60.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "dc600.available.power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "dc600.accepted.power",
+            "value": 60.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Bus voltage",
+            "value": 878.9197915623472,
+            "unit": "VDC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Bus energy",
+            "value": 0.10729166666666665,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Power difference",
+            "value": 35.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Steps without calculation",
+            "value": 0.0,
+            "unit": "count",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Delivered to DC bus",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Battery energy",
+            "value": null,
+            "unit": "kWh",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Battery SOC",
+            "value": null,
+            "unit": "ratio",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Served EV load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Auxiliary load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Converter loss",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.converter"
+          },
+          {
+            "name": "Plant temperature",
+            "value": null,
+            "unit": "degC",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.thermal"
+          }
+        ],
+        "ledger": [
+          {
+            "name": "Requested power",
+            "value": -60.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Accepted power",
+            "value": -60.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power used",
+            "value": 60.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Modeled loss",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Unused supply",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power not supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Energy transfer",
+            "value": -0.016666666666666666,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          }
+        ]
+      },
+      {
+        "device_id": "st-4",
+        "at": "2026-08-01T10:00:03Z",
+        "sequence": 3,
+        "health": "healthy",
+        "readings": [
+          {
+            "name": "st-4.available.power",
+            "value": 40.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-4.actual.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-4.power.limit",
+            "value": 40.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-4.temperature.maximum",
+            "value": 25.0,
+            "unit": "degC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-4.bus.load",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Bus voltage",
+            "value": 878.9197915623472,
+            "unit": "VDC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Bus energy",
+            "value": 0.10729166666666665,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Power difference",
+            "value": 35.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Steps without calculation",
+            "value": 0.0,
+            "unit": "count",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Delivered to DC bus",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Battery energy",
+            "value": null,
+            "unit": "kWh",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Battery SOC",
+            "value": null,
+            "unit": "ratio",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Served EV load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Auxiliary load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Converter loss",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.converter"
+          },
+          {
+            "name": "Plant temperature",
+            "value": null,
+            "unit": "degC",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.thermal"
+          },
+          {
+            "name": "AC power supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Ideal conversion from DC bus power used",
+            "capability_id": "plant.balance"
+          }
+        ],
+        "ledger": [
+          {
+            "name": "Requested power",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Accepted power",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power supplied",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power used",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Modeled loss",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Unused supply",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power not supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Energy transfer",
+            "value": -0.0,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          }
+        ]
+      },
+      {
+        "device_id": "st-5",
+        "at": "2026-08-01T10:00:03Z",
+        "sequence": 3,
+        "health": "healthy",
+        "readings": [
+          {
+            "name": "st-5.available.power",
+            "value": 40.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-5.actual.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-5.power.limit",
+            "value": 40.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-5.temperature.maximum",
+            "value": 25.0,
+            "unit": "degC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-5.bus.load",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Bus voltage",
+            "value": 878.9197915623472,
+            "unit": "VDC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Bus energy",
+            "value": 0.10729166666666665,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Power difference",
+            "value": 35.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Steps without calculation",
+            "value": 0.0,
+            "unit": "count",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Delivered to DC bus",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Battery energy",
+            "value": null,
+            "unit": "kWh",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Battery SOC",
+            "value": null,
+            "unit": "ratio",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Served EV load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Auxiliary load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Converter loss",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.converter"
+          },
+          {
+            "name": "Plant temperature",
+            "value": null,
+            "unit": "degC",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.thermal"
+          },
+          {
+            "name": "AC power supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Ideal conversion from DC bus power used",
+            "capability_id": "plant.balance"
+          }
+        ],
+        "ledger": [
+          {
+            "name": "Requested power",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Accepted power",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power supplied",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power used",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Modeled loss",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Unused supply",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power not supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Energy transfer",
+            "value": -0.0,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          }
+        ]
+      },
+      {
+        "device_id": "st-6",
+        "at": "2026-08-01T10:00:03Z",
+        "sequence": 3,
+        "health": "healthy",
+        "readings": [
+          {
+            "name": "st-6.available.power",
+            "value": 40.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-6.actual.power",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-6.power.limit",
+            "value": 40.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-6.temperature.maximum",
+            "value": 25.0,
+            "unit": "degC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          },
+          {
+            "name": "st-6.bus.load",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Reported device test input",
+            "capability_id": "plant.runtime"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "Bus voltage",
+            "value": 878.9197915623472,
+            "unit": "VDC",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Bus energy",
+            "value": 0.10729166666666665,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Power difference",
+            "value": 35.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Steps without calculation",
+            "value": 0.0,
+            "unit": "count",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.bus"
+          },
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Delivered to DC bus",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Battery energy",
+            "value": null,
+            "unit": "kWh",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Battery SOC",
+            "value": null,
+            "unit": "ratio",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.bess"
+          },
+          {
+            "name": "Served EV load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Auxiliary load",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.load"
+          },
+          {
+            "name": "Converter loss",
+            "value": null,
+            "unit": "kW",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.converter"
+          },
+          {
+            "name": "Plant temperature",
+            "value": null,
+            "unit": "degC",
+            "status": "not_implemented",
+            "quality": null,
+            "at": null,
+            "reason": "This physical calculation is not available yet",
+            "capability_id": "plant.thermal"
+          },
+          {
+            "name": "AC power supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Ideal conversion from DC bus power used",
+            "capability_id": "plant.balance"
+          }
+        ],
+        "ledger": [
+          {
+            "name": "Requested power",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Accepted power",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power supplied",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power used",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Modeled loss",
+            "value": -0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Unused supply",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Power not supplied",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          },
+          {
+            "name": "Energy transfer",
+            "value": -0.0,
+            "unit": "kWh",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Calculated using simulation assumptions",
+            "capability_id": "plant.balance"
+          }
+        ]
+      }
+    ],
+    "pv_paths": [
+      {
+        "device_id": "cnvtr-2",
+        "destination": "dc",
+        "health": "healthy",
+        "reason": "Available solar is being used",
+        "values": [
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03Z",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          }
+        ]
+      }
+    ]
+  },
+  "bus_history": [
+    {
+      "at": "2026-08-01T10:00:01Z",
+      "sequence": 1,
+      "values": [
+        {
+          "name": "Bus voltage",
+          "value": 795.2986860293433,
+          "unit": "VDC",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Bus energy",
+          "value": 0.08784722222222222,
+          "unit": "kWh",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Power difference",
+          "value": 35.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Steps without calculation",
+          "value": 0.0,
+          "unit": "count",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        }
+      ]
+    },
+    {
+      "at": "2026-08-01T10:00:02Z",
+      "sequence": 2,
+      "values": [
+        {
+          "name": "Bus voltage",
+          "value": 838.1527307120105,
+          "unit": "VDC",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Bus energy",
+          "value": 0.09756944444444443,
+          "unit": "kWh",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Power difference",
+          "value": 35.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Steps without calculation",
+          "value": 0.0,
+          "unit": "count",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        }
+      ]
+    },
+    {
+      "at": "2026-08-01T10:00:03Z",
+      "sequence": 3,
+      "values": [
+        {
+          "name": "Bus voltage",
+          "value": 878.9197915623472,
+          "unit": "VDC",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Bus energy",
+          "value": 0.10729166666666665,
+          "unit": "kWh",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Power difference",
+          "value": 35.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        },
+        {
+          "name": "Steps without calculation",
+          "value": 0.0,
+          "unit": "count",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Calculated using simulation assumptions",
+          "capability_id": "plant.bus"
+        }
+      ]
+    }
+  ],
+  "pv_history": [
+    {
+      "at": "2026-08-01T10:00:01Z",
+      "sequence": 1,
+      "values": [
+        {
+          "name": "Available solar",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Requested power",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Accepted power",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Output limit",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Offered power",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Power delivered",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Conversion loss",
+          "value": 5.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Unused solar",
+          "value": 0.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Delivered to DC bus",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:01Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        }
+      ],
+      "paths": [
+        {
+          "device_id": "cnvtr-2",
+          "destination": "dc",
+          "health": "healthy",
+          "reason": "Available solar is being used",
+          "values": [
+            {
+              "name": "Available solar",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Requested power",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Accepted power",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Output limit",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Offered power",
+              "value": 95.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Power delivered",
+              "value": 95.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Conversion loss",
+              "value": 5.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Unused solar",
+              "value": 0.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:01Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "at": "2026-08-01T10:00:02Z",
+      "sequence": 2,
+      "values": [
+        {
+          "name": "Available solar",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Requested power",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Accepted power",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Output limit",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Offered power",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Power delivered",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Conversion loss",
+          "value": 5.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Unused solar",
+          "value": 0.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Delivered to DC bus",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:02Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        }
+      ],
+      "paths": [
+        {
+          "device_id": "cnvtr-2",
+          "destination": "dc",
+          "health": "healthy",
+          "reason": "Available solar is being used",
+          "values": [
+            {
+              "name": "Available solar",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Requested power",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Accepted power",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Output limit",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Offered power",
+              "value": 95.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Power delivered",
+              "value": 95.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Conversion loss",
+              "value": 5.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Unused solar",
+              "value": 0.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:02Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "at": "2026-08-01T10:00:03Z",
+      "sequence": 3,
+      "values": [
+        {
+          "name": "Available solar",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Requested power",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Accepted power",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Output limit",
+          "value": 100.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Offered power",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Power delivered",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Conversion loss",
+          "value": 5.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Unused solar",
+          "value": 0.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        },
+        {
+          "name": "Delivered to DC bus",
+          "value": 95.0,
+          "unit": "kW",
+          "status": "available",
+          "quality": "good",
+          "at": "2026-08-01T10:00:03Z",
+          "reason": "Available solar is being used",
+          "capability_id": "plant.pv"
+        }
+      ],
+      "paths": [
+        {
+          "device_id": "cnvtr-2",
+          "destination": "dc",
+          "health": "healthy",
+          "reason": "Available solar is being used",
+          "values": [
+            {
+              "name": "Available solar",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Requested power",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Accepted power",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Output limit",
+              "value": 100.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Offered power",
+              "value": 95.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Power delivered",
+              "value": 95.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Conversion loss",
+              "value": 5.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            },
+            {
+              "name": "Unused solar",
+              "value": 0.0,
+              "unit": "kW",
+              "status": "available",
+              "quality": "good",
+              "at": "2026-08-01T10:00:03Z",
+              "reason": "Available solar is being used",
+              "capability_id": "plant.pv"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "plant_trace_hash": "697b9e978189a7996c1d731248b9aebddd77e93392cad9754145c73eab83ca86",
+  "failure": null,
+  "snapshot_saved": false,
+  "lifecycle": "stopped",
+  "at": "2026-08-01T10:00:03Z",
+  "sequence": 3,
+  "trace_entries": 21,
+  "trace_hash": "234fbbdf072e2c7c7d472e8b6214d068c56a08c024567c4dbe63f8f083d23601",
+  "devices": [
+    {
+      "device_id": "ba1-1",
+      "display_name": "BA1-1 BESS/BMS",
+      "role": "Battery protection, telemetry, contactors, and dynamic limits",
+      "lifecycle": "ready",
+      "health": "healthy",
+      "test_id": null,
+      "test_started_at": null,
+      "implementation_status": "simulated",
+      "protocol_status": "candidate",
+      "protocol": "Modbus TCP/RTU capability; site transport not approved",
+      "endpoint_status": "unknown",
+      "model_status": "unknown",
+      "firmware_status": "unknown",
+      "blocker_reason": "Installed model/firmware, authoritative SOC, commands, timing, and loss behavior are unapproved.",
+      "capabilities": [
+        {
+          "capability_id": "ba1-1.faults",
+          "kind": "fault",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "candidate",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-014"],
+          "decision_ids": [],
+          "assumptions": []
+        },
+        {
+          "capability_id": "ba1-1.simulation",
+          "kind": "behavior",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "candidate",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-014"],
+          "decision_ids": [],
+          "assumptions": ["Explicit Simulator Lab test inputs; no plant physics"]
+        },
+        {
+          "capability_id": "ba1-1.transport",
+          "kind": "transport",
+          "evidence": "provisional",
+          "fidelity": "contract",
+          "review_status": "candidate",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-014"],
+          "decision_ids": ["OD-002 / OD-007 / OD-017"],
+          "assumptions": []
+        }
+      ],
+      "values": [
+        {
+          "logical_id": "bess.cluster.soc",
+          "value": 0.5,
+          "unit": "ratio",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.voltage",
+          "value": 0.0,
+          "unit": "V",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.current",
+          "value": 0.0,
+          "unit": "A",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.temperature.maximum",
+          "value": 25.0,
+          "unit": "degC",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.limit.charge.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.limit.discharge.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.contactor.main",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.contactor.precharge",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.cluster.precharge.state",
+          "value": 0,
+          "unit": "state_code",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "bess.fire.communication.state",
+          "value": 0,
+          "unit": "state_code",
+          "quality": "good",
+          "source": "ba1-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        }
+      ],
+      "faults": [],
+      "inputs": {
+        "kind": "battery",
+        "cluster_soc": 0.5,
+        "voltage": 0.0,
+        "current": 0.0,
+        "maximum_temperature": 25.0,
+        "charge_power_limit": 0.0,
+        "discharge_power_limit": 0.0,
+        "main_contactor": false,
+        "precharge_contactor": false,
+        "precharge_state": 0,
+        "fire_communication_state": 0,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "status_text": "Simulation ready",
+      "testing_method": "Simulator Lab",
+      "direct_connection": "Modbus TCP simulator",
+      "test_notice": null,
+      "applied_inputs": {
+        "kind": "battery",
+        "cluster_soc": 0.5,
+        "voltage": 0.0,
+        "current": 0.0,
+        "maximum_temperature": 25.0,
+        "charge_power_limit": 0.0,
+        "discharge_power_limit": 0.0,
+        "main_contactor": false,
+        "precharge_contactor": false,
+        "precharge_state": 0,
+        "fire_communication_state": 0,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "inputs_pending": false
+    },
+    {
+      "device_id": "cnvtr-1",
+      "display_name": "CNVTR-1",
+      "role": "BESS-side DCDC converter; directionality unapproved",
+      "lifecycle": "ready",
+      "health": "healthy",
+      "test_id": null,
+      "test_started_at": null,
+      "implementation_status": "simulated",
+      "protocol_status": "candidate",
+      "protocol": "Modbus TCP/RTU capability; site transport not approved",
+      "endpoint_status": "unknown",
+      "model_status": "unknown",
+      "firmware_status": "unknown",
+      "blocker_reason": "Installed option/firmware and CNVTR-1 command, sign, mode, timing, and endpoint contracts are unapproved.",
+      "capabilities": [
+        {
+          "capability_id": "cnvtr-1.faults",
+          "kind": "fault",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "candidate",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-015", "SRC-033"],
+          "decision_ids": [],
+          "assumptions": []
+        },
+        {
+          "capability_id": "cnvtr-1.simulation",
+          "kind": "behavior",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "candidate",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-015", "SRC-033"],
+          "decision_ids": [],
+          "assumptions": ["Explicit Simulator Lab test inputs; no plant physics"]
+        },
+        {
+          "capability_id": "cnvtr-1.transport",
+          "kind": "transport",
+          "evidence": "provisional",
+          "fidelity": "contract",
+          "review_status": "candidate",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-015", "SRC-033"],
+          "decision_ids": ["OD-002 / OD-003 / OD-006 / OD-017"],
+          "assumptions": []
+        }
+      ],
+      "values": [
+        {
+          "logical_id": "cnvtr1.dc.power.raw",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr1.dc.bus.voltage",
+          "value": 0.0,
+          "unit": "V",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr1.temperature.module",
+          "value": 25.0,
+          "unit": "degC",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr1.test.requested.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr1.test.accepted.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr1.available.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr1.dc.current.raw",
+          "value": 0.0,
+          "unit": "A",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr1.status.fault",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "cnvtr-1",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        }
+      ],
+      "faults": [],
+      "inputs": {
+        "kind": "converter",
+        "enabled": false,
+        "requested_power": 0.0,
+        "available_power": 0.0,
+        "charge_power_limit": 0.0,
+        "discharge_power_limit": 0.0,
+        "dc_voltage": 0.0,
+        "dc_current": 0.0,
+        "temperature": 25.0,
+        "fault_active": false,
+        "communication_ok": true,
+        "pv_available": false,
+        "mppt_applying": false,
+        "test_ramp_per_step": null,
+        "test_derate_limit": null
+      },
+      "status_text": "Simulation ready",
+      "testing_method": "Simulator Lab",
+      "direct_connection": "Modbus TCP simulator",
+      "test_notice": "This rule is for software testing. The real equipment setting is not confirmed.",
+      "applied_inputs": {
+        "kind": "converter",
+        "enabled": false,
+        "requested_power": 0.0,
+        "available_power": 0.0,
+        "charge_power_limit": 0.0,
+        "discharge_power_limit": 0.0,
+        "dc_voltage": 0.0,
+        "dc_current": 0.0,
+        "temperature": 25.0,
+        "fault_active": false,
+        "communication_ok": true,
+        "pv_available": false,
+        "mppt_applying": false,
+        "test_ramp_per_step": null,
+        "test_derate_limit": null
+      },
+      "inputs_pending": false
+    },
+    {
+      "device_id": "cnvtr-2",
+      "display_name": "CNVTR-2",
+      "role": "PV MPPT and candidate DC-bus-forming converter",
+      "lifecycle": "active",
+      "health": "healthy",
+      "test_id": null,
+      "test_started_at": null,
+      "implementation_status": "simulated",
+      "protocol_status": "candidate",
+      "protocol": "Modbus TCP/RTU capability; site transport not approved",
+      "endpoint_status": "unknown",
+      "model_status": "unknown",
+      "firmware_status": "unknown",
+      "blocker_reason": "Installed option/firmware and CNVTR-2 mode, role, command, timing, and endpoint contracts are unapproved.",
+      "capabilities": [
+        {
+          "capability_id": "cnvtr-2.faults",
+          "kind": "fault",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "candidate",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-015", "SRC-033"],
+          "decision_ids": [],
+          "assumptions": []
+        },
+        {
+          "capability_id": "cnvtr-2.simulation",
+          "kind": "behavior",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "candidate",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-015", "SRC-033"],
+          "decision_ids": [],
+          "assumptions": ["Explicit Simulator Lab test inputs; no plant physics"]
+        },
+        {
+          "capability_id": "cnvtr-2.transport",
+          "kind": "transport",
+          "evidence": "provisional",
+          "fidelity": "contract",
+          "review_status": "candidate",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-015", "SRC-033"],
+          "decision_ids": ["OD-002 / OD-003 / OD-006 / OD-017"],
+          "assumptions": []
+        }
+      ],
+      "values": [
+        {
+          "logical_id": "cnvtr2.dc.power.raw",
+          "value": 100,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.dc.bus.voltage",
+          "value": 0.0,
+          "unit": "V",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.temperature.module",
+          "value": 25.0,
+          "unit": "degC",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.test.requested.power",
+          "value": 100,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.test.accepted.power",
+          "value": 100,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.available.power",
+          "value": 100,
+          "unit": "kW",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.pv.fault",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.pv.online",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "cnvtr2.pv.mppt.applying",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "cnvtr-2",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        }
+      ],
+      "faults": [],
+      "inputs": {
+        "kind": "converter",
+        "enabled": true,
+        "requested_power": 100.0,
+        "available_power": 100.0,
+        "charge_power_limit": 0.0,
+        "discharge_power_limit": 0.0,
+        "dc_voltage": 0.0,
+        "dc_current": 0.0,
+        "temperature": 25.0,
+        "fault_active": false,
+        "communication_ok": true,
+        "pv_available": true,
+        "mppt_applying": false,
+        "test_ramp_per_step": null,
+        "test_derate_limit": null
+      },
+      "status_text": "Simulation ready",
+      "testing_method": "Simulator Lab",
+      "direct_connection": "Modbus TCP simulator",
+      "test_notice": "This rule is for software testing. The real equipment setting is not confirmed.",
+      "applied_inputs": {
+        "kind": "converter",
+        "enabled": true,
+        "requested_power": 100.0,
+        "available_power": 100.0,
+        "charge_power_limit": 0.0,
+        "discharge_power_limit": 0.0,
+        "dc_voltage": 0.0,
+        "dc_current": 0.0,
+        "temperature": 25.0,
+        "fault_active": false,
+        "communication_ok": true,
+        "pv_available": true,
+        "mppt_applying": false,
+        "test_ramp_per_step": null,
+        "test_derate_limit": null
+      },
+      "inputs_pending": false
+    },
+    {
+      "device_id": "dc600",
+      "display_name": "DC600 charge controller",
+      "role": "EVCS-facing availability, demand, and charging-session coordination",
+      "lifecycle": "active",
+      "health": "healthy",
+      "test_id": null,
+      "test_started_at": null,
+      "implementation_status": "simulated",
+      "protocol_status": "blocked",
+      "protocol": "unknown",
+      "endpoint_status": "unknown",
+      "model_status": "unknown",
+      "firmware_status": "unknown",
+      "blocker_reason": "No applicable DC600 supervisory protocol and handshake contract has been supplied.",
+      "capabilities": [
+        {
+          "capability_id": "dc600.faults",
+          "kind": "fault",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005"],
+          "decision_ids": [],
+          "assumptions": []
+        },
+        {
+          "capability_id": "dc600.simulation",
+          "kind": "behavior",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005"],
+          "decision_ids": [],
+          "assumptions": ["Explicit Simulator Lab test inputs; no plant physics"]
+        },
+        {
+          "capability_id": "dc600.transport",
+          "kind": "transport",
+          "evidence": "blocked",
+          "fidelity": "contract",
+          "review_status": "blocked",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-005"],
+          "decision_ids": ["OD-004"],
+          "assumptions": []
+        }
+      ],
+      "values": [
+        {
+          "logical_id": "dc600.handshake.live",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.session.active",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.status",
+          "value": "Ready",
+          "unit": "text",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.request.limited",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.derate.reason",
+          "value": "Demand is within available power",
+          "unit": "text",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.communication.ok",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.fault.active",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.demand.power",
+          "value": 60,
+          "unit": "kW",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.available.power",
+          "value": 100,
+          "unit": "kW",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "dc600.accepted.power",
+          "value": 60,
+          "unit": "kW",
+          "quality": "good",
+          "source": "dc600",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        }
+      ],
+      "faults": [],
+      "inputs": {
+        "kind": "dc600",
+        "demand_power": 60.0,
+        "available_power": 100.0,
+        "actual_power": null,
+        "demand_fresh": true,
+        "available_fresh": true,
+        "session_active": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "status_text": "Ready",
+      "testing_method": "Simulator Lab",
+      "direct_connection": "Built-in simulator",
+      "test_notice": "Use the controls below to test demand, available power, limiting, stale data, faults, and recovery. No physical equipment is connected during this test.",
+      "applied_inputs": {
+        "kind": "dc600",
+        "demand_power": 60.0,
+        "available_power": 100.0,
+        "actual_power": null,
+        "demand_fresh": true,
+        "available_fresh": true,
+        "session_active": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "inputs_pending": false
+    },
+    {
+      "device_id": "st-4",
+      "display_name": "Stabiliti 01",
+      "role": "750 V DC bus input to 480 V AC grid-forming output",
+      "lifecycle": "active",
+      "health": "healthy",
+      "test_id": null,
+      "test_started_at": null,
+      "implementation_status": "simulated",
+      "protocol_status": "blocked",
+      "protocol": "Ethernet physical link known; application protocol unknown",
+      "endpoint_status": "unknown",
+      "model_status": "unknown",
+      "firmware_status": "unknown",
+      "blocker_reason": "No applicable ST-4 EDS/AOP or protocol/register contract has been supplied.",
+      "capabilities": [
+        {
+          "capability_id": "st-4.faults",
+          "kind": "fault",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": []
+        },
+        {
+          "capability_id": "st-4.simulation",
+          "kind": "behavior",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": ["Explicit Simulator Lab test inputs; no plant physics"]
+        },
+        {
+          "capability_id": "st-4.transport",
+          "kind": "transport",
+          "evidence": "blocked",
+          "fidelity": "contract",
+          "review_status": "blocked",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": ["OD-005"],
+          "assumptions": []
+        }
+      ],
+      "values": [
+        {
+          "logical_id": "st-4.ready",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.enabled",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.available",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.derated",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.available.power",
+          "value": 40,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.actual.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.power.limit",
+          "value": 40,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.temperature.maximum",
+          "value": 25.0,
+          "unit": "degC",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.communication.ok",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.fault.active",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-4.bus.load",
+          "value": 0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-4",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        }
+      ],
+      "faults": [],
+      "inputs": {
+        "kind": "stabiliti",
+        "enabled": true,
+        "available_power": 40.0,
+        "actual_power": 0.0,
+        "bus_load": 0.0,
+        "power_limit": 40.0,
+        "maximum_temperature": 25.0,
+        "derated": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "status_text": "Simulation ready",
+      "testing_method": "Simulator Lab",
+      "direct_connection": "Built-in simulator",
+      "test_notice": "Use the controls below to test availability, derating, communication loss, faults, and recovery. No physical equipment is connected during this test.",
+      "applied_inputs": {
+        "kind": "stabiliti",
+        "enabled": true,
+        "available_power": 40.0,
+        "actual_power": 0.0,
+        "bus_load": 0.0,
+        "power_limit": 40.0,
+        "maximum_temperature": 25.0,
+        "derated": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "inputs_pending": false
+    },
+    {
+      "device_id": "st-5",
+      "display_name": "Stabiliti 02",
+      "role": "750 V DC bus input to 480 V AC grid-forming output",
+      "lifecycle": "active",
+      "health": "healthy",
+      "test_id": null,
+      "test_started_at": null,
+      "implementation_status": "simulated",
+      "protocol_status": "blocked",
+      "protocol": "Ethernet physical link known; application protocol unknown",
+      "endpoint_status": "unknown",
+      "model_status": "unknown",
+      "firmware_status": "unknown",
+      "blocker_reason": "No applicable ST-5 EDS/AOP or protocol/register contract has been supplied.",
+      "capabilities": [
+        {
+          "capability_id": "st-5.faults",
+          "kind": "fault",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": []
+        },
+        {
+          "capability_id": "st-5.simulation",
+          "kind": "behavior",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": ["Explicit Simulator Lab test inputs; no plant physics"]
+        },
+        {
+          "capability_id": "st-5.transport",
+          "kind": "transport",
+          "evidence": "blocked",
+          "fidelity": "contract",
+          "review_status": "blocked",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": ["OD-005"],
+          "assumptions": []
+        }
+      ],
+      "values": [
+        {
+          "logical_id": "st-5.ready",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.enabled",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.available",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.derated",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.available.power",
+          "value": 40,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.actual.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.power.limit",
+          "value": 40,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.temperature.maximum",
+          "value": 25.0,
+          "unit": "degC",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.communication.ok",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.fault.active",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-5.bus.load",
+          "value": 0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-5",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        }
+      ],
+      "faults": [],
+      "inputs": {
+        "kind": "stabiliti",
+        "enabled": true,
+        "available_power": 40.0,
+        "actual_power": 0.0,
+        "bus_load": 0.0,
+        "power_limit": 40.0,
+        "maximum_temperature": 25.0,
+        "derated": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "status_text": "Simulation ready",
+      "testing_method": "Simulator Lab",
+      "direct_connection": "Built-in simulator",
+      "test_notice": "Use the controls below to test availability, derating, communication loss, faults, and recovery. No physical equipment is connected during this test.",
+      "applied_inputs": {
+        "kind": "stabiliti",
+        "enabled": true,
+        "available_power": 40.0,
+        "actual_power": 0.0,
+        "bus_load": 0.0,
+        "power_limit": 40.0,
+        "maximum_temperature": 25.0,
+        "derated": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "inputs_pending": false
+    },
+    {
+      "device_id": "st-6",
+      "display_name": "Stabiliti 03",
+      "role": "750 V DC bus input to 480 V AC grid-forming output",
+      "lifecycle": "active",
+      "health": "healthy",
+      "test_id": null,
+      "test_started_at": null,
+      "implementation_status": "simulated",
+      "protocol_status": "blocked",
+      "protocol": "Ethernet physical link known; application protocol unknown",
+      "endpoint_status": "unknown",
+      "model_status": "unknown",
+      "firmware_status": "unknown",
+      "blocker_reason": "No applicable ST-6 EDS/AOP or protocol/register contract has been supplied.",
+      "capabilities": [
+        {
+          "capability_id": "st-6.faults",
+          "kind": "fault",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": []
+        },
+        {
+          "capability_id": "st-6.simulation",
+          "kind": "behavior",
+          "evidence": "provisional",
+          "fidelity": "level_1",
+          "review_status": "blocked",
+          "available": true,
+          "enabled_profiles": ["stage0"],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": [],
+          "assumptions": ["Explicit Simulator Lab test inputs; no plant physics"]
+        },
+        {
+          "capability_id": "st-6.transport",
+          "kind": "transport",
+          "evidence": "blocked",
+          "fidelity": "contract",
+          "review_status": "blocked",
+          "available": false,
+          "enabled_profiles": [],
+          "source_ids": ["SRC-005", "SRC-036"],
+          "decision_ids": ["OD-005"],
+          "assumptions": []
+        }
+      ],
+      "values": [
+        {
+          "logical_id": "st-6.ready",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.enabled",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.available",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.derated",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.available.power",
+          "value": 40,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.actual.power",
+          "value": 0.0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.power.limit",
+          "value": 40,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.temperature.maximum",
+          "value": 25.0,
+          "unit": "degC",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.communication.ok",
+          "value": true,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.fault.active",
+          "value": false,
+          "unit": "boolean",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        },
+        {
+          "logical_id": "st-6.bus.load",
+          "value": 0,
+          "unit": "kW",
+          "quality": "good",
+          "source": "st-6",
+          "provisional": true,
+          "test_id": null,
+          "test_started_at": null
+        }
+      ],
+      "faults": [],
+      "inputs": {
+        "kind": "stabiliti",
+        "enabled": true,
+        "available_power": 40.0,
+        "actual_power": 0.0,
+        "bus_load": 0.0,
+        "power_limit": 40.0,
+        "maximum_temperature": 25.0,
+        "derated": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "status_text": "Simulation ready",
+      "testing_method": "Simulator Lab",
+      "direct_connection": "Built-in simulator",
+      "test_notice": "Use the controls below to test availability, derating, communication loss, faults, and recovery. No physical equipment is connected during this test.",
+      "applied_inputs": {
+        "kind": "stabiliti",
+        "enabled": true,
+        "available_power": 40.0,
+        "actual_power": 0.0,
+        "bus_load": 0.0,
+        "power_limit": 40.0,
+        "maximum_temperature": 25.0,
+        "derated": false,
+        "communication_ok": true,
+        "fault_active": false
+      },
+      "inputs_pending": false
+    }
+  ],
+  "activity": [
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "ba1-1",
+      "category": "step",
+      "message": "ba1-1 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "cnvtr-1",
+      "category": "step",
+      "message": "cnvtr-1 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "cnvtr-2",
+      "category": "step",
+      "message": "cnvtr-2 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "cnvtr-2",
+      "category": "plant_pv",
+      "message": "Available solar is being used",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "dc600",
+      "category": "simulation",
+      "message": "DC600 status changed to Ready",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "plant",
+      "category": "plant_bus",
+      "message": "Bus calculation resumed",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "st-4",
+      "category": "simulation",
+      "message": "Stabiliti 01 state changed to active",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "st-5",
+      "category": "simulation",
+      "message": "Stabiliti 02 state changed to active",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 1,
+      "at": "2026-08-01T10:00:01Z",
+      "device_id": "st-6",
+      "category": "simulation",
+      "message": "Stabiliti 03 state changed to active",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 2,
+      "at": "2026-08-01T10:00:02Z",
+      "device_id": "ba1-1",
+      "category": "step",
+      "message": "ba1-1 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 2,
+      "at": "2026-08-01T10:00:02Z",
+      "device_id": "cnvtr-1",
+      "category": "step",
+      "message": "cnvtr-1 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 2,
+      "at": "2026-08-01T10:00:02Z",
+      "device_id": "cnvtr-2",
+      "category": "step",
+      "message": "cnvtr-2 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 2,
+      "at": "2026-08-01T10:00:02Z",
+      "device_id": "dc600",
+      "category": "step",
+      "message": "dc600 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 2,
+      "at": "2026-08-01T10:00:02Z",
+      "device_id": "st-4",
+      "category": "step",
+      "message": "st-4 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 2,
+      "at": "2026-08-01T10:00:02Z",
+      "device_id": "st-5",
+      "category": "step",
+      "message": "st-5 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 2,
+      "at": "2026-08-01T10:00:02Z",
+      "device_id": "st-6",
+      "category": "step",
+      "message": "st-6 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 3,
+      "at": "2026-08-01T10:00:03Z",
+      "device_id": "ba1-1",
+      "category": "step",
+      "message": "ba1-1 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 3,
+      "at": "2026-08-01T10:00:03Z",
+      "device_id": "cnvtr-1",
+      "category": "step",
+      "message": "cnvtr-1 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 3,
+      "at": "2026-08-01T10:00:03Z",
+      "device_id": "cnvtr-2",
+      "category": "step",
+      "message": "cnvtr-2 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 3,
+      "at": "2026-08-01T10:00:03Z",
+      "device_id": "dc600",
+      "category": "step",
+      "message": "dc600 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 3,
+      "at": "2026-08-01T10:00:03Z",
+      "device_id": "st-4",
+      "category": "step",
+      "message": "st-4 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 3,
+      "at": "2026-08-01T10:00:03Z",
+      "device_id": "st-5",
+      "category": "step",
+      "message": "st-5 step complete",
+      "test_id": null,
+      "test_started_at": null
+    },
+    {
+      "sequence": 3,
+      "at": "2026-08-01T10:00:03Z",
+      "device_id": "st-6",
+      "category": "step",
+      "message": "st-6 step complete",
+      "test_id": null,
+      "test_started_at": null
+    }
+  ],
+  "stabiliti_fleet": {
+    "ready": 3,
+    "available": 3,
+    "derated": 0,
+    "faulted": 0,
+    "total": 3,
+    "available_power": 120.0
+  },
+  "gateway": {
+    "state": "stopped",
+    "host": "localhost",
+    "port": 1502,
+    "clients": 0,
+    "last_request": null,
+    "routes": []
+  },
+  "fault_rules": [
+    {
+      "fault_type": "device_fault",
+      "label": "Device fault",
+      "device_ids": ["ba1-1", "cnvtr-1", "cnvtr-2", "dc600", "st-4", "st-5", "st-6"],
+      "needs_point": false,
+      "needs_value": false,
+      "latched": true,
+      "expected_result": "The device reports a fault and waits for a manual clear.",
+      "clear_method": "Must be cleared manually.",
+      "fidelity": "Logical software simulation",
+      "evidence": "Project simulator behaviour"
+    },
+    {
+      "fault_type": "communication_loss",
+      "label": "Communication loss",
+      "device_ids": ["ba1-1", "cnvtr-1", "cnvtr-2", "dc600", "st-4", "st-5", "st-6"],
+      "needs_point": false,
+      "needs_value": false,
+      "latched": false,
+      "expected_result": "The device becomes unavailable and its values show a communication problem.",
+      "clear_method": "Clears after its duration or when cleared manually.",
+      "fidelity": "Logical software simulation",
+      "evidence": "Project simulator behaviour"
+    },
+    {
+      "fault_type": "response_timeout",
+      "label": "Response timeout",
+      "device_ids": ["ba1-1", "cnvtr-1", "cnvtr-2", "dc600", "st-4", "st-5", "st-6"],
+      "needs_point": false,
+      "needs_value": false,
+      "latched": false,
+      "expected_result": "The device becomes unavailable because no response is received.",
+      "clear_method": "Clears after its duration or when cleared manually.",
+      "fidelity": "Logical software simulation",
+      "evidence": "Project simulator behaviour"
+    },
+    {
+      "fault_type": "stuck_value",
+      "label": "Stuck value",
+      "device_ids": ["ba1-1", "cnvtr-1", "cnvtr-2", "dc600", "st-4", "st-5", "st-6"],
+      "needs_point": true,
+      "needs_value": false,
+      "latched": false,
+      "expected_result": "The selected value keeps its previous reading.",
+      "clear_method": "Clears after its duration or when cleared manually.",
+      "fidelity": "Logical software simulation",
+      "evidence": "Project simulator behaviour"
+    },
+    {
+      "fault_type": "invalid_value",
+      "label": "Invalid value",
+      "device_ids": ["ba1-1", "cnvtr-1", "cnvtr-2", "dc600", "st-4", "st-5", "st-6"],
+      "needs_point": true,
+      "needs_value": false,
+      "latched": false,
+      "expected_result": "The selected value is marked unavailable.",
+      "clear_method": "Clears after its duration or when cleared manually.",
+      "fidelity": "Logical software simulation",
+      "evidence": "Project simulator behaviour"
+    },
+    {
+      "fault_type": "out_of_range",
+      "label": "Out-of-range value",
+      "device_ids": ["ba1-1", "cnvtr-1", "cnvtr-2", "dc600", "st-4", "st-5", "st-6"],
+      "needs_point": true,
+      "needs_value": true,
+      "latched": false,
+      "expected_result": "The selected value shows the entered test value and is marked outside its range.",
+      "clear_method": "Clears after its duration or when cleared manually.",
+      "fidelity": "Logical software simulation",
+      "evidence": "Project simulator behaviour"
+    },
+    {
+      "fault_type": "temperature_derate",
+      "label": "Temperature derating",
+      "device_ids": ["cnvtr-1", "cnvtr-2", "st-4", "st-5", "st-6"],
+      "needs_point": false,
+      "needs_value": false,
+      "latched": false,
+      "expected_result": "Available power is reduced and the device reports derating.",
+      "clear_method": "Clears after its duration or when cleared manually.",
+      "fidelity": "Logical software simulation",
+      "evidence": "Project simulator behaviour"
+    }
+  ],
+  "fault_tests": [],
+  "battery_history": [
+    {
+      "at": "2026-08-01T10:00:01Z",
+      "sequence": 1,
+      "values": [
+        {
+          "name": "Battery energy",
+          "value": null,
+          "unit": "kWh",
+          "status": "not_implemented",
+          "quality": null,
+          "at": null,
+          "reason": "This physical calculation is not available yet",
+          "capability_id": "plant.bess"
+        },
+        {
+          "name": "Battery SOC",
+          "value": null,
+          "unit": "ratio",
+          "status": "not_implemented",
+          "quality": null,
+          "at": null,
+          "reason": "This physical calculation is not available yet",
+          "capability_id": "plant.bess"
+        }
+      ]
+    },
+    {
+      "at": "2026-08-01T10:00:02Z",
+      "sequence": 2,
+      "values": [
+        {
+          "name": "Battery energy",
+          "value": null,
+          "unit": "kWh",
+          "status": "not_implemented",
+          "quality": null,
+          "at": null,
+          "reason": "This physical calculation is not available yet",
+          "capability_id": "plant.bess"
+        },
+        {
+          "name": "Battery SOC",
+          "value": null,
+          "unit": "ratio",
+          "status": "not_implemented",
+          "quality": null,
+          "at": null,
+          "reason": "This physical calculation is not available yet",
+          "capability_id": "plant.bess"
+        }
+      ]
+    },
+    {
+      "at": "2026-08-01T10:00:03Z",
+      "sequence": 3,
+      "values": [
+        {
+          "name": "Battery energy",
+          "value": null,
+          "unit": "kWh",
+          "status": "not_implemented",
+          "quality": null,
+          "at": null,
+          "reason": "This physical calculation is not available yet",
+          "capability_id": "plant.bess"
+        },
+        {
+          "name": "Battery SOC",
+          "value": null,
+          "unit": "ratio",
+          "status": "not_implemented",
+          "quality": null,
+          "at": null,
+          "reason": "This physical calculation is not available yet",
+          "capability_id": "plant.bess"
+        }
+      ]
+    }
+  ],
+  "saved_run": null,
+  "restored_run": null
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "blocker_manifest",
+  "document_id": "dc600-interface-blocked",
+  "title": "DC600 interface blocked — no production point contract",
+  "lifecycle": "blocked",
+  "device": {
+    "device_id": "dc600",
+    "display_name": "DC600 charge controller",
+    "role": "EVCS-facing availability, demand, and charging-session coordination",
+    "lifecycle": "blocked",
+    "protocol": "unknown",
+    "protocol_role": "unknown",
+    "endpoint_status": "unknown",
+    "model": { "status": "unknown", "values": ["DC600 label only"], "evidence": "SRC-005 / OD-002" },
+    "firmware": { "status": "unknown", "values": [], "evidence": "SRC-M02" },
+    "map_revision": { "status": "unknown", "values": [], "evidence": "SRC-M03 / OD-004" }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-005",
+      "filename": "Skid2_Topology_Rev9.png",
+      "revision": "Rev 9",
+      "sha256": "598e7fc37db42a8ad968ef45f79f15ea885a74ffa556e1934138730302b098f2",
+      "classification": "current candidate topology only"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "DC600 vendor and controls",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "OD-004"
+    }
+  ],
+  "points": [],
+  "blockers": [
+    {
+      "blocker_id": "dc600-contract-missing",
+      "owner": "DC600 vendor liaison / integration lead",
+      "decision_id": "OD-004",
+      "source_id": "SRC-M03",
+      "needed_by": "Phase 3 production protocol and Phase 4 DC600 simulator",
+      "reason": "No applicable DC600 supervisory protocol and handshake contract has been supplied.",
+      "missing": [
+        "Telemetry and actual power",
+        "Demand and available-power handshake",
+        "Commands and acknowledgement",
+        "Status and session state",
+        "Timeout, watchdog, reconnect, and safe loss behavior",
+        "Model, firmware, protocol role, endpoint, scale, and timing"
+      ],
+      "known": [
+        "Rev 9 shows a DC600 charge-controller role",
+        "The old Skid 1 EVCS map is explicitly reference-only"
+      ],
+      "affects": ["Python contract", "PLC tags", "DC600 simulator", "EVCS control"]
+    }
+  ]
+}

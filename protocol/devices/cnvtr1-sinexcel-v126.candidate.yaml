@@ -1,0 +1,753 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "device_map",
+  "document_id": "cnvtr1-sinexcel-v126-candidate",
+  "title": "CNVTR-1 Sinexcel V126 candidate map — not production approved",
+  "lifecycle": "candidate",
+  "device": {
+    "device_id": "cnvtr-1",
+    "display_name": "CNVTR-1",
+    "role": "BESS-side DCDC converter; directionality unapproved",
+    "lifecycle": "candidate",
+    "protocol": "Modbus TCP/RTU capability; site transport not approved",
+    "protocol_role": "Workbook describes the converter as a Modbus TCP server",
+    "endpoint_status": "unknown",
+    "model": {
+      "status": "unknown",
+      "values": ["PDS1-750K appears only in the filename; DcOne-BusOne is a feature profile"],
+      "evidence": "OD-002 / SRC-M02"
+    },
+    "firmware": {
+      "status": "unknown",
+      "values": [],
+      "evidence": "OD-002 / SRC-M02"
+    },
+    "map_revision": {
+      "status": "exact",
+      "values": ["V126"],
+      "evidence": "SRC-015 filename, Version sheet, and SHA-256"
+    }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-015",
+      "filename": "PDS1-750K-MODBUS Protocol_V126.xlsx",
+      "revision": "V126",
+      "sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+      "classification": "pending verification"
+    },
+    {
+      "source_id": "SRC-033",
+      "filename": "2026-07-31-cnvtr-role-assignment.md",
+      "revision": "recorded 2026-07-31",
+      "sha256": "3e4ea92dcd252dbde84de71f1a06509897051921b9d0b01323294a6cde706bf9",
+      "classification": "current owner decision for equipment role numbering only"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "project owner equipment role assignment",
+      "reviewer": "Erlend / Carbon DC",
+      "status": "accepted_with_conditions",
+      "date": "2026-07-31",
+      "evidence": "SRC-033; CNVTR-1 BESS-side role only; map applicability and behavior remain pending"
+    },
+    {
+      "authority": "software normalization",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "P3-008 candidate normalization"
+    },
+    {
+      "authority": "systems/integration applicability",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "OD-002"
+    },
+    {
+      "authority": "controls command and sign semantics",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "OD-006 / OD-017"
+    }
+  ],
+  "points": [
+    {
+      "logical_id": "cnvtr1.status.fault",
+      "generated_name": "CNVTR1_STATUS_FAULT",
+      "vendor_name": "System Fault status",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "32",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 32,
+        "bit": 0
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "bit",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "cnvtr1_system_status",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "boolean",
+        "minimum": "0",
+        "maximum": "1",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RO-registers-M",
+        "row": 5,
+        "cells": "B5:J5",
+        "raw_vendor_name": "System Fault status"
+      },
+      "notes": ["Fault grouping is preserved; project severity/action remains unapproved."]
+    },
+    {
+      "logical_id": "cnvtr1.temperature.module",
+      "generated_name": "CNVTR1_MODULE_TEMPERATURE",
+      "vendor_name": "Module temperature",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "156",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 156,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int16",
+        "signed": true,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "degC",
+        "minimum": "-32768",
+        "maximum": "32767",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RO-registers-M",
+        "row": 541,
+        "cells": "B541:J541",
+        "raw_vendor_name": "Module temperature"
+      },
+      "notes": ["Workbook does not provide a narrower valid range on this row."]
+    },
+    {
+      "logical_id": "cnvtr1.available.power",
+      "generated_name": "CNVTR1_AVAILABLE_POWER",
+      "vendor_name": "Available active power capacity",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "159",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 159,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "kW",
+        "minimum": "0",
+        "maximum": "6553.5",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RO-registers-M",
+        "row": 544,
+        "cells": "B544:J544",
+        "raw_vendor_name": "Available active power capacity"
+      },
+      "notes": ["Candidate dynamic availability telemetry; control use remains unapproved."]
+    },
+    {
+      "logical_id": "cnvtr1.dc.power.raw",
+      "generated_name": "CNVTR1_DC_POWER_RAW",
+      "vendor_name": "DC power",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "491",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 491,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int16",
+        "signed": true,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "kW",
+        "minimum": "-3276.8",
+        "maximum": "3276.7",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RO-registers-M",
+        "row": 791,
+        "cells": "B791:J791",
+        "raw_vendor_name": "DC power"
+      },
+      "notes": ["Generic codec preserves the vendor sign without domain conversion."]
+    },
+    {
+      "logical_id": "cnvtr1.dc.current.raw",
+      "generated_name": "CNVTR1_DC_CURRENT_RAW",
+      "vendor_name": "DC current",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "492",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 492,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int16",
+        "signed": true,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "A",
+        "minimum": "-3276.8",
+        "maximum": "3276.7",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RO-registers-M",
+        "row": 792,
+        "cells": "B792:J792",
+        "raw_vendor_name": "DC current"
+      },
+      "notes": ["Generic codec preserves the vendor sign without domain conversion."]
+    },
+    {
+      "logical_id": "cnvtr1.dc.bus.voltage",
+      "generated_name": "CNVTR1_DC_BUS_VOLTAGE",
+      "vendor_name": "DC bus voltage",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "494",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 494,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "V",
+        "minimum": "0",
+        "maximum": "6553.5",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RO-registers-M",
+        "row": 794,
+        "cells": "B794:J794",
+        "raw_vendor_name": "DC bus voltage"
+      },
+      "notes": ["DcOne-BusOne applicability marker exists; installed CNVTR-1 option remains unknown."]
+    },
+    {
+      "logical_id": "cnvtr1.command.dispatch.mode",
+      "generated_name": "CNVTR1_DISPATCH_MODE",
+      "vendor_name": "Energy dispatching mode",
+      "lifecycle": "blocked",
+      "service": "modbus_holding_register_03_06",
+      "access": "read_write",
+      "address": {
+        "status": "candidate",
+        "display": "1021",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 1021,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "mode_code",
+        "minimum": "0",
+        "maximum": "3",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "command",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "command issue time",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "blocked",
+        "prerequisites": [],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": null,
+        "minimum_spacing_ms": 5001,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RW-registers-M",
+        "row": 20,
+        "cells": "B20:J20",
+        "raw_vendor_name": "Energy dispatching mode"
+      },
+      "notes": ["DcOne-BusOne mode values are retained but not approved for CNVTR-1."]
+    },
+    {
+      "logical_id": "cnvtr1.command.power.raw",
+      "generated_name": "CNVTR1_COMMAND_POWER_RAW",
+      "vendor_name": "DC power setpoint",
+      "lifecycle": "blocked",
+      "service": "modbus_holding_register_03_06",
+      "access": "read_write",
+      "address": {
+        "status": "candidate",
+        "display": "1106",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 1106,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int16",
+        "signed": true,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "kW",
+        "minimum": "-1400",
+        "maximum": "1400",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "command",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "command issue time",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "blocked",
+        "prerequisites": [],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": null,
+        "minimum_spacing_ms": 0,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RW-registers-M",
+        "row": 116,
+        "cells": "B116:J116",
+        "raw_vendor_name": "DC power setpoint"
+      },
+      "notes": [
+        "Workbook marks the row RAM.",
+        "Positive means charge BUS-to-DC and negative means discharge DC-to-BUS.",
+        "Any internal positive-discharge conversion is performed only by the named adapter."
+      ]
+    },
+    {
+      "logical_id": "cnvtr1.command.start",
+      "generated_name": "CNVTR1_COMMAND_START",
+      "vendor_name": "Total Start",
+      "lifecycle": "blocked",
+      "service": "modbus_holding_register_03_06",
+      "access": "write",
+      "address": {
+        "status": "candidate",
+        "display": "1001",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 1001,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "command_code",
+        "minimum": "1",
+        "maximum": "1",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "command",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "command issue time",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "blocked",
+        "prerequisites": [],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": null,
+        "minimum_spacing_ms": 5001,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RW-registers-M",
+        "row": 3,
+        "cells": "B3:J3",
+        "raw_vendor_name": "Total Start"
+      },
+      "notes": ["Start sequence, prerequisites, acknowledgement, and retry behavior are blocked."]
+    },
+    {
+      "logical_id": "cnvtr1.command.stop",
+      "generated_name": "CNVTR1_COMMAND_STOP",
+      "vendor_name": "Total Stop",
+      "lifecycle": "blocked",
+      "service": "modbus_holding_register_03_06",
+      "access": "write",
+      "address": {
+        "status": "candidate",
+        "display": "1002",
+        "notation": "decimal",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 1002,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "command_code",
+        "minimum": "1",
+        "maximum": "1",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "command",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "command issue time",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "blocked",
+        "prerequisites": [],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": null,
+        "minimum_spacing_ms": 5001,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-015",
+        "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094",
+        "sheet": "RW-registers-M",
+        "row": 4,
+        "cells": "B4:J4",
+        "raw_vendor_name": "Total Stop"
+      },
+      "notes": ["Stop semantics and acknowledgement are unapproved; this is not a safety stop."]
+    }
+  ],
+  "blockers": [
+    {
+      "blocker_id": "cnvtr1-applicability-command-and-timing",
+      "owner": "Integration lead, controls lead, and converter vendor",
+      "decision_id": "OD-002 / OD-003 / OD-006 / OD-017",
+      "source_id": "SRC-M02 / SRC-M05",
+      "needed_by": "Phase 3 production generation and Phase 4 behavior",
+      "reason": "Installed option/firmware and CNVTR-1 command, sign, mode, timing, and endpoint contracts are unapproved.",
+      "missing": [
+        "Exact PDS1 catalog/options/firmware and V126 applicability",
+        "DcOne-BusOne feature applicability",
+        "Remote/start/stop/mode sequence and acknowledgement",
+        "Approved internal sign convention boundary",
+        "Site endpoint, poll, timeout, watchdog, and loss behavior"
+      ],
+      "known": [
+        "SRC-015 states Modbus TCP server capability on port 502",
+        "RAM setpoint rows and non-RAM spacing are distinguished",
+        "Vendor positive power means charge and negative means discharge"
+      ],
+      "affects": [
+        "Production Python codecs",
+        "Production PLC tags",
+        "CNVTR-1 simulator fidelity",
+        "BESS dispatch logic"
+      ]
+    }
+  ]
+}

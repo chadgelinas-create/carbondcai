@@ -1,0 +1,77 @@
+{
+  "_warning": "DO NOT EDIT: generated review artifact; candidate data is not production approved.",
+  "artifacts": [
+    {
+      "path": "python/point_descriptors.py",
+      "sha256": "1782a157958a446241bf2b13217d53f726af252afb116a04c0eb2a49578f162b"
+    },
+    {
+      "path": "simulator/register_banks.json",
+      "sha256": "926cd8502c77b43600489f2ea516dc1d742515abdd89ae83f1512baf255842eb"
+    },
+    {
+      "path": "plc/candidate_tags.csv",
+      "sha256": "a74b6ed8b4de37bb601c10516dd349b86f3b03c885f2ed21cff3249e54e787eb"
+    },
+    {
+      "path": "contracts/fixtures.json",
+      "sha256": "9ca431431e466b2642b5dfb0f8113777b63060f9cd15e8bcf39a365122e31cbc"
+    },
+    {
+      "path": "contracts/report.json",
+      "sha256": "e7150351e92c6e7a8176cf25fb115072d3a3f6bbe4aeb293144053b65e12f577"
+    },
+    {
+      "path": "mapping.md",
+      "sha256": "cdecf7a73f4b2141225b148f771236bce36e3782c5c48af564d4f925298f94e6"
+    },
+    {
+      "path": "production/status.json",
+      "sha256": "e7cc6257a431ead32b55f484ec138895733277e702c6c726c490f4c97b9fa064"
+    }
+  ],
+  "generator": {
+    "sha256": "de54137394996706c32c7e9e0481e6b094757c6576006bca6ad11e029ca8afbc",
+    "version": "1.0.0"
+  },
+  "input_set_sha256": "af07e3ee54c90675e8c38d039f2b9f95ec0237b0aa12f5ad92cc27625b27e395",
+  "inputs": [
+    {
+      "path": "blocked/dc600.blocked.yaml",
+      "sha256": "3307f61bcc74b9c724476b16f94eef024f976c94a34187eb3b7d2077bad50d7d"
+    },
+    {
+      "path": "blocked/st4.blocked.yaml",
+      "sha256": "110e6883da68c597add4863b82cf539704373bf0068b4bb96d51ca3a336432ee"
+    },
+    {
+      "path": "blocked/st5.blocked.yaml",
+      "sha256": "792eb0e03a9197d1c85de3cb52c62f0583187873ed6f72a5d013fe39217153bf"
+    },
+    {
+      "path": "blocked/st6.blocked.yaml",
+      "sha256": "51cb3128b8975761b771f2a5e996a5b33812e2f8b452ee2f9db81245778dc10e"
+    },
+    {
+      "path": "devices/ba1-bess-v1.18.candidate.yaml",
+      "sha256": "16a016b5bac60c6c8df564e473b25b3f0c5b3a1a28e04d9d184e16e8f786a5f1"
+    },
+    {
+      "path": "devices/cnvtr1-sinexcel-v126.candidate.yaml",
+      "sha256": "011fdf3b2b9de496ff3123bae8a058670f1ade934098cd4e711711a021e3a5a8"
+    },
+    {
+      "path": "devices/cnvtr2-sinexcel-v126.candidate.yaml",
+      "sha256": "08e94e5b7c6441916556bb833859df85fe995ead50ff9e73e7384af406f5530b"
+    },
+    {
+      "path": "reference/skid1-evcs.reference.yaml",
+      "sha256": "c6b9fbfcd6354d6de9173dc68f573c20f81aeab143198da0acc356276f8fe197"
+    }
+  ],
+  "reproducible_build": "No timestamps, absolute paths, locale data, or random order.",
+  "schema": {
+    "path": "schema/protocol-v1.schema.json",
+    "sha256": "0ccf93eab313a0818563ed7208c4c5f8763fb0263e58254e0f34c22301c34216"
+  }
+}

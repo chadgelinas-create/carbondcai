@@ -1,0 +1,65 @@
+# Render Blueprint — free web service with embedded TimescaleDB + FastAPI.
+# Dashboard: New → Blueprint → connect this repo.
+# Free web services sleep after ~15 min idle and lose local DB state on restart.
+
+services:
+  - type: web
+    name: carbondcai-api
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile.render
+    dockerContext: .
+    healthCheckPath: /api/v1/health/live
+    envVars:
+      - key: SKID2_ENVIRONMENT
+        value: development
+      - key: SKID2_SERVICE_NAME
+        value: backend
+      - key: SKID2_SERVICE_HOST
+        value: 0.0.0.0
+      - key: SKID2_SERVICE_PORT
+        value: "10000"
+      - key: SKID2_LOG_LEVEL
+        value: INFO
+      - key: SKID2_SIMULATION_ENABLED
+        value: "true"
+      - key: SKID2_SIMULATION_STEP_SECONDS
+        value: "1.0"
+      - key: SKID2_SIMULATION_PROFILE
+        value: stage0
+      - key: SKID2_SIMULATION_SEED
+        value: "0"
+      - key: SKID2_PROTOCOL_ROOT
+        value: protocol
+      - key: SKID2_MODBUS_ENABLED
+        value: "false"
+      - key: SKID2_SYNTHETIC_ENABLED
+        value: "true"
+      - key: SKID2_SYNTHETIC_INTERVAL_SECONDS
+        value: "1.0"
+      - key: SKID2_FRESHNESS_THRESHOLD_SECONDS
+        value: "3.0"
+      - key: SKID2_SYNTHETIC_MAX_SAMPLES
+        value: "0"
+      - key: SKID2_DATA_SOURCE
+        value: sim
+      - key: SKID2_EMS_ENABLED
+        value: "true"
+      - key: SKID2_EMS_POLL_SECONDS
+        value: "1.0"
+      - key: SKID2_DATABASE_NAME
+        value: skid2
+      - key: SKID2_DATABASE_USER
+        value: skid2
+      - key: SKID2_DATABASE_PASSWORD
+        generateValue: true
+      - key: SKID2_AUTH_SECRET
+        generateValue: true
+      - key: SKID2_CORS_ORIGINS
+        value: https://carbon-dc-ems-ui-demo.netlify.app,https://carbon-dc-ems-ui.netlify.app,https://carbondcai-ems.pages.dev,http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:5174,http://localhost:5174
+      - key: SKID2_PUBLIC_APP_URL
+        value: https://carbon-dc-ems-ui.netlify.app
+      - key: SKID2_BROWSER_ORIGIN
+        value: https://carbon-dc-ems-ui.netlify.app
+      # SKID2_DATABASE_URL is built in scripts/render-entrypoint.sh from the vars above.

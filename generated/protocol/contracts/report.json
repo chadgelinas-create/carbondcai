@@ -1,0 +1,4806 @@
+{
+  "_warning": "DO NOT EDIT: generated review artifact; candidate data is not production approved.",
+  "generator_version": "1.0.0",
+  "input_set_sha256": "af07e3ee54c90675e8c38d039f2b9f95ec0237b0aa12f5ad92cc27625b27e395",
+  "points": [
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.alarm.charge.low",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 104"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.alarm.fluid.low",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 104"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.contactor.disconnect",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 153"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.contactor.main",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 153"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.contactor.negative",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 153"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.contactor.precharge",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 153"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.current",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 155"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.limit.charge.power",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 179"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.limit.discharge.power",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 180"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.power",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 170"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.precharge.state",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 152"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.soc",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 157"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.soh",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 158"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.state",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 151"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.count",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 16"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.maximum",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 167"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.maximum.index",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 166"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.minimum",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 169"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.minimum.index",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 168"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.10",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.100",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.101",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.102",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.103",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.104",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.105",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.106",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.107",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.108",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.109",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.11",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.110",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.111",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.112",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.113",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.114",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.115",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.116",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.117",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.118",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.119",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.12",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.120",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.121",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.122",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.123",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.124",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.125",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.126",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.127",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.128",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.129",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.13",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.130",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.131",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.132",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.133",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.134",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.135",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.136",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.137",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.138",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.139",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.14",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.140",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.141",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.142",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.143",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.144",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.145",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.146",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.147",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.148",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.149",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.15",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.150",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.151",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.152",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.153",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.154",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.155",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.156",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.157",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.158",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.159",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.16",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.160",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.161",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.162",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.163",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.164",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.165",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.166",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.167",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.168",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.169",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.17",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.170",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.171",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.172",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.173",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.174",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.175",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.176",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.177",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.178",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.179",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.18",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.180",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.181",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.182",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.183",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.184",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.185",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.186",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.187",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.188",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.189",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.19",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.190",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.191",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.192",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.193",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.194",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.195",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.196",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.197",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.198",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.199",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.20",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.200",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.201",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.202",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.203",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.204",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.205",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.206",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.207",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.208",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.209",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.21",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.210",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.211",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.212",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.213",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.214",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.215",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.216",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.217",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.218",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.219",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.22",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.220",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.221",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.222",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.223",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.224",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.225",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.226",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.227",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.228",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.229",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.23",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.230",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.231",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.232",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.233",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.234",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.235",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.236",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.237",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.238",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.239",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.24",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.240",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.241",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.242",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.243",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.244",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.245",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.246",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.247",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.248",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.249",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.25",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.250",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.251",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.252",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.253",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.254",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.255",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.256",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.257",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.258",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.259",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.26",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.260",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.261",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.262",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.263",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.264",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.265",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.266",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.267",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.268",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.269",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.27",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.270",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.271",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.272",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.273",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.274",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.275",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.276",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.277",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.278",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.279",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.28",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.280",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.281",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.282",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.283",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.284",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.285",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.286",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.287",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.288",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.289",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.29",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.290",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.291",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.292",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.293",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.294",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.295",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.296",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.297",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.298",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.299",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.30",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.300",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.301",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.302",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.303",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.304",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.305",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.306",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.307",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.308",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.309",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.31",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.310",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.311",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.312",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.313",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.314",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.315",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.316",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.317",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.318",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.319",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.32",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.320",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.321",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.322",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.323",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.324",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.325",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.326",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.327",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.328",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.329",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.33",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.330",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.331",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.332",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.333",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.334",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.335",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.336",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.337",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.338",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.339",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.34",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.340",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.341",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.342",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.343",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.344",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.345",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.346",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.347",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.348",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.349",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.35",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.350",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.351",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.352",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.353",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.354",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.355",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.356",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.357",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.358",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.359",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.36",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.360",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.361",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.362",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.363",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.364",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.365",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.366",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.367",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.368",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.369",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.37",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.370",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.371",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.372",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.373",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.374",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.375",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.376",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.377",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.378",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.379",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.38",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.380",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.381",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.382",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.383",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.384",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.385",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.386",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.387",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.388",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.389",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.39",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.390",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.391",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.392",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.393",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.394",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.395",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.396",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.397",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.398",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.399",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.40",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.400",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.401",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.402",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.403",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.404",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.405",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.406",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.407",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.408",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.409",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.41",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.410",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.411",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.412",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.413",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.414",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.415",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.416",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.417",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.418",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.419",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.42",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.420",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.421",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.422",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.423",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.424",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.425",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.426",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.427",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.428",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.429",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.43",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.430",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.431",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.432",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.433",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.434",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.435",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.436",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.437",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.438",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.439",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.44",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.440",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.441",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.442",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.443",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.444",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.445",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.446",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.447",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.448",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.449",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.45",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.450",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.451",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.452",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.453",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.454",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.455",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.456",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.457",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.458",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.459",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.46",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.460",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.461",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.462",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.463",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.464",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.465",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.466",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.467",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.468",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.469",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.47",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.470",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.471",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.472",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.473",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.474",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.475",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.476",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.477",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.478",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.479",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.48",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.480",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.481",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.482",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.483",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.484",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.485",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.486",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.487",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.488",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.489",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.49",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.490",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.491",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.492",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.493",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.494",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.495",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.496",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.497",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.498",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.499",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.50",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.500",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.501",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.502",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.503",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.504",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.505",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.506",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.507",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.508",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.509",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.51",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.510",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.511",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.512",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.52",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.53",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.54",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.55",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.56",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.57",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.58",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.59",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.60",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.61",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.62",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.63",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.64",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.65",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.66",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.67",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.68",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.69",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.70",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.71",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.72",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.73",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.74",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.75",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.76",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.77",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.78",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.79",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.80",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.81",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.82",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.83",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.84",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.85",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.86",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.87",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.88",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.89",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.9",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.90",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.91",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.92",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.93",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.94",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.95",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.96",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.97",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.98",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.temperature.sensor.99",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 200"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.cluster.voltage",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 154"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 8"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.10",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 17"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.11",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 18"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.12",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 19"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.13",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 20"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.14",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 21"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.15",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 22"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.16",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 23"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.17",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 24"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.18",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 25"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.19",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 26"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 9"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.20",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 27"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.21",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 28"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.22",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 29"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.23",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 30"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.24",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 31"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.25",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 32"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.26",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 33"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.27",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 34"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.28",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 35"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.29",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 36"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 10"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.30",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 37"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.31",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 38"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.32",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 39"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.33",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 40"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.34",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 41"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.35",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 42"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.36",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 43"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.37",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 44"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.38",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 45"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.39",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 46"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 11"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.40",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 47"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.41",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 48"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.42",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 49"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.43",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 50"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.44",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 51"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.45",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 52"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.46",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 53"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.47",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 54"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.48",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 55"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.49",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 56"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 12"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.50",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 57"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.51",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 58"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.52",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 59"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.53",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 60"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.54",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 61"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.55",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 62"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.56",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 63"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.57",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 64"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.58",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 65"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.59",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 66"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 13"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.60",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 67"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.61",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 68"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.62",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 69"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.63",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 70"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.64",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 71"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 14"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 15"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level1.9",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 16"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 8"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.10",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 17"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.11",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 18"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.12",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 19"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.13",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 20"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.14",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 21"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.15",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 22"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.16",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 23"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.17",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 24"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.18",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 25"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.19",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 26"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 9"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.20",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 27"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.21",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 28"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.22",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 29"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.23",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 30"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.24",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 31"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.25",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 32"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.26",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 33"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.27",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 34"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.28",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 35"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.29",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 36"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 10"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.30",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 37"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.31",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 38"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.32",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 39"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.33",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 40"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.34",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 41"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.35",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 42"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.36",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 43"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.37",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 44"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.38",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 45"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.39",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 46"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 11"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.40",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 47"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.41",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 48"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.42",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 49"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.43",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 50"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.44",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 51"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.45",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 52"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.46",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 53"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.47",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 54"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.48",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 55"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.49",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 56"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 12"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.50",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 57"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.51",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 58"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.52",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 59"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.53",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 60"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.54",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 61"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.55",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 62"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.56",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 63"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.57",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 64"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.58",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 65"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.59",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 66"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 13"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.60",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 67"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.61",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 68"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.62",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 69"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.63",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 70"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.64",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 71"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 14"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 15"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level2.9",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 16"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 8"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.10",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 17"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.11",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 18"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.12",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 19"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.13",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 20"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.14",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 21"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.15",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 22"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.16",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 23"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.17",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 24"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.18",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 25"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.19",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 26"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 9"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.20",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 27"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.21",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 28"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.22",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 29"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.23",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 30"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.24",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 31"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.25",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 32"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.26",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 33"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.27",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 34"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.28",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 35"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.29",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 36"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 10"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.30",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 37"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.31",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 38"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.32",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 39"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.33",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 40"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.34",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 41"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.35",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 42"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.36",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 43"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.37",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 44"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.38",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 45"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.39",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 46"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 11"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.40",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 47"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.41",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 48"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.42",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 49"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.43",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 50"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.44",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 51"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.45",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 52"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.46",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 53"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.47",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 54"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.48",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 55"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.49",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 56"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 12"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.50",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 57"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.51",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 58"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.52",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 59"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.53",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 60"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.54",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 61"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.55",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 62"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.56",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 63"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.57",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 64"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.58",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 65"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.59",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 66"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 13"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.60",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 67"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.61",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 68"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.62",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 69"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.63",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 70"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.64",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 71"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 14"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 15"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.cluster.level3.9",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 16"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 90"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 91"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 92"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 93"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 94"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 95"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 96"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level1.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 97"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 90"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 91"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 92"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 93"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 94"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 95"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 96"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level2.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 97"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 90"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 91"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 92"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 93"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 94"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 95"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 96"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.ems.level3.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 97"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 77"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 78"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 79"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 80"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 81"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 82"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 83"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level1.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 84"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 77"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 78"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 79"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 80"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 81"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 82"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 83"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level2.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 84"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.1",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 77"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.2",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 78"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.3",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 79"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.4",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 80"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.5",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 81"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.6",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 82"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.7",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 83"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fault.stack.level3.8",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Discrete quantities (fault code row 84"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.fire.communication.state",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 451"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.running.state",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 80"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.selector.cluster",
+      "result": "blocked",
+      "source": "SRC-014 Data Overview Page row 39"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.stack.state",
+      "result": "candidate_contract_covered",
+      "source": "SRC-014 Data Overview Page row 205"
+    },
+    {
+      "device_id": "ba1-1",
+      "logical_id": "bess.system.soc.raw",
+      "result": "blocked",
+      "source": "SRC-014 Data Overview Page row 99"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.available.power",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 544"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.command.dispatch.mode",
+      "result": "blocked",
+      "source": "SRC-015 RW-registers-M row 20"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.command.power.raw",
+      "result": "blocked",
+      "source": "SRC-015 RW-registers-M row 116"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.command.start",
+      "result": "blocked",
+      "source": "SRC-015 RW-registers-M row 3"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.command.stop",
+      "result": "blocked",
+      "source": "SRC-015 RW-registers-M row 4"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.dc.bus.voltage",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 794"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.dc.current.raw",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 792"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.dc.power.raw",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 791"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.status.fault",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 5"
+    },
+    {
+      "device_id": "cnvtr-1",
+      "logical_id": "cnvtr1.temperature.module",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 541"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.command.start",
+      "result": "blocked",
+      "source": "SRC-015 RW-registers-M row 3"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.command.vsg.mode",
+      "result": "blocked",
+      "source": "SRC-015 RW-registers-M row 179"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.dc.bus.voltage",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 794"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.dc.power.raw",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 791"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.pv.fault",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 PVDC-registers-M row 6"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.pv.mppt.applying",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 PVDC-registers-M row 28"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.pv.online",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 PVDC-registers-M row 8"
+    },
+    {
+      "device_id": "cnvtr-2",
+      "logical_id": "cnvtr2.temperature.module",
+      "result": "candidate_contract_covered",
+      "source": "SRC-015 RO-registers-M row 541"
+    },
+    {
+      "device_id": "skid1-evcs-reference",
+      "logical_id": "legacy.skid1.appendix.evcs.power.demand",
+      "result": "reference_only",
+      "source": "SRC-008 Appendix A.1 row 351"
+    },
+    {
+      "device_id": "skid1-evcs-reference",
+      "logical_id": "legacy.skid1.appendix.evcs.status",
+      "result": "reference_only",
+      "source": "SRC-008 Appendix A.1 row 357"
+    },
+    {
+      "device_id": "skid1-evcs-reference",
+      "logical_id": "legacy.skid1.section3.evcs.status",
+      "result": "reference_only",
+      "source": "SRC-008 Section 3.1 row 42"
+    },
+    {
+      "device_id": "skid1-evcs-reference",
+      "logical_id": "legacy.skid1.wago.evcs.power.demand",
+      "result": "reference_only",
+      "source": "SRC-009 Modbus Communication / FB_EVCS_Read row 982"
+    }
+  ],
+  "summary": {
+    "candidate_contract_covered": 787,
+    "production_pass": 0,
+    "reference_or_blocked": 12
+  }
+}

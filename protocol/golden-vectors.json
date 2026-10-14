@@ -1,0 +1,69 @@
+{
+  "_review_note": "Expected words were calculated independently from hexadecimal byte grouping; the codec is not used to create this file.",
+  "vectors": [
+    {
+      "name": "uint16 big bytes",
+      "primitive": "uint16",
+      "byte_order": "big",
+      "word_order": "big",
+      "raw": 4660,
+      "words": [4660]
+    },
+    {
+      "name": "uint16 little bytes",
+      "primitive": "uint16",
+      "byte_order": "little",
+      "word_order": "big",
+      "raw": 4660,
+      "words": [13330]
+    },
+    {
+      "name": "int16 negative two",
+      "primitive": "int16",
+      "byte_order": "big",
+      "word_order": "big",
+      "raw": -2,
+      "words": [65534]
+    },
+    {
+      "name": "uint32 ABCD",
+      "primitive": "uint32",
+      "byte_order": "big",
+      "word_order": "big",
+      "raw": 287454020,
+      "words": [4386, 13124]
+    },
+    {
+      "name": "uint32 BADC",
+      "primitive": "uint32",
+      "byte_order": "little",
+      "word_order": "big",
+      "raw": 287454020,
+      "words": [8721, 17459]
+    },
+    {
+      "name": "uint32 CDAB",
+      "primitive": "uint32",
+      "byte_order": "big",
+      "word_order": "little",
+      "raw": 287454020,
+      "words": [13124, 4386]
+    },
+    {
+      "name": "uint32 DCBA",
+      "primitive": "uint32",
+      "byte_order": "little",
+      "word_order": "little",
+      "raw": 287454020,
+      "words": [17459, 8721]
+    },
+    {
+      "name": "int32 negative two",
+      "primitive": "int32",
+      "byte_order": "big",
+      "word_order": "big",
+      "raw": -2,
+      "words": [65535, 65534]
+    }
+  ]
+}

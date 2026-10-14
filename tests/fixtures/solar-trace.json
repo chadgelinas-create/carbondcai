@@ -1,0 +1,1050 @@
+[
+  {
+    "sequence": 1,
+    "bus": [
+      {
+        "name": "Bus voltage",
+        "value": 788.986691902975,
+        "unit": "VDC",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Bus energy",
+        "value": 0.08645833333333333,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Power difference",
+        "value": 30.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Steps without calculation",
+        "value": 0.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      }
+    ],
+    "solar": [
+      {
+        "device_id": "cnvtr-2",
+        "destination": "dc",
+        "health": "healthy",
+        "reason": "Available solar is being used",
+        "values": [
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:01+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          }
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "name": "Offered supply",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Requested load",
+        "value": 65.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Accepted load",
+        "value": 65.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power supplied",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power used",
+        "value": 65.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Modeled loss",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Stored power",
+        "value": 29.999999999999993,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Energy change",
+        "value": 0.008333333333333331,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Unused supply",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power not supplied",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Balance error",
+        "value": 7.105427357601002e-15,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Excluded inputs",
+        "value": 0.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:01+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      }
+    ],
+    "ac": {
+      "st-4": 10.0,
+      "st-5": 15.0,
+      "st-6": 20.0
+    }
+  },
+  {
+    "sequence": 2,
+    "bus": [
+      {
+        "name": "Bus voltage",
+        "value": 823.7111144084436,
+        "unit": "VDC",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Bus energy",
+        "value": 0.0942361111111111,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Power difference",
+        "value": 28.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Steps without calculation",
+        "value": 0.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      }
+    ],
+    "solar": [
+      {
+        "device_id": "cnvtr-2",
+        "destination": "dc",
+        "health": "healthy",
+        "reason": "Available solar is being used",
+        "values": [
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:02+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          }
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "name": "Offered supply",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Requested load",
+        "value": 85.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Accepted load",
+        "value": 67.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power supplied",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power used",
+        "value": 67.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Modeled loss",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Stored power",
+        "value": 27.999999999999982,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Energy change",
+        "value": 0.007777777777777773,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Unused supply",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power not supplied",
+        "value": 18.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Balance error",
+        "value": 1.7763568394002505e-14,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Excluded inputs",
+        "value": 0.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      }
+    ],
+    "ac": {
+      "st-4": 12.0,
+      "st-5": 15.0,
+      "st-6": 20.0
+    }
+  },
+  {
+    "sequence": 3,
+    "bus": [
+      {
+        "name": "Bus voltage",
+        "value": 823.7111144084436,
+        "unit": "VDC",
+        "status": "available",
+        "quality": "stale",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Bus energy",
+        "value": 0.0942361111111111,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "stale",
+        "at": "2026-08-01T10:00:02+00:00",
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Power difference",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Steps without calculation",
+        "value": 1.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      }
+    ],
+    "solar": [
+      {
+        "device_id": "cnvtr-2",
+        "destination": "dc",
+        "health": "healthy",
+        "reason": "Waiting for a complete DC bus balance",
+        "values": [
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:03+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Waiting for a complete DC bus balance",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Waiting for a complete DC bus balance",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": null,
+            "unit": "kW",
+            "status": "missing",
+            "quality": null,
+            "at": null,
+            "reason": "Waiting for a complete DC bus balance",
+            "capability_id": "plant.pv"
+          }
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "name": "Offered supply",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Requested load",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Accepted load",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power supplied",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power used",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Modeled loss",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Stored power",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Energy change",
+        "value": null,
+        "unit": "kWh",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Unused supply",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power not supplied",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Balance error",
+        "value": null,
+        "unit": "kW",
+        "status": "missing",
+        "quality": null,
+        "at": null,
+        "reason": "Bus calculation paused while power readings are missing or excluded",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Excluded inputs",
+        "value": 1.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:03+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      }
+    ],
+    "ac": {
+      "st-4": null,
+      "st-5": null,
+      "st-6": null
+    }
+  },
+  {
+    "sequence": 4,
+    "bus": [
+      {
+        "name": "Bus voltage",
+        "value": 857.029754442633,
+        "unit": "VDC",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Bus energy",
+        "value": 0.10201388888888888,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Power difference",
+        "value": 28.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      },
+      {
+        "name": "Steps without calculation",
+        "value": 1.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.bus"
+      }
+    ],
+    "solar": [
+      {
+        "device_id": "cnvtr-2",
+        "destination": "dc",
+        "health": "healthy",
+        "reason": "Available solar is being used",
+        "values": [
+          {
+            "name": "Available solar",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Requested power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Accepted power",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Output limit",
+            "value": 100.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Offered power",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Power delivered",
+            "value": 95.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Conversion loss",
+            "value": 5.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          },
+          {
+            "name": "Unused solar",
+            "value": 0.0,
+            "unit": "kW",
+            "status": "available",
+            "quality": "good",
+            "at": "2026-08-01T10:00:04+00:00",
+            "reason": "Available solar is being used",
+            "capability_id": "plant.pv"
+          }
+        ]
+      }
+    ],
+    "ledger": [
+      {
+        "name": "Offered supply",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Requested load",
+        "value": 85.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Accepted load",
+        "value": 67.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power supplied",
+        "value": 95.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power used",
+        "value": 67.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Modeled loss",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Stored power",
+        "value": 27.999999999999982,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Energy change",
+        "value": 0.007777777777777773,
+        "unit": "kWh",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Unused supply",
+        "value": 0.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Power not supplied",
+        "value": 18.0,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Balance error",
+        "value": 1.7763568394002505e-14,
+        "unit": "kW",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      },
+      {
+        "name": "Excluded inputs",
+        "value": 0.0,
+        "unit": "count",
+        "status": "available",
+        "quality": "good",
+        "at": "2026-08-01T10:00:04+00:00",
+        "reason": "Calculated using simulation assumptions",
+        "capability_id": "plant.balance"
+      }
+    ],
+    "ac": {
+      "st-4": 12.0,
+      "st-5": 15.0,
+      "st-6": 20.0
+    }
+  }
+]
