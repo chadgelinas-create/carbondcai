@@ -1,0 +1,61 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Python
+.python-version
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+dist/
+build/
+
+# Node / panel
+node_modules/
+panel/node_modules/
+panel/dist/
+panel/coverage/
+panel/test-results/
+panel/playwright-report/
+*.tsbuildinfo
+npm-debug.log*
+
+# Runtime data
+data/
+*.sqlite*
+*.db
+*.log
+logs/
+tmp/
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Local evidence
+/evidence/
+
+# Local images
+*.[pP][nN][gG]
+
+/MINE/
+/docs/
+/panel/e2e/simulator.spec.ts-snapshots
+
+# Local Netlify folder
+.netlify

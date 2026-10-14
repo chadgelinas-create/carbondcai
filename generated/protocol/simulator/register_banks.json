@@ -1,0 +1,2624 @@
+{
+  "_warning": "DO NOT EDIT: generated review artifact; candidate data is not production approved.",
+  "devices": {
+    "ba1-1": [
+      {
+        "access": "read",
+        "address": {
+          "bit": 0,
+          "convention": "zero_based",
+          "display": "0x3003",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12291
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "1",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "boolean"
+        },
+        "generated_name": "BA1_MAIN_CONTACTOR_CLOSED",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.contactor.main",
+        "notes": [
+          "Bit extraction shares one atomic source register with other contactor bits."
+        ],
+        "provenance": {
+          "cells": "C153:L153",
+          "raw_vendor_name": "Cluster Contactor Status / Bit0 Main Contactor",
+          "row": 153,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Contactor Status bit 0",
+        "wire": {
+          "atomic_group": "ba1_cluster_contactor_status",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "bit",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": 1,
+          "convention": "zero_based",
+          "display": "0x3003",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12291
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "1",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "boolean"
+        },
+        "generated_name": "BA1_PRECHARGE_CONTACTOR_CLOSED",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.contactor.precharge",
+        "notes": [
+          "Bit writes are not authorized; this candidate is read-only."
+        ],
+        "provenance": {
+          "cells": "C153:L153",
+          "raw_vendor_name": "Cluster Contactor Status / Bit1 Pre-charge Contactor",
+          "row": 153,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Contactor Status bit 1",
+        "wire": {
+          "atomic_group": "ba1_cluster_contactor_status",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "bit",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x3005",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12293
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "3276.7",
+          "minimum": "-3276.8",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "A"
+        },
+        "generated_name": "BA1_CLUSTER_CURRENT",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.current",
+        "notes": [
+          "Vendor sign is charge-negative and discharge-positive; the codec preserves it."
+        ],
+        "provenance": {
+          "cells": "C155:L155",
+          "raw_vendor_name": "Cluster Current Total Battery Current",
+          "row": 155,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Current Total Battery Current",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int16",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x301E",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12318
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "65535",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "kW"
+        },
+        "generated_name": "BA1_CHARGE_POWER_LIMIT",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.limit.charge.power",
+        "notes": [
+          "Static and dynamic use remains subject to OD-007."
+        ],
+        "provenance": {
+          "cells": "E179:L179",
+          "raw_vendor_name": "Cluster Charge Power Limit",
+          "row": 179,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Charge Power Limit",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x301F",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12319
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "65535",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "kW"
+        },
+        "generated_name": "BA1_DISCHARGE_POWER_LIMIT",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.limit.discharge.power",
+        "notes": [
+          "Static and dynamic use remains subject to OD-007."
+        ],
+        "provenance": {
+          "cells": "E180:L180",
+          "raw_vendor_name": "Cluster Discharge Power Limit",
+          "row": 180,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Discharge Power Limit",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x3002",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12290
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "4",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [
+            170
+          ],
+          "status": "candidate",
+          "unit": "state_code"
+        },
+        "generated_name": "BA1_PRECHARGE_STATE",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.precharge.state",
+        "notes": [
+          "0xAA is explicitly no communication and must not appear as a real state."
+        ],
+        "provenance": {
+          "cells": "C152:L152",
+          "raw_vendor_name": "Cluster Pre-charging Stage",
+          "row": 152,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "comm_error"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Pre-charging Stage",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x3007",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12295
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "1",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.001",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "ratio"
+        },
+        "generated_name": "BA1_CLUSTER_SOC",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.soc",
+        "notes": [
+          "System and cluster SOC remain separate.",
+          "The 1E-3 interpretation is candidate pending vendor review."
+        ],
+        "provenance": {
+          "cells": "C157:L157",
+          "raw_vendor_name": "Cluster SOC",
+          "row": 157,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster SOC",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x3011",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12305
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "125",
+          "minimum": "-40",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "degC"
+        },
+        "generated_name": "BA1_CLUSTER_MAX_TEMPERATURE",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.temperature.maximum",
+        "notes": [
+          "Candidate temperature telemetry."
+        ],
+        "provenance": {
+          "cells": "C167:L167",
+          "raw_vendor_name": "Cluster Cell Temperature Highest Value",
+          "row": 167,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Cell Temperature Highest Value",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int16",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x3004",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 12292
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "6553.5",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "V"
+        },
+        "generated_name": "BA1_CLUSTER_VOLTAGE",
+        "lifecycle": "candidate",
+        "logical_id": "bess.cluster.voltage",
+        "notes": [
+          "Candidate electrical telemetry; installed applicability is not approved."
+        ],
+        "provenance": {
+          "cells": "C154:L154",
+          "raw_vendor_name": "Cluster Current Total Battery Voltage",
+          "row": 154,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Cluster Current Total Battery Voltage",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "0x4000",
+          "notation": "hex",
+          "space": "input_register",
+          "status": "candidate",
+          "wire_offset": 16384
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "v1.18"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": []
+          }
+        },
+        "command": null,
+        "device_id": "ba1-1",
+        "engineering": {
+          "maximum": "2",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "state_code"
+        },
+        "generated_name": "BA1_FIRE_COMMUNICATION_STATE",
+        "lifecycle": "candidate",
+        "logical_id": "bess.fire.communication.state",
+        "notes": [
+          "Fault severity/action remains unapproved."
+        ],
+        "provenance": {
+          "cells": "C451:L451",
+          "raw_vendor_name": "Communication Status",
+          "row": 451,
+          "sheet": "Data Overview Page ",
+          "source_id": "SRC-014",
+          "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_input_register_04",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Fire Communication Status",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      }
+    ],
+    "cnvtr-1": [
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "159",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 159
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; DcOne-BusOne is a feature profile"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-1",
+        "engineering": {
+          "maximum": "6553.5",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "kW"
+        },
+        "generated_name": "CNVTR1_AVAILABLE_POWER",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr1.available.power",
+        "notes": [
+          "Candidate dynamic availability telemetry; control use remains unapproved."
+        ],
+        "provenance": {
+          "cells": "B544:J544",
+          "raw_vendor_name": "Available active power capacity",
+          "row": 544,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Available active power capacity",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "494",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 494
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; DcOne-BusOne is a feature profile"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-1",
+        "engineering": {
+          "maximum": "6553.5",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "V"
+        },
+        "generated_name": "CNVTR1_DC_BUS_VOLTAGE",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr1.dc.bus.voltage",
+        "notes": [
+          "DcOne-BusOne applicability marker exists; installed CNVTR-1 option remains unknown."
+        ],
+        "provenance": {
+          "cells": "B794:J794",
+          "raw_vendor_name": "DC bus voltage",
+          "row": 794,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "DC bus voltage",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "492",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 492
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; DcOne-BusOne is a feature profile"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-1",
+        "engineering": {
+          "maximum": "3276.7",
+          "minimum": "-3276.8",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "A"
+        },
+        "generated_name": "CNVTR1_DC_CURRENT_RAW",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr1.dc.current.raw",
+        "notes": [
+          "Generic codec preserves the vendor sign without domain conversion."
+        ],
+        "provenance": {
+          "cells": "B792:J792",
+          "raw_vendor_name": "DC current",
+          "row": 792,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "DC current",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int16",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "491",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 491
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; DcOne-BusOne is a feature profile"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-1",
+        "engineering": {
+          "maximum": "3276.7",
+          "minimum": "-3276.8",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "kW"
+        },
+        "generated_name": "CNVTR1_DC_POWER_RAW",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr1.dc.power.raw",
+        "notes": [
+          "Generic codec preserves the vendor sign without domain conversion."
+        ],
+        "provenance": {
+          "cells": "B791:J791",
+          "raw_vendor_name": "DC power",
+          "row": 791,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "DC power",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int16",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": 0,
+          "convention": "zero_based",
+          "display": "32",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 32
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; DcOne-BusOne is a feature profile"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-1",
+        "engineering": {
+          "maximum": "1",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "boolean"
+        },
+        "generated_name": "CNVTR1_STATUS_FAULT",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr1.status.fault",
+        "notes": [
+          "Fault grouping is preserved; project severity/action remains unapproved."
+        ],
+        "provenance": {
+          "cells": "B5:J5",
+          "raw_vendor_name": "System Fault status",
+          "row": 5,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "System Fault status",
+        "wire": {
+          "atomic_group": "cnvtr1_system_status",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "bit",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "156",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 156
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; DcOne-BusOne is a feature profile"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-1",
+        "engineering": {
+          "maximum": "32767",
+          "minimum": "-32768",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "degC"
+        },
+        "generated_name": "CNVTR1_MODULE_TEMPERATURE",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr1.temperature.module",
+        "notes": [
+          "Workbook does not provide a narrower valid range on this row."
+        ],
+        "provenance": {
+          "cells": "B541:J541",
+          "raw_vendor_name": "Module temperature",
+          "row": 541,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Module temperature",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int16",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      }
+    ],
+    "cnvtr-2": [
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "494",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 494
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; no matching internal applicability column"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-2",
+        "engineering": {
+          "maximum": "6553.5",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "V"
+        },
+        "generated_name": "CNVTR2_DC_BUS_VOLTAGE",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr2.dc.bus.voltage",
+        "notes": [
+          "DcOne-BusOne applicability marker exists; CNVTR-2 installed option remains unknown."
+        ],
+        "provenance": {
+          "cells": "B794:J794",
+          "raw_vendor_name": "DC bus voltage",
+          "row": 794,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "DC bus voltage",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "491",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 491
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; no matching internal applicability column"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-2",
+        "engineering": {
+          "maximum": "3276.7",
+          "minimum": "-3276.8",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "kW"
+        },
+        "generated_name": "CNVTR2_DC_POWER_RAW",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr2.dc.power.raw",
+        "notes": [
+          "Raw vendor sign is preserved; any domain sign conversion belongs in an adapter."
+        ],
+        "provenance": {
+          "cells": "B791:J791",
+          "raw_vendor_name": "DC power",
+          "row": 791,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "DC power",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int16",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": 1,
+          "convention": "zero_based",
+          "display": "34032",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 34032
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; no matching internal applicability column"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-2",
+        "engineering": {
+          "maximum": "1",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "boolean"
+        },
+        "generated_name": "CNVTR2_PV_FAULT",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr2.pv.fault",
+        "notes": [
+          "PVDCvs30K applicability marker exists; installed CNVTR-2 support is unconfirmed."
+        ],
+        "provenance": {
+          "cells": "B6:J6",
+          "raw_vendor_name": "Module_PV Fault Status",
+          "row": 6,
+          "sheet": "PVDC-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Module_PV Fault Status",
+        "wire": {
+          "atomic_group": "cnvtr2_pv_status",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "bit",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": 12,
+          "convention": "zero_based",
+          "display": "34033",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 34033
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; no matching internal applicability column"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-2",
+        "engineering": {
+          "maximum": "1",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "boolean"
+        },
+        "generated_name": "CNVTR2_PV_MPPT_APPLYING",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr2.pv.mppt.applying",
+        "notes": [
+          "The exact PV-side/channel mapping is unapproved."
+        ],
+        "provenance": {
+          "cells": "B28:J28",
+          "raw_vendor_name": "Module_PV PV1 Side MPPT Applying",
+          "row": 28,
+          "sheet": "PVDC-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Module_PV PV1 Side MPPT Applying",
+        "wire": {
+          "atomic_group": "cnvtr2_pv_side_status",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "bit",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": 3,
+          "convention": "zero_based",
+          "display": "34032",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 34032
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; no matching internal applicability column"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-2",
+        "engineering": {
+          "maximum": "1",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "boolean"
+        },
+        "generated_name": "CNVTR2_PV_ONLINE",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr2.pv.online",
+        "notes": [
+          "Online is telemetry, not proof that commands are safe."
+        ],
+        "provenance": {
+          "cells": "B8:J8",
+          "raw_vendor_name": "Module_PV Online",
+          "row": 8,
+          "sheet": "PVDC-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Module_PV Online",
+        "wire": {
+          "atomic_group": "cnvtr2_pv_status",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "bit",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "zero_based",
+          "display": "156",
+          "notation": "decimal",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 156
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "V126"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "PDS1-750K appears only in the filename; no matching internal applicability column"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "cnvtr-2",
+        "engineering": {
+          "maximum": "32767",
+          "minimum": "-32768",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "degC"
+        },
+        "generated_name": "CNVTR2_MODULE_TEMPERATURE",
+        "lifecycle": "candidate",
+        "logical_id": "cnvtr2.temperature.module",
+        "notes": [
+          "Workbook does not provide a narrower valid range on this row."
+        ],
+        "provenance": {
+          "cells": "B541:J541",
+          "raw_vendor_name": "Module temperature",
+          "row": 541,
+          "sheet": "RO-registers-M",
+          "source_id": "SRC-015",
+          "source_sha256": "b6f069b37a439c5130968ed7934d1c89409abb678f1f6af5fca0f5cb7f988094"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "unknown",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Module temperature",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int16",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      }
+    ],
+    "dc600": [
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40005",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 4
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "1000",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "V"
+        },
+        "generated_name": "DC600_EVCS_BUS_V",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.evcs.bus.voltage",
+        "notes": [
+          "VDC x10. INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE."
+        ],
+        "provenance": {
+          "cells": "40005-40006",
+          "raw_vendor_name": "DC Bus Voltage",
+          "row": 4,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "continuous",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "DC Bus Voltage",
+        "wire": {
+          "atomic_group": "dc600_evcs_bus_v",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int32",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 2,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40001",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 0
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "2147483647",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "W"
+        },
+        "generated_name": "DC600_EVCS_DEMAND",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.evcs.demand.power",
+        "notes": [
+          "INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE.",
+          "Engineering unit is watts. SIM overlay also publishes kW."
+        ],
+        "provenance": {
+          "cells": "40001-40002",
+          "raw_vendor_name": "EV Charger Power Demand",
+          "row": 1,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "continuous",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "EV Charger Power Demand",
+        "wire": {
+          "atomic_group": "dc600_evcs_demand",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int32",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 2,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40003",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 2
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "2",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "enum"
+        },
+        "generated_name": "DC600_EVCS_STATUS",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.evcs.status",
+        "notes": [
+          "0 Idle, 1 Charging, 2 Fault."
+        ],
+        "provenance": {
+          "cells": "40003",
+          "raw_vendor_name": "EV Charger Status",
+          "row": 2,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "continuous",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "EV Charger Status",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "read",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40004",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 3
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": null,
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "6",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "count"
+        },
+        "generated_name": "DC600_EVCS_VEHICLES",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.evcs.vehicles",
+        "notes": [
+          "Active sessions. No per-port PMS registers."
+        ],
+        "provenance": {
+          "cells": "40004",
+          "raw_vendor_name": "Connected Vehicles",
+          "row": 3,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "on change",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Connected Vehicles",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "write",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40101",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 100
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": {
+          "acknowledgement": "unknown",
+          "minimum_spacing_ms": null,
+          "prerequisites": [
+            "pms_modbus_master"
+          ],
+          "ramp": "unknown",
+          "safe_value": "0",
+          "status": "candidate",
+          "timeout_ms": null
+        },
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "2147483647",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "W"
+        },
+        "generated_name": "DC600_PMS_AVAILABLE",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.pms.available.power",
+        "notes": [
+          "INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE.",
+          "Anchor envelope. Charger self-limits to this value."
+        ],
+        "provenance": {
+          "cells": "40101-40102",
+          "raw_vendor_name": "Available Power",
+          "row": 5,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "pms write",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Available Power",
+        "wire": {
+          "atomic_group": "dc600_pms_available",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int32",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 2,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "write",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40107",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 106
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": {
+          "acknowledgement": "unknown",
+          "minimum_spacing_ms": null,
+          "prerequisites": [
+            "pms_modbus_master"
+          ],
+          "ramp": "unknown",
+          "safe_value": "0",
+          "status": "candidate",
+          "timeout_ms": null
+        },
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "100",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "0.1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "percent"
+        },
+        "generated_name": "DC600_PMS_SOC",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.pms.bess.soc",
+        "notes": [
+          "Percent x10. Optional driver display."
+        ],
+        "provenance": {
+          "cells": "40107",
+          "raw_vendor_name": "BESS SOC",
+          "row": 9,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "pms write",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "BESS SOC",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "write",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40105",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 104
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": {
+          "acknowledgement": "unknown",
+          "minimum_spacing_ms": null,
+          "prerequisites": [
+            "pms_modbus_master"
+          ],
+          "ramp": "unknown",
+          "safe_value": "0",
+          "status": "candidate",
+          "timeout_ms": null
+        },
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "2147483647",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "W"
+        },
+        "generated_name": "DC600_PMS_PV",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.pms.pv.power",
+        "notes": [
+          "Optional driver display. INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE."
+        ],
+        "provenance": {
+          "cells": "40105-40106",
+          "raw_vendor_name": "PV Power",
+          "row": 8,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "pms write",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "PV Power",
+        "wire": {
+          "atomic_group": "dc600_pms_pv",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "int32",
+          "signed": true,
+          "status": "candidate",
+          "word_count": 2,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "write",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40103",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 102
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": {
+          "acknowledgement": "unknown",
+          "minimum_spacing_ms": null,
+          "prerequisites": [
+            "pms_modbus_master"
+          ],
+          "ramp": "unknown",
+          "safe_value": "0",
+          "status": "candidate",
+          "timeout_ms": null
+        },
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "5",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "enum"
+        },
+        "generated_name": "DC600_PMS_STATUS",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.pms.system.status",
+        "notes": [
+          "0 NORMAL, 1 DERATED_PV, 2 DERATED_BESS, 3 DERATED_BOTH, 4 BESS_RESERVE, 5 FAULT."
+        ],
+        "provenance": {
+          "cells": "40103",
+          "raw_vendor_name": "System Status",
+          "row": 6,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "pms write",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "System Status",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      },
+      {
+        "access": "write",
+        "address": {
+          "bit": null,
+          "convention": "display_reference",
+          "display": "40104",
+          "notation": "modicon",
+          "space": "holding_register",
+          "status": "candidate",
+          "wire_offset": 103
+        },
+        "applicability": {
+          "endpoint_status": "unknown",
+          "firmware": {
+            "status": "unknown",
+            "values": []
+          },
+          "map_revision": {
+            "status": "exact",
+            "values": [
+              "Appendix A expanded holdings"
+            ]
+          },
+          "model": {
+            "status": "unknown",
+            "values": [
+              "DC600 / Siemens EVCS controller"
+            ]
+          }
+        },
+        "command": {
+          "acknowledgement": "unknown",
+          "minimum_spacing_ms": null,
+          "prerequisites": [
+            "pms_modbus_master"
+          ],
+          "ramp": "unknown",
+          "safe_value": "0",
+          "status": "candidate",
+          "timeout_ms": null
+        },
+        "device_id": "dc600",
+        "engineering": {
+          "maximum": "999",
+          "minimum": "0",
+          "offset": "0",
+          "rounding": "reject",
+          "scale": "1",
+          "sentinels": [],
+          "status": "candidate",
+          "unit": "min"
+        },
+        "generated_name": "DC600_PMS_TIME",
+        "lifecycle": "candidate",
+        "logical_id": "dc600.pms.time.remaining",
+        "notes": [
+          "999 = unlimited."
+        ],
+        "provenance": {
+          "cells": "40104",
+          "raw_vendor_name": "Time Remaining",
+          "row": 7,
+          "sheet": "Appendix A expanded holdings",
+          "source_id": "SRC-040",
+          "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37"
+        },
+        "quality": {
+          "communication_error": "comm_error",
+          "out_of_range": "out_of_range",
+          "sentinel": "invalid"
+        },
+        "service": "modbus_holding_register_03_06",
+        "timing": {
+          "poll_class": "pms write",
+          "receive_timestamp": "required UTC",
+          "retry_policy": "unknown",
+          "source_timestamp": "receive-time candidate",
+          "stale_after_ms": null,
+          "status": "unknown",
+          "timeout_ms": null
+        },
+        "vendor_name": "Time Remaining",
+        "wire": {
+          "atomic_group": "",
+          "bit_definitions": {},
+          "byte_order": "big",
+          "primitive": "uint16",
+          "signed": false,
+          "status": "candidate",
+          "word_count": 1,
+          "word_order": "big"
+        }
+      }
+    ]
+  },
+  "generator_version": "1.0.0",
+  "input_set_sha256": "929912c8a8afbb4debf06850844d1560c5bfc7aa2b285c8e245aaff25f693162",
+  "profile": "review"
+}

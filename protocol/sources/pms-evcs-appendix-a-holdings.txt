@@ -1,0 +1,29 @@
+PMS <-> EV Charge Controller holdings (Appendix A complete / expanded)
+
+Authoritative for SIM: CE+T Maestro PMS Control Logic MVP Appendix A
+"Complete Modbus Register Map", as expanded in the PMS <-> EV Charge Controller
+Interface Clarification so INT32 fields occupy two holding registers.
+
+All registers are Modbus holding registers (4xxxx).
+INT32 values span two registers; MSB big-endian word order (Appendix A note).
+DC bus voltage and BESS SOC are scaled x10.
+
+EV Charge Controller -> PMS (PMS reads)
+40001 (+40002)  EV Charger Power Demand  INT32  W        R  aggregate request
+40003           EV Charger Status        UINT16 enum     R  0 Idle, 1 Charging, 2 Fault
+40004           Connected Vehicles       UINT16 count    R  active sessions
+40005 (+40006)  DC Bus Voltage           INT32  VDC x10  R  at charger input
+
+PMS -> EV Charge Controller (PMS writes)
+40101 (+40102)  Available Power          INT32  W        W  envelope the charger may draw
+40103           System Status            UINT16 enum     W  0-5 (NORMAL..FAULT)
+40104           Time Remaining           UINT16 min      W  0-999; 999 = unlimited
+40105 (+40106)  PV Power                 INT32  W        W  optional, driver display
+40107           BESS SOC                 UINT16 % x10    W  optional, driver display
+
+Build to this Appendix A layout. Confirm INT32 byte/word order (big-endian
+stated) and the exact addresses with the charger (Siemens/EVCS) vendor before
+LIVE. WAGO FB_EVCS_Read parses low word then high word; that is a known
+discrepancy, not the SIM codec.
+
+No per-port PMS registers. Charge controller is Modbus server (assumed).

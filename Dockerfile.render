@@ -1,0 +1,49 @@
+# syntax=docker/dockerfile:1.7
+# Render free-tier demo image: TimescaleDB + FastAPI in one web service.
+# Ephemeral DB (no persistent disk on free plan) — fine for Netlify Live demos.
+
+ARG PYTHON_VERSION=3.12.12
+ARG UV_VERSION=0.11.29
+
+FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv
+
+FROM python:${PYTHON_VERSION}-slim-bookworm AS builder
+COPY --from=uv /uv /uvx /bin/
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PROJECT_ENVIRONMENT=/opt/venv
+WORKDIR /workspace
+COPY pyproject.toml uv.lock README.md LICENSE ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-dev --no-install-project
+COPY src ./src
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --no-dev --no-editable
+
+# Debian-based HA image so the glibc Python venv from builder can run.
+FROM timescale/timescaledb-ha:pg17
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates gosu \
+    && rm -rf /var/lib/apt/lists/*
+
+# Venv shebangs point at the builder interpreter — bring that Python too.
+COPY --from=builder /usr/local /usr/local
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH=/opt/venv/bin:/usr/local/bin:$PATH \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PGDATA=/home/postgres/pgdata/data
+
+WORKDIR /app
+COPY migrations ./migrations
+COPY protocol ./protocol
+COPY generated/protocol/simulator ./generated/protocol/simulator
+COPY alembic.ini ./
+COPY scripts/render-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh \
+    && mkdir -p /var/run/postgresql "$PGDATA" \
+    && chown -R postgres:postgres /home/postgres /var/run/postgresql
+
+EXPOSE 10000
+ENTRYPOINT ["/entrypoint.sh"]

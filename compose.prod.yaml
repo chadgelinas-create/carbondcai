@@ -1,0 +1,32 @@
+"""Production-oriented compose overlay notes for Week 7 hardening.
+
+Usage:
+  docker compose -f compose.yaml -f compose.prod.yaml --env-file .env.prod up --build
+
+Requires a non-local SKID2_AUTH_SECRET and database URL. Simulation and Modbus
+gateway stay disabled. Frontend builds the nginx production target.
+"""
+
+name: ${SKID2_COMPOSE_PROJECT:-skid2}
+
+services:
+  backend:
+    environment:
+      SKID2_ENVIRONMENT: production
+      SKID2_SIMULATION_ENABLED: "false"
+      SKID2_MODBUS_ENABLED: "false"
+      SKID2_SYNTHETIC_ENABLED: "false"
+      SKID2_DATA_SOURCE: live
+      SKID2_EMS_ENABLED: "true"
+    ports:
+      - "127.0.0.1:${SKID2_API_HOST_PORT:-8000}:8000"
+
+  frontend:
+    build:
+      context: panel
+      target: production
+    command: ["nginx", "-g", "daemon off;"]
+    environment:
+      VITE_SKID2_SIMULATION_ENABLED: "false"
+    ports:
+      - "127.0.0.1:${SKID2_PANEL_HOST_PORT:-8080}:80"

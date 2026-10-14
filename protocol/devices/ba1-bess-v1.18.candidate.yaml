@@ -1,0 +1,839 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "device_map",
+  "document_id": "ba1-bess-v1.18-candidate",
+  "title": "BA1-1 BESS v1.18 candidate map — not production approved",
+  "lifecycle": "candidate",
+  "device": {
+    "device_id": "ba1-1",
+    "display_name": "BA1-1 BESS/BMS",
+    "role": "Battery protection, telemetry, contactors, and dynamic limits",
+    "lifecycle": "candidate",
+    "protocol": "Modbus TCP/RTU capability; site transport not approved",
+    "protocol_role": "EMS workbook describes the device as a Modbus server/slave",
+    "endpoint_status": "unknown",
+    "model": {
+      "status": "unknown",
+      "values": [],
+      "evidence": "OD-002 / SRC-M02: installed catalog and options are missing"
+    },
+    "firmware": {
+      "status": "unknown",
+      "values": [],
+      "evidence": "OD-002 / SRC-M02: installed firmware is missing"
+    },
+    "map_revision": {
+      "status": "exact",
+      "values": ["v1.18"],
+      "evidence": "SRC-014 filename and SHA-256"
+    }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-014",
+      "filename": "EN-EMS_Modbus485_v1.18.xlsx",
+      "revision": "v1.18",
+      "sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+      "classification": "pending verification"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "software normalization",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "P3-007 candidate normalization"
+    },
+    {
+      "authority": "systems/integration applicability",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "OD-002"
+    },
+    {
+      "authority": "controls command semantics",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "OD-007"
+    }
+  ],
+  "points": [
+    {
+      "logical_id": "bess.system.soc.raw",
+      "generated_name": "BA1_SYSTEM_SOC_RAW",
+      "vendor_name": "System Total SOC",
+      "lifecycle": "blocked",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x1140",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 4416,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "blocked",
+        "scale": "1",
+        "offset": "0",
+        "unit": "raw_count",
+        "minimum": "0",
+        "maximum": "65535",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 99,
+        "cells": "E99:K99",
+        "raw_vendor_name": "System Total SOC"
+      },
+      "notes": [
+        "The workbook does not state an engineering scale for this u16 row.",
+        "OD-007 must select the authoritative system/cluster SOC before promotion."
+      ]
+    },
+    {
+      "logical_id": "bess.cluster.soc",
+      "generated_name": "BA1_CLUSTER_SOC",
+      "vendor_name": "Cluster SOC",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x3007",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12295,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.001",
+        "offset": "0",
+        "unit": "ratio",
+        "minimum": "0",
+        "maximum": "1",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 157,
+        "cells": "C157:L157",
+        "raw_vendor_name": "Cluster SOC"
+      },
+      "notes": [
+        "System and cluster SOC remain separate.",
+        "The 1E-3 interpretation is candidate pending vendor review."
+      ]
+    },
+    {
+      "logical_id": "bess.cluster.voltage",
+      "generated_name": "BA1_CLUSTER_VOLTAGE",
+      "vendor_name": "Cluster Current Total Battery Voltage",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x3004",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12292,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "V",
+        "minimum": "0",
+        "maximum": "6553.5",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 154,
+        "cells": "C154:L154",
+        "raw_vendor_name": "Cluster Current Total Battery Voltage"
+      },
+      "notes": ["Candidate electrical telemetry; installed applicability is not approved."]
+    },
+    {
+      "logical_id": "bess.cluster.current",
+      "generated_name": "BA1_CLUSTER_CURRENT",
+      "vendor_name": "Cluster Current Total Battery Current",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x3005",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12293,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int16",
+        "signed": true,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "A",
+        "minimum": "-3276.8",
+        "maximum": "3276.7",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 155,
+        "cells": "C155:L155",
+        "raw_vendor_name": "Cluster Current Total Battery Current"
+      },
+      "notes": ["Vendor sign is charge-negative and discharge-positive; the codec preserves it."]
+    },
+    {
+      "logical_id": "bess.cluster.precharge.state",
+      "generated_name": "BA1_PRECHARGE_STATE",
+      "vendor_name": "Cluster Pre-charging Stage",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x3002",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12290,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "state_code",
+        "minimum": "0",
+        "maximum": "4",
+        "sentinels": [170],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "comm_error",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 152,
+        "cells": "C152:L152",
+        "raw_vendor_name": "Cluster Pre-charging Stage"
+      },
+      "notes": ["0xAA is explicitly no communication and must not appear as a real state."]
+    },
+    {
+      "logical_id": "bess.cluster.contactor.main",
+      "generated_name": "BA1_MAIN_CONTACTOR_CLOSED",
+      "vendor_name": "Cluster Contactor Status bit 0",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x3003",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12291,
+        "bit": 0
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "bit",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "ba1_cluster_contactor_status",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "boolean",
+        "minimum": "0",
+        "maximum": "1",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 153,
+        "cells": "C153:L153",
+        "raw_vendor_name": "Cluster Contactor Status / Bit0 Main Contactor"
+      },
+      "notes": ["Bit extraction shares one atomic source register with other contactor bits."]
+    },
+    {
+      "logical_id": "bess.cluster.contactor.precharge",
+      "generated_name": "BA1_PRECHARGE_CONTACTOR_CLOSED",
+      "vendor_name": "Cluster Contactor Status bit 1",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x3003",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12291,
+        "bit": 1
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "bit",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "ba1_cluster_contactor_status",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "boolean",
+        "minimum": "0",
+        "maximum": "1",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 153,
+        "cells": "C153:L153",
+        "raw_vendor_name": "Cluster Contactor Status / Bit1 Pre-charge Contactor"
+      },
+      "notes": ["Bit writes are not authorized; this candidate is read-only."]
+    },
+    {
+      "logical_id": "bess.cluster.temperature.maximum",
+      "generated_name": "BA1_CLUSTER_MAX_TEMPERATURE",
+      "vendor_name": "Cluster Cell Temperature Highest Value",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x3011",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12305,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int16",
+        "signed": true,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "degC",
+        "minimum": "-40",
+        "maximum": "125",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 167,
+        "cells": "C167:L167",
+        "raw_vendor_name": "Cluster Cell Temperature Highest Value"
+      },
+      "notes": ["Candidate temperature telemetry."]
+    },
+    {
+      "logical_id": "bess.cluster.limit.charge.power",
+      "generated_name": "BA1_CHARGE_POWER_LIMIT",
+      "vendor_name": "Cluster Charge Power Limit",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x301E",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12318,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "kW",
+        "minimum": "0",
+        "maximum": "65535",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 179,
+        "cells": "E179:L179",
+        "raw_vendor_name": "Cluster Charge Power Limit"
+      },
+      "notes": ["Static and dynamic use remains subject to OD-007."]
+    },
+    {
+      "logical_id": "bess.cluster.limit.discharge.power",
+      "generated_name": "BA1_DISCHARGE_POWER_LIMIT",
+      "vendor_name": "Cluster Discharge Power Limit",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x301F",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 12319,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "kW",
+        "minimum": "0",
+        "maximum": "65535",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 180,
+        "cells": "E180:L180",
+        "raw_vendor_name": "Cluster Discharge Power Limit"
+      },
+      "notes": ["Static and dynamic use remains subject to OD-007."]
+    },
+    {
+      "logical_id": "bess.fire.communication.state",
+      "generated_name": "BA1_FIRE_COMMUNICATION_STATE",
+      "vendor_name": "Fire Communication Status",
+      "lifecycle": "candidate",
+      "service": "modbus_input_register_04",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "0x4000",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "input_register",
+        "wire_offset": 16384,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "state_code",
+        "minimum": "0",
+        "maximum": "2",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 451,
+        "cells": "C451:L451",
+        "raw_vendor_name": "Communication Status"
+      },
+      "notes": ["Fault severity/action remains unapproved."]
+    },
+    {
+      "logical_id": "bess.selector.cluster",
+      "generated_name": "BA1_CLUSTER_SELECTOR",
+      "vendor_name": "Cluster Number",
+      "lifecycle": "blocked",
+      "service": "modbus_holding_register_03_06",
+      "access": "read_write",
+      "address": {
+        "status": "candidate",
+        "display": "0x2001",
+        "notation": "hex",
+        "convention": "zero_based",
+        "space": "holding_register",
+        "wire_offset": 8193,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "blocked",
+        "scale": "1",
+        "offset": "0",
+        "unit": "selector_index",
+        "minimum": "0",
+        "maximum": "65535",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "unknown",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "blocked",
+        "prerequisites": [],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": null,
+        "minimum_spacing_ms": null,
+        "ramp": "not applicable; selector semantics still require vendor confirmation"
+      },
+      "provenance": {
+        "source_id": "SRC-014",
+        "source_sha256": "61fbe8cf120e0707b84a2acaf90a2cce296d34bd3c19a8a2c2fceb86865524fa",
+        "sheet": "Data Overview Page ",
+        "row": 39,
+        "cells": "C39:L39",
+        "raw_vendor_name": "Cluster Number"
+      },
+      "notes": ["Write permission, selection side effects, acknowledgement, and safe use are unapproved."]
+    }
+  ],
+  "blockers": [
+    {
+      "blocker_id": "ba1-applicability-and-authority",
+      "owner": "Integration lead and BESS vendor",
+      "decision_id": "OD-002 / OD-007 / OD-017",
+      "source_id": "SRC-M02 / SRC-M05",
+      "needed_by": "Phase 3 production generation and Phase 4 behavior",
+      "reason": "Installed model/firmware, authoritative SOC, commands, timing, and loss behavior are unapproved.",
+      "missing": [
+        "Installed catalog/options/firmware",
+        "v1.18 applicability confirmation",
+        "Authoritative system versus cluster SOC",
+        "Command permission/prerequisites/acknowledgement",
+        "Poll, timeout, stale, watchdog, and loss behavior"
+      ],
+      "known": [
+        "SRC-014 is a real v1.18 workbook with the recorded hash",
+        "Candidate rows retain sheet, row, and cell provenance",
+        "Modbus TCP/RTU capability is stated but the site endpoint is not"
+      ],
+      "affects": [
+        "Production Python codecs",
+        "Production PLC tags",
+        "BESS simulator fidelity",
+        "Control logic"
+      ]
+    }
+  ]
+}

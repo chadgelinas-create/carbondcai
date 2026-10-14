@@ -1,0 +1,336 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "reference_map",
+  "document_id": "skid1-evcs-reference",
+  "title": "Skid 1 EVCS contradictions — reference only, not the DC600 contract",
+  "lifecycle": "reference_only",
+  "device": {
+    "device_id": "skid1-evcs-reference",
+    "display_name": "Legacy Skid 1 EVCS reference",
+    "role": "Historical intent only; never a Skid 2 production endpoint",
+    "lifecycle": "reference_only",
+    "protocol": "Legacy Modbus interpretation",
+    "protocol_role": "conflicting",
+    "endpoint_status": "not_applicable",
+    "model": {
+      "status": "incompatible",
+      "values": ["Skid 1 legacy EVCS, not DC600"],
+      "evidence": "REQ-PROTO-008 / OD-004"
+    },
+    "firmware": {
+      "status": "unknown",
+      "values": [],
+      "evidence": "Legacy reference did not identify applicable firmware"
+    },
+    "map_revision": {
+      "status": "unknown",
+      "values": ["MVP V1.2 and WAGO pseudocode interpretations conflict"],
+      "evidence": "SRC-008 / SRC-009"
+    }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-008",
+      "filename": "CE+T Maestro PMS Control Logic - MVP V1.2.docx",
+      "revision": "MVP V1.2",
+      "sha256": "fe596c07c8b23a190db62fda9dc142bf61ad99e2d0735bf7d38d34d15b3602f0",
+      "classification": "reference only"
+    },
+    {
+      "source_id": "SRC-009",
+      "filename": "CE+T Maestro PMS - WAGO PLC Implementation Specification MVP v1.2.docx",
+      "revision": "MVP V1.2 / header also says v2.0 corrected",
+      "sha256": "8ded8303321815c7e05ff30fa64505cd14c3077a3af013c59fd5e815db07c3a9",
+      "classification": "reference only"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "production exclusion",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "P3-010 / REQ-PROTO-008"
+    }
+  ],
+  "points": [
+    {
+      "logical_id": "legacy.skid1.appendix.evcs.power.demand",
+      "generated_name": "REF_S1_EVCS_DEMAND_APPENDIX",
+      "vendor_name": "EV Charger Power Demand",
+      "lifecycle": "reference_only",
+      "service": "legacy_unknown",
+      "access": "read",
+      "address": {
+        "status": "blocked",
+        "display": "40001",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 0,
+        "bit": null
+      },
+      "wire": {
+        "status": "blocked",
+        "primitive": "int32",
+        "signed": true,
+        "word_count": 2,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "legacy_evcs_demand_conflict",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "blocked",
+        "scale": "1",
+        "offset": "0",
+        "unit": "W",
+        "minimum": "-2147483648",
+        "maximum": "2147483647",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "legacy continuous",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "not specified",
+        "receive_timestamp": "not specified"
+      },
+      "quality": {
+        "sentinel": "unspecified",
+        "communication_error": "unspecified",
+        "out_of_range": "unspecified"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-008",
+        "source_sha256": "fe596c07c8b23a190db62fda9dc142bf61ad99e2d0735bf7d38d34d15b3602f0",
+        "sheet": "Appendix A.1",
+        "row": 351,
+        "cells": "paragraphs 351-356",
+        "raw_vendor_name": "EV Charger Power Demand"
+      },
+      "notes": [
+        "Appendix A calls this INT32 at 40001 but does not unambiguously approve input word order.",
+        "The declared big word order is a quarantined interpretation, not a production choice."
+      ]
+    },
+    {
+      "logical_id": "legacy.skid1.wago.evcs.power.demand",
+      "generated_name": "REF_S1_EVCS_DEMAND_WAGO",
+      "vendor_name": "Power Demand parsed low-word then high-word",
+      "lifecycle": "reference_only",
+      "service": "legacy_unknown",
+      "access": "read",
+      "address": {
+        "status": "blocked",
+        "display": "40001",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 0,
+        "bit": null
+      },
+      "wire": {
+        "status": "blocked",
+        "primitive": "int32",
+        "signed": true,
+        "word_count": 2,
+        "byte_order": "big",
+        "word_order": "little",
+        "atomic_group": "legacy_evcs_demand_conflict",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "blocked",
+        "scale": "1",
+        "offset": "0",
+        "unit": "W",
+        "minimum": "-2147483648",
+        "maximum": "2147483647",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "legacy main loop",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "all-zero heuristic",
+        "source_timestamp": "not specified",
+        "receive_timestamp": "not specified"
+      },
+      "quality": {
+        "sentinel": "all-zero heuristic is unsafe",
+        "communication_error": "all-zero heuristic is unsafe",
+        "out_of_range": "unspecified"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-009",
+        "source_sha256": "8ded8303321815c7e05ff30fa64505cd14c3077a3af013c59fd5e815db07c3a9",
+        "sheet": "Modbus Communication / FB_EVCS_Read",
+        "row": 982,
+        "cells": "pseudocode paragraphs 982-997",
+        "raw_vendor_name": "Register 40001-40002: Power Demand"
+      },
+      "notes": [
+        "WAGO pseudocode explicitly treats the first word as low and second as high.",
+        "This conflicts with the Appendix interpretation and is never generated for production."
+      ]
+    },
+    {
+      "logical_id": "legacy.skid1.section3.evcs.status",
+      "generated_name": "REF_S1_EVCS_STATUS_SECTION3",
+      "vendor_name": "Charger Status",
+      "lifecycle": "reference_only",
+      "service": "legacy_unknown",
+      "access": "read",
+      "address": {
+        "status": "blocked",
+        "display": "40002",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 1,
+        "bit": null
+      },
+      "wire": {
+        "status": "blocked",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "legacy_evcs_status_conflict",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "blocked",
+        "scale": "1",
+        "offset": "0",
+        "unit": "state_code",
+        "minimum": "0",
+        "maximum": "2",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "legacy continuous",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "not specified",
+        "receive_timestamp": "not specified"
+      },
+      "quality": {
+        "sentinel": "unspecified",
+        "communication_error": "unspecified",
+        "out_of_range": "unspecified"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-008",
+        "source_sha256": "fe596c07c8b23a190db62fda9dc142bf61ad99e2d0735bf7d38d34d15b3602f0",
+        "sheet": "Section 3.1",
+        "row": 42,
+        "cells": "paragraphs 42-46",
+        "raw_vendor_name": "Charger Status"
+      },
+      "notes": ["Section 3 places status at 40002."]
+    },
+    {
+      "logical_id": "legacy.skid1.appendix.evcs.status",
+      "generated_name": "REF_S1_EVCS_STATUS_APPENDIX",
+      "vendor_name": "EV Charger Status",
+      "lifecycle": "reference_only",
+      "service": "legacy_unknown",
+      "access": "read",
+      "address": {
+        "status": "blocked",
+        "display": "40003",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 2,
+        "bit": null
+      },
+      "wire": {
+        "status": "blocked",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "legacy_evcs_status_conflict",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "blocked",
+        "scale": "1",
+        "offset": "0",
+        "unit": "state_code",
+        "minimum": "0",
+        "maximum": "2",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "blocked",
+        "poll_class": "legacy unspecified",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "not specified",
+        "receive_timestamp": "not specified"
+      },
+      "quality": {
+        "sentinel": "unspecified",
+        "communication_error": "unspecified",
+        "out_of_range": "unspecified"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-008",
+        "source_sha256": "fe596c07c8b23a190db62fda9dc142bf61ad99e2d0735bf7d38d34d15b3602f0",
+        "sheet": "Appendix A.1",
+        "row": 357,
+        "cells": "paragraphs 357-362",
+        "raw_vendor_name": "EV Charger Status"
+      },
+      "notes": ["Appendix A and WAGO pseudocode place status at 40003, not Section 3's 40002."]
+    }
+  ],
+  "blockers": [
+    {
+      "blocker_id": "legacy-evcs-is-not-dc600",
+      "owner": "DC600 vendor liaison and controls lead",
+      "decision_id": "OD-004",
+      "source_id": "SRC-M03",
+      "needed_by": "Phase 3 production protocol and Phase 4 DC600 behavior",
+      "reason": "The actual DC600 contract is missing and Skid 1 sources conflict.",
+      "missing": [
+        "DC600 telemetry and demand/availability handshake",
+        "Command and acknowledgement semantics",
+        "Status, timeout, watchdog, and reconnect behavior",
+        "Applicable model/firmware and map revision"
+      ],
+      "known": [
+        "Section 3 uses 40002 for status",
+        "Appendix A uses 40003 for status",
+        "WAGO power-demand parsing uses low-word-first while Appendix language is incompatible or ambiguous",
+        "Appendix voltage scaling and WAGO parsing conflict"
+      ],
+      "affects": [
+        "DC600 production protocol",
+        "DC600 simulator",
+        "EVCS handshake",
+        "PLC tags"
+      ]
+    }
+  ]
+}

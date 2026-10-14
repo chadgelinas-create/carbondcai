@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "blocker_manifest",
+  "document_id": "dc600-interface-blocked",
+  "title": "DC600 LIVE interface blocked - Siemens/EVCS confirm still open",
+  "lifecycle": "blocked",
+  "device": {
+    "device_id": "dc600",
+    "display_name": "DC600 charge controller",
+    "role": "EVCS-facing availability, demand, and charging-session coordination",
+    "lifecycle": "blocked",
+    "protocol": "Modbus holdings (Appendix A candidate exists; LIVE unconfirmed)",
+    "protocol_role": "EVCS as Modbus server assumed; as-built confirm pending",
+    "endpoint_status": "unknown",
+    "model": { "status": "unknown", "values": ["DC600 / Siemens EVCS controller"], "evidence": "SRC-040 / OD-002" },
+    "firmware": { "status": "unknown", "values": [], "evidence": "SRC-M02" },
+    "map_revision": { "status": "exact", "values": ["Appendix A expanded holdings"], "evidence": "SRC-040" }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-040",
+      "filename": "pms-evcs-appendix-a-holdings.txt",
+      "revision": "Appendix A expanded",
+      "sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+      "classification": "approved SIM build target; LIVE Siemens confirm still open"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "Siemens/EVCS vendor",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "Confirm INT32 byte/word order (big-endian stated) and exact addresses before LIVE"
+    }
+  ],
+  "points": [],
+  "blockers": [
+    {
+      "blocker_id": "dc600-siemens-live-confirm",
+      "owner": "DC600 vendor liaison / integration lead",
+      "decision_id": "OD-004",
+      "source_id": "SRC-040",
+      "needed_by": "LIVE plant adapters",
+      "reason": "SIM builds to Appendix A (INT32 big-endian as stated). LIVE still needs Siemens/EVCS confirm of exact addresses and INT32 byte/word order.",
+      "missing": [
+        "Siemens EVCS holdings document",
+        "INT32 word-order confirm on the as-built charger",
+        "Master/slave as-built confirm",
+        "PMS update rate (60 Hz vs 0.5-5)"
+      ],
+      "known": [
+        "Appendix A expanded holdings 40001-40006 / 40101-40107",
+        "INT32 two holdings, MSB big-endian stated",
+        "No per-port PMS registers",
+        "Candidate SIM map in protocol/devices/dc600-appendix-a.candidate.yaml"
+      ],
+      "affects": ["LIVE adapters", "Modbus gateway writes", "HIL/FAT"]
+    }
+  ]
+}

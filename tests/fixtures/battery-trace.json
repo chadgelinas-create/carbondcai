@@ -1,0 +1,36 @@
+{
+  "model_version": "5",
+  "profile": "solar_cloud",
+  "battery_profile": "battery_3500",
+  "frames": [
+    {
+      "sequence": 4,
+      "energy_kwh": 1750.0422222222223,
+      "actual_kw": -40.0,
+      "loss_kw": 2.0,
+      "quality": "good"
+    },
+    {
+      "sequence": 5,
+      "energy_kwh": 1750.052777777778,
+      "actual_kw": -40.0,
+      "loss_kw": 2.0,
+      "quality": "good"
+    },
+    {
+      "sequence": 6,
+      "energy_kwh": 1750.052777777778,
+      "actual_kw": null,
+      "loss_kw": null,
+      "quality": "stale"
+    },
+    {
+      "sequence": 7,
+      "energy_kwh": 1750.0633333333335,
+      "actual_kw": -40.0,
+      "loss_kw": 2.0,
+      "quality": "good"
+    }
+  ],
+  "plant_trace_hash": "bebe9e8e4cbbe48c53b37847d3de6d7ef10e952d4684837563542f2cf1964509"
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "blocker_manifest",
+  "document_id": "st4-interface-blocked",
+  "title": "Stabiliti ST-4 interface blocked — no production point contract",
+  "lifecycle": "blocked",
+  "device": {
+    "device_id": "st-4",
+    "display_name": "Stabiliti ST-4",
+    "role": "750 V DC bus input to 480 V AC grid-forming output",
+    "lifecycle": "blocked",
+    "protocol": "Ethernet physical link known; application protocol unknown",
+    "protocol_role": "unknown",
+    "endpoint_status": "unknown",
+    "model": { "status": "unknown", "values": ["Stabiliti family label only"], "evidence": "SRC-005 / OD-002" },
+    "firmware": { "status": "unknown", "values": [], "evidence": "SRC-M02" },
+    "map_revision": { "status": "unknown", "values": [], "evidence": "SRC-M04 / OD-005" }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-005",
+      "filename": "Skid2_Topology_Rev9.png",
+      "revision": "Rev 9",
+      "sha256": "598e7fc37db42a8ad968ef45f79f15ea885a74ffa556e1934138730302b098f2",
+      "classification": "current candidate topology only"
+    },
+    {
+      "source_id": "SRC-036",
+      "filename": "2026-09-14-stabiliti-bus-only.md",
+      "revision": "2026-09-14 user-supplied direction",
+      "sha256": "2ce2cb4fc85bacdbaef6d3a7d25ceb3d1540c28be5dedc64e03926b7d71920ca",
+      "classification": "confirmed power source direction; direct interface remains blocked"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "CE+T vendor and controls",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "OD-005"
+    }
+  ],
+  "points": [],
+  "blockers": [
+    {
+      "blocker_id": "st4-contract-missing",
+      "owner": "CE+T vendor liaison / integration lead",
+      "decision_id": "OD-005",
+      "source_id": "SRC-M04",
+      "needed_by": "Phase 3 production protocol and Phase 4 Stabiliti simulator",
+      "reason": "No applicable ST-4 EDS/AOP or protocol/register contract has been supplied.",
+      "missing": [
+        "EDS/AOP or protocol/register map",
+        "Exact model, options, and firmware",
+        "Command, acknowledgement, and operating mode sequence",
+        "Telemetry, status, faults, timing and watchdog"
+      ],
+      "known": ["Rev 9 shows ST-4 and an Ethernet physical connection", "SRC-036: bus-only DC input to AC output; no per-unit PV or bus export"],
+      "affects": ["Python contract", "PLC tags", "ST-4 simulator", "DC bus and AC load control"]
+    }
+  ]
+}

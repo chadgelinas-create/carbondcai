@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "reference_map",
+  "document_id": "sinexcel-pds1-v125-framing",
+  "title": "Sinexcel PDS1-750K V125 frame formats — communication reference, not a register map",
+  "lifecycle": "reference_only",
+  "device": {
+    "device_id": "sinexcel-pds1-v125",
+    "display_name": "Sinexcel PDS1-750K",
+    "role": "DC converter communication framing for the V125 protocol sheet",
+    "lifecycle": "reference_only",
+    "protocol": "Modbus RTU or Modbus TCP",
+    "protocol_role": "The converter is the Modbus TCP server",
+    "endpoint_status": "unknown",
+    "model": {
+      "status": "unknown",
+      "values": ["PDS1-750K appears in the filename"],
+      "evidence": "SRC-039 filename. Applicability to the installed CNVTR-1 and CNVTR-2 is not confirmed."
+    },
+    "firmware": {
+      "status": "unknown",
+      "values": [],
+      "evidence": "SRC-039"
+    },
+    "map_revision": {
+      "status": "exact",
+      "values": ["V125"],
+      "evidence": "SRC-039 filename. The candidate converter maps cite V126, one revision later."
+    }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-039",
+      "filename": "pds1-750k-modbus-v125-frame-formats.csv",
+      "revision": "V125 frame formats sheet",
+      "sha256": "79b4ad4eee5065e08e79a0a6d2dbaa4b6dc6644b20b44ae006641b2f89fdcc99",
+      "classification": "framing and function-code reference; no named register list"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "production exclusion",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "Frame sheet brought in for the converter link settings. It does not replace the V126 candidate points."
+    }
+  ],
+  "points": [],
+  "blockers": [
+    {
+      "blocker_id": "sinexcel-v125-framing-not-a-register-map",
+      "owner": "integration lead",
+      "decision_id": "OD-002",
+      "source_id": "SRC-039",
+      "needed_by": "before a converter poll uses these link settings",
+      "reason": "The sheet describes frames, function codes, and address bands. It does not name the registers inside those bands.",
+      "missing": [
+        "Named register list for the V125 bands",
+        "Confirmation that V125 bands still apply to the V126 candidate workbook",
+        "Installed host, unit id, and RTU-versus-TCP choice for CNVTR-1 and CNVTR-2"
+      ],
+      "known": [
+        "RS485 Modbus RTU at 19200 baud by default, or 9600. 8 data bits, no parity, 1 stop bit. CRC16, low byte first. Device address 1 through 247.",
+        "Ethernet Modbus TCP. The converter is the server. Listen port 502. 10/100M LAN.",
+        "Data words are big-endian: high byte first.",
+        "Applied reads use function 03. Status and alarm band is 0 through 135. Analog band is 136 through 1000.",
+        "Settings band is 1001 through 2999. Write with function 06 or 16, read back with function 03.",
+        "The worked example writes register 1006, shown as bytes 0x03 0xEE, to set grid interconnection mode off-grid.",
+        "Candidate V126 points include holding offsets 156, 491, 494, 1001, and 1236, which sit inside these bands, and offsets 34032 and 34033, which sit outside 0 through 2999."
+      ],
+      "affects": ["CNVTR-1 candidate map", "CNVTR-2 candidate map", "Live device adapter"]
+    }
+  ]
+}

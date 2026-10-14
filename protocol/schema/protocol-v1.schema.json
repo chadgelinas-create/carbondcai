@@ -1,0 +1,361 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:carbon-dc:skid2:protocol:1.0.0",
+  "title": "Carbon DC Skid 2 Protocol Source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "document_kind",
+    "document_id",
+    "title",
+    "lifecycle",
+    "device",
+    "sources",
+    "reviews",
+    "points",
+    "blockers"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "document_kind": {
+      "enum": ["device_map", "reference_map", "blocker_manifest"]
+    },
+    "document_id": { "$ref": "#/$defs/nonempty" },
+    "title": { "$ref": "#/$defs/nonempty" },
+    "lifecycle": { "$ref": "#/$defs/lifecycle" },
+    "device": { "$ref": "#/$defs/device" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "reviews": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/review" }
+    },
+    "points": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/point" }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/blocker" }
+    }
+  },
+  "$defs": {
+    "nonempty": { "type": "string", "minLength": 1 },
+    "lifecycle": {
+      "enum": [
+        "raw",
+        "imported",
+        "candidate",
+        "reviewed",
+        "approved",
+        "reference_only",
+        "blocked",
+        "superseded",
+        "rejected"
+      ]
+    },
+    "string_array": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/nonempty" }
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "values", "evidence"],
+      "properties": {
+        "status": { "enum": ["exact", "range", "unknown", "incompatible"] },
+        "values": { "$ref": "#/$defs/string_array" },
+        "evidence": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "filename",
+        "revision",
+        "sha256",
+        "classification"
+      ],
+      "properties": {
+        "source_id": { "pattern": "^SRC-[A-Z0-9-]+$" },
+        "filename": { "$ref": "#/$defs/nonempty" },
+        "revision": { "$ref": "#/$defs/nonempty" },
+        "sha256": { "pattern": "^[0-9a-f]{64}$" },
+        "classification": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "reviewer", "status", "date", "evidence"],
+      "properties": {
+        "authority": { "$ref": "#/$defs/nonempty" },
+        "reviewer": { "type": "string" },
+        "status": {
+          "enum": ["pending", "accepted", "accepted_with_conditions", "rejected"]
+        },
+        "date": { "type": "string" },
+        "evidence": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "device_id",
+        "display_name",
+        "role",
+        "lifecycle",
+        "protocol",
+        "protocol_role",
+        "endpoint_status",
+        "model",
+        "firmware",
+        "map_revision"
+      ],
+      "properties": {
+        "device_id": { "pattern": "^[a-z][a-z0-9-]+$" },
+        "display_name": { "$ref": "#/$defs/nonempty" },
+        "role": { "$ref": "#/$defs/nonempty" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "protocol": { "$ref": "#/$defs/nonempty" },
+        "protocol_role": { "$ref": "#/$defs/nonempty" },
+        "endpoint_status": {
+          "enum": ["unknown", "candidate", "approved", "not_applicable"]
+        },
+        "model": { "$ref": "#/$defs/applicability" },
+        "firmware": { "$ref": "#/$defs/applicability" },
+        "map_revision": { "$ref": "#/$defs/applicability" }
+      }
+    },
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "display",
+        "notation",
+        "convention",
+        "space",
+        "wire_offset",
+        "bit"
+      ],
+      "properties": {
+        "status": { "enum": ["candidate", "approved", "blocked"] },
+        "display": { "$ref": "#/$defs/nonempty" },
+        "notation": { "enum": ["decimal", "hex", "modicon"] },
+        "convention": {
+          "enum": ["zero_based", "one_based", "display_reference"]
+        },
+        "space": {
+          "enum": ["coil", "discrete_input", "input_register", "holding_register"]
+        },
+        "wire_offset": { "type": "integer", "minimum": 0, "maximum": 65535 },
+        "bit": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "maximum": 15
+        }
+      }
+    },
+    "wire": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "primitive",
+        "signed",
+        "word_count",
+        "byte_order",
+        "word_order",
+        "atomic_group",
+        "bit_definitions"
+      ],
+      "properties": {
+        "status": { "enum": ["candidate", "approved", "blocked"] },
+        "primitive": {
+          "enum": ["bit", "bitfield", "uint16", "int16", "uint32", "int32"]
+        },
+        "signed": { "type": "boolean" },
+        "word_count": { "type": "integer", "minimum": 1, "maximum": 2 },
+        "byte_order": { "enum": ["big", "little"] },
+        "word_order": { "enum": ["big", "little"] },
+        "atomic_group": { "type": "string" },
+        "bit_definitions": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/nonempty" }
+        }
+      }
+    },
+    "engineering": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "scale",
+        "offset",
+        "unit",
+        "minimum",
+        "maximum",
+        "sentinels",
+        "rounding"
+      ],
+      "properties": {
+        "status": { "enum": ["candidate", "approved", "blocked"] },
+        "scale": { "type": ["string", "number"] },
+        "offset": { "type": ["string", "number"] },
+        "unit": { "$ref": "#/$defs/nonempty" },
+        "minimum": { "type": ["string", "number", "null"] },
+        "maximum": { "type": ["string", "number", "null"] },
+        "sentinels": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "uniqueItems": true
+        },
+        "rounding": { "enum": ["reject", "half_even", "half_up"] }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "poll_class",
+        "timeout_ms",
+        "stale_after_ms",
+        "retry_policy",
+        "source_timestamp",
+        "receive_timestamp"
+      ],
+      "properties": {
+        "status": { "enum": ["unknown", "candidate", "approved", "blocked"] },
+        "poll_class": { "$ref": "#/$defs/nonempty" },
+        "timeout_ms": { "type": ["integer", "null"], "minimum": 1 },
+        "stale_after_ms": { "type": ["integer", "null"], "minimum": 1 },
+        "retry_policy": { "$ref": "#/$defs/nonempty" },
+        "source_timestamp": { "$ref": "#/$defs/nonempty" },
+        "receive_timestamp": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sentinel", "communication_error", "out_of_range"],
+      "properties": {
+        "sentinel": { "$ref": "#/$defs/nonempty" },
+        "communication_error": { "$ref": "#/$defs/nonempty" },
+        "out_of_range": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "prerequisites",
+        "acknowledgement",
+        "timeout_ms",
+        "safe_value",
+        "minimum_spacing_ms",
+        "ramp"
+      ],
+      "properties": {
+        "status": { "enum": ["candidate", "approved", "blocked"] },
+        "prerequisites": { "$ref": "#/$defs/string_array" },
+        "acknowledgement": { "$ref": "#/$defs/nonempty" },
+        "timeout_ms": { "type": ["integer", "null"], "minimum": 1 },
+        "safe_value": { "type": ["string", "number", "null"] },
+        "minimum_spacing_ms": { "type": ["integer", "null"], "minimum": 0 },
+        "ramp": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "source_sha256",
+        "sheet",
+        "row",
+        "cells",
+        "raw_vendor_name"
+      ],
+      "properties": {
+        "source_id": { "pattern": "^SRC-[A-Z0-9-]+$" },
+        "source_sha256": { "pattern": "^[0-9a-f]{64}$" },
+        "sheet": { "$ref": "#/$defs/nonempty" },
+        "row": { "type": "integer", "minimum": 1 },
+        "cells": { "$ref": "#/$defs/nonempty" },
+        "raw_vendor_name": { "$ref": "#/$defs/nonempty" }
+      }
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logical_id",
+        "generated_name",
+        "vendor_name",
+        "lifecycle",
+        "service",
+        "access",
+        "address",
+        "wire",
+        "engineering",
+        "timing",
+        "quality",
+        "command",
+        "provenance",
+        "notes"
+      ],
+      "properties": {
+        "logical_id": { "pattern": "^[a-z][a-z0-9]*(?:[._][a-z0-9]+)*$" },
+        "generated_name": { "pattern": "^[A-Z][A-Z0-9_]{0,39}$" },
+        "vendor_name": { "$ref": "#/$defs/nonempty" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "service": { "$ref": "#/$defs/nonempty" },
+        "access": { "enum": ["read", "write", "read_write"] },
+        "address": { "$ref": "#/$defs/address" },
+        "wire": { "$ref": "#/$defs/wire" },
+        "engineering": { "$ref": "#/$defs/engineering" },
+        "timing": { "$ref": "#/$defs/timing" },
+        "quality": { "$ref": "#/$defs/quality" },
+        "command": { "oneOf": [{ "$ref": "#/$defs/command" }, { "type": "null" }] },
+        "provenance": { "$ref": "#/$defs/provenance" },
+        "notes": { "$ref": "#/$defs/string_array" }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blocker_id",
+        "owner",
+        "decision_id",
+        "source_id",
+        "needed_by",
+        "reason",
+        "missing",
+        "known",
+        "affects"
+      ],
+      "properties": {
+        "blocker_id": { "$ref": "#/$defs/nonempty" },
+        "owner": { "$ref": "#/$defs/nonempty" },
+        "decision_id": { "$ref": "#/$defs/nonempty" },
+        "source_id": { "$ref": "#/$defs/nonempty" },
+        "needed_by": { "$ref": "#/$defs/nonempty" },
+        "reason": { "$ref": "#/$defs/nonempty" },
+        "missing": { "$ref": "#/$defs/string_array" },
+        "known": { "$ref": "#/$defs/string_array" },
+        "affects": { "$ref": "#/$defs/string_array" }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+# Use with compose.yaml and the server's .env.staging file.
+services:
+  backend:
+    environment:
+      # Staging runs one database/runtime owner for monitoring and simulation.
+      SKID2_ENVIRONMENT: test
+      SKID2_SIMULATION_ENABLED: "true"
+      SKID2_MODBUS_ENABLED: "true"
+      SKID2_MODBUS_BIND_HOST: "0.0.0.0"
+      SKID2_MODBUS_CLIENT_HOST: ${SKID2_MODBUS_PUBLIC_HOST:-127.0.0.1}
+      SKID2_MODBUS_PORT: "1502"
+      SKID2_MONITOR_ENABLED: "true"
+      SKID2_AUTH_ENABLED: "true"
+      SKID2_BROWSER_ORIGIN: ${SKID2_BROWSER_ORIGIN:?Set the public browser origin}
+      SKID2_SECURE_COOKIES: ${SKID2_SECURE_COOKIES:?Set true when using HTTPS}
+      SKID2_LIVE_BESS_MAP: ${SKID2_LIVE_BESS_MAP:-}
+    ports: !override
+      - "127.0.0.1:${SKID2_API_HOST_PORT:-8000}:8000"
+      - "${SKID2_MODBUS_PUBLISH_HOST:-0.0.0.0}:${SKID2_MODBUS_HOST_PORT:-1502}:1502"
+    networks:
+      app:
+        # Preserve connection settings that already use simulator:1502.
+        aliases: [simulator]
+  frontend:
+    build:
+      context: panel
+      target: production
+      args:
+        VITE_SKID2_SIMULATION_ENABLED: "true"
+    command: !reset []
+    volumes: !reset []
+    ports: !override
+      - "${SKID2_PANEL_BIND_HOST:-0.0.0.0}:${SKID2_PANEL_HOST_PORT:-5173}:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/health || exit 1"]

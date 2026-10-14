@@ -1,0 +1,707 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "device_map",
+  "document_id": "dc600-appendix-a-candidate",
+  "title": "DC600 PMS <-> EVCS Appendix A candidate map \u2014 SIM codec, not LIVE approved",
+  "lifecycle": "candidate",
+  "device": {
+    "device_id": "dc600",
+    "display_name": "DC600 charge controller",
+    "role": "EVCS aggregate demand and PMS Available-Power envelope",
+    "lifecycle": "candidate",
+    "protocol": "Modbus TCP holdings; site transport not approved",
+    "protocol_role": "EVCS is Modbus server/slave (assumed); PMS is client/master",
+    "endpoint_status": "unknown",
+    "model": {
+      "status": "unknown",
+      "values": [
+        "DC600 / Siemens EVCS controller"
+      ],
+      "evidence": "clarification note plus DC600 series sheet; as-built confirm pending"
+    },
+    "firmware": {
+      "status": "unknown",
+      "values": [],
+      "evidence": "Siemens/EVCS firmware not supplied"
+    },
+    "map_revision": {
+      "status": "exact",
+      "values": [
+        "Appendix A expanded holdings"
+      ],
+      "evidence": "SRC-040"
+    }
+  },
+  "sources": [
+    {
+      "source_id": "SRC-040",
+      "filename": "pms-evcs-appendix-a-holdings.txt",
+      "revision": "Appendix A expanded",
+      "sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+      "classification": "approved SIM build target; LIVE Siemens confirm still open"
+    }
+  ],
+  "reviews": [
+    {
+      "authority": "project owner map applicability",
+      "reviewer": "Carbon DC",
+      "status": "accepted_with_conditions",
+      "date": "",
+      "evidence": "Build to Appendix A. Siemens/EVCS confirm of exact addresses and INT32 word order before LIVE."
+    },
+    {
+      "authority": "Siemens/EVCS vendor",
+      "reviewer": "",
+      "status": "pending",
+      "date": "",
+      "evidence": "Open item: confirm INT32 byte/word order (big-endian stated) and exact addresses"
+    }
+  ],
+  "points": [
+    {
+      "logical_id": "dc600.evcs.demand.power",
+      "generated_name": "DC600_EVCS_DEMAND",
+      "vendor_name": "EV Charger Power Demand",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "40001",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 0,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int32",
+        "signed": true,
+        "word_count": 2,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "dc600_evcs_demand",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "W",
+        "minimum": "0",
+        "maximum": "2147483647",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "continuous",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 1,
+        "cells": "40001-40002",
+        "raw_vendor_name": "EV Charger Power Demand"
+      },
+      "notes": [
+        "INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE.",
+        "Engineering unit is watts. SIM overlay also publishes kW."
+      ]
+    },
+    {
+      "logical_id": "dc600.evcs.status",
+      "generated_name": "DC600_EVCS_STATUS",
+      "vendor_name": "EV Charger Status",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "40003",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 2,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "enum",
+        "minimum": "0",
+        "maximum": "2",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "continuous",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 2,
+        "cells": "40003",
+        "raw_vendor_name": "EV Charger Status"
+      },
+      "notes": [
+        "0 Idle, 1 Charging, 2 Fault."
+      ]
+    },
+    {
+      "logical_id": "dc600.evcs.vehicles",
+      "generated_name": "DC600_EVCS_VEHICLES",
+      "vendor_name": "Connected Vehicles",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "40004",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 3,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "count",
+        "minimum": "0",
+        "maximum": "6",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "on change",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 3,
+        "cells": "40004",
+        "raw_vendor_name": "Connected Vehicles"
+      },
+      "notes": [
+        "Active sessions. No per-port PMS registers."
+      ]
+    },
+    {
+      "logical_id": "dc600.evcs.bus.voltage",
+      "generated_name": "DC600_EVCS_BUS_V",
+      "vendor_name": "DC Bus Voltage",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "read",
+      "address": {
+        "status": "candidate",
+        "display": "40005",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 4,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int32",
+        "signed": true,
+        "word_count": 2,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "dc600_evcs_bus_v",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "V",
+        "minimum": "0",
+        "maximum": "1000",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "continuous",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": null,
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 4,
+        "cells": "40005-40006",
+        "raw_vendor_name": "DC Bus Voltage"
+      },
+      "notes": [
+        "VDC x10. INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE."
+      ]
+    },
+    {
+      "logical_id": "dc600.pms.available.power",
+      "generated_name": "DC600_PMS_AVAILABLE",
+      "vendor_name": "Available Power",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "write",
+      "address": {
+        "status": "candidate",
+        "display": "40101",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 100,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int32",
+        "signed": true,
+        "word_count": 2,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "dc600_pms_available",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "W",
+        "minimum": "0",
+        "maximum": "2147483647",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "pms write",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "candidate",
+        "prerequisites": [
+          "pms_modbus_master"
+        ],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": "0",
+        "minimum_spacing_ms": null,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 5,
+        "cells": "40101-40102",
+        "raw_vendor_name": "Available Power"
+      },
+      "notes": [
+        "INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE.",
+        "Anchor envelope. Charger self-limits to this value."
+      ]
+    },
+    {
+      "logical_id": "dc600.pms.system.status",
+      "generated_name": "DC600_PMS_STATUS",
+      "vendor_name": "System Status",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "write",
+      "address": {
+        "status": "candidate",
+        "display": "40103",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 102,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "enum",
+        "minimum": "0",
+        "maximum": "5",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "pms write",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "candidate",
+        "prerequisites": [
+          "pms_modbus_master"
+        ],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": "0",
+        "minimum_spacing_ms": null,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 6,
+        "cells": "40103",
+        "raw_vendor_name": "System Status"
+      },
+      "notes": [
+        "0 NORMAL, 1 DERATED_PV, 2 DERATED_BESS, 3 DERATED_BOTH, 4 BESS_RESERVE, 5 FAULT."
+      ]
+    },
+    {
+      "logical_id": "dc600.pms.time.remaining",
+      "generated_name": "DC600_PMS_TIME",
+      "vendor_name": "Time Remaining",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "write",
+      "address": {
+        "status": "candidate",
+        "display": "40104",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 103,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "min",
+        "minimum": "0",
+        "maximum": "999",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "pms write",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "candidate",
+        "prerequisites": [
+          "pms_modbus_master"
+        ],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": "0",
+        "minimum_spacing_ms": null,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 7,
+        "cells": "40104",
+        "raw_vendor_name": "Time Remaining"
+      },
+      "notes": [
+        "999 = unlimited."
+      ]
+    },
+    {
+      "logical_id": "dc600.pms.pv.power",
+      "generated_name": "DC600_PMS_PV",
+      "vendor_name": "PV Power",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "write",
+      "address": {
+        "status": "candidate",
+        "display": "40105",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 104,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "int32",
+        "signed": true,
+        "word_count": 2,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "dc600_pms_pv",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "1",
+        "offset": "0",
+        "unit": "W",
+        "minimum": "0",
+        "maximum": "2147483647",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "pms write",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "candidate",
+        "prerequisites": [
+          "pms_modbus_master"
+        ],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": "0",
+        "minimum_spacing_ms": null,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 8,
+        "cells": "40105-40106",
+        "raw_vendor_name": "PV Power"
+      },
+      "notes": [
+        "Optional driver display. INT32 two holdings, MSB big-endian as stated. Siemens/EVCS confirm before LIVE."
+      ]
+    },
+    {
+      "logical_id": "dc600.pms.bess.soc",
+      "generated_name": "DC600_PMS_SOC",
+      "vendor_name": "BESS SOC",
+      "lifecycle": "candidate",
+      "service": "modbus_holding_register_03_06",
+      "access": "write",
+      "address": {
+        "status": "candidate",
+        "display": "40107",
+        "notation": "modicon",
+        "convention": "display_reference",
+        "space": "holding_register",
+        "wire_offset": 106,
+        "bit": null
+      },
+      "wire": {
+        "status": "candidate",
+        "primitive": "uint16",
+        "signed": false,
+        "word_count": 1,
+        "byte_order": "big",
+        "word_order": "big",
+        "atomic_group": "",
+        "bit_definitions": {}
+      },
+      "engineering": {
+        "status": "candidate",
+        "scale": "0.1",
+        "offset": "0",
+        "unit": "percent",
+        "minimum": "0",
+        "maximum": "100",
+        "sentinels": [],
+        "rounding": "reject"
+      },
+      "timing": {
+        "status": "unknown",
+        "poll_class": "pms write",
+        "timeout_ms": null,
+        "stale_after_ms": null,
+        "retry_policy": "unknown",
+        "source_timestamp": "receive-time candidate",
+        "receive_timestamp": "required UTC"
+      },
+      "quality": {
+        "sentinel": "invalid",
+        "communication_error": "comm_error",
+        "out_of_range": "out_of_range"
+      },
+      "command": {
+        "status": "candidate",
+        "prerequisites": [
+          "pms_modbus_master"
+        ],
+        "acknowledgement": "unknown",
+        "timeout_ms": null,
+        "safe_value": "0",
+        "minimum_spacing_ms": null,
+        "ramp": "unknown"
+      },
+      "provenance": {
+        "source_id": "SRC-040",
+        "source_sha256": "77ad4fa3875ecff9a1cdcc4accc6c7e8da585eb38c2a3faa0598202b349a6f37",
+        "sheet": "Appendix A expanded holdings",
+        "row": 9,
+        "cells": "40107",
+        "raw_vendor_name": "BESS SOC"
+      },
+      "notes": [
+        "Percent x10. Optional driver display."
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "blocker_id": "dc600-siemens-live-confirm",
+      "owner": "DC600 vendor liaison / integration lead",
+      "decision_id": "OD-004",
+      "source_id": "SRC-040",
+      "needed_by": "LIVE plant adapters",
+      "reason": "SIM builds to Appendix A (INT32 big-endian as stated). LIVE still needs Siemens/EVCS confirm of exact addresses and INT32 byte/word order.",
+      "missing": [
+        "Siemens EVCS holdings document",
+        "INT32 word-order confirm on the as-built charger",
+        "Master/slave as-built confirm",
+        "PMS update rate (60 Hz vs 0.5-5)"
+      ],
+      "known": [
+        "Appendix A expanded holdings 40001-40006 / 40101-40107",
+        "INT32 two holdings, MSB big-endian stated",
+        "No per-port PMS registers"
+      ],
+      "affects": [
+        "LIVE adapters",
+        "Modbus gateway writes",
+        "HIL/FAT"
+      ]
+    }
+  ]
+}
